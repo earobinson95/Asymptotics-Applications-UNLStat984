@@ -1,0 +1,256 @@
+---
+title: "Homework 2"
+author: "Emily Robinson"
+date: "September 13, 2019"
+output:
+  pdf_document:
+      keep_tex:  true
+subtitle: STAT 984
+theme: cerulean
+fontsize: 12pt
+header-includes:
+- \usepackage{amsmath}
+- \usepackage{amssymb}
+- \usepackage{amsthm}
+---
+
+<style type="text/css">
+
+h1.title {
+  font-size: 18px;
+  color: Black;
+  text-align: center;
+}
+h3.subtitle{
+  font-size: 12px;
+  color: Black;
+  text-align: center;
+}
+h4.author { /* Header 4 - and the author and data headers use this too  */
+  font-size: 12px;
+  font-family: "Times New Roman", Times, serif;
+  color: Black;
+  text-align: center;
+}
+h4.date { /* Header 4 - and the author and data headers use this too  */
+  font-size: 12px;
+  font-family: "Times New Roman", Times, serif;
+  color: Black;
+  text-align: center;
+}
+</style>
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width=5, fig.height=4, fig.align = "center")
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=50),tidy=TRUE)
+```
+
+### Exercise 1.21
+Let $x_1, ..., x_n$ be a simple random sample from an exponential distribution with density $f(x) = \theta e^{-\theta x}$ and consider the estimator $\delta_n(x) = \sum_{i = 1}^n\frac{x_i}{n+2}$ of $g(\theta) = \frac{1}{theta}.$ Show that for some constants $c_1$ and $c_2$ depending on $\theta,$
+$$\text{bias of } \delta_n\sim c_1 \text{variance of } \delta_n) \sim \frac{c_2}{n}$$
+as $n\rightarrow \infty.$ The bias of $\delta_n$ equals its expectation minus $\frac{1}{\theta}.$
+
+Let $g(\theta) = \frac{1}{\theta}.$ Then $f(x) = \frac{1}{g(\theta)} e^{-\frac{x}{g(\theta)}}.$ Therefore, $E[x_i] = g(\theta) = \frac{1}{\theta}$ and $Var(x_i) = g(\theta)^2 = \frac{1}{\theta^2}$. Consider
+$$E[\hat{\delta}_n] = E\left[\sum_{i = 1}^n \frac{x_i}{n+2}\right] = \frac{1}{n+2}\sum_{i=1}^nE[x_i] = \frac{n}{n+2}E[x_i]  = \frac{n}{\theta(n+2)}$$
+and
+$$Var[\hat{\delta}_n] = Var\left[\sum_{i = 1}^n \frac{x_i}{n+2}\right] = \frac{1}{(n+2)^2}\sum_{i=1}^nVar[x_i]= \frac{n}{(n+2)^2}Var[x_i] = \frac{n}{\theta^2(n+2)^2}.$$
+Therefore,
+$$Bias(\hat{\delta}_n) = \frac{n}{\theta(n+2)}-\frac{1}{\theta}= \frac{n-n-2}{\theta(n+2)}= -\frac{2}{\theta(n+2)}.$$
+Let $c_1 = -2\theta.$ Then
+$$\frac{Bias(\hat{\delta}_n)}{c_1 Var(\hat{\delta}_n)} =\frac{-\frac{2}{\theta(n+2)}}{-2\theta\frac{n}{\theta^2(n_2)^2}}=\frac{-2\theta^2(n+2)^2}{-2\theta^2n(n+2)}= \frac{n^2+4n_4}{n^2+2n}\rightarrow 1.$$
+Let $c_2 = -\frac{2}{\theta}.$ Then
+$$\frac{c_1Var(\hat{\delta}_n)}{\frac{c_2}{n}} = \frac{-2\theta\frac{n}{\theta^2(n+2)^2}}{-\frac{2}{\theta}/{n}} = \frac{-2\theta^2n}{-2\theta^2(n+2)^2} = \frac{n^2}{n^2+4n+4} \rightarrow 1.$$
+Thus, for $c_1=-2\theta$ and $c_2 = -\frac{2}{\theta},\text{bias of } \delta_n\sim c_1 \text{variance of } \delta_n) \sim \frac{c_2}{n}$.
+
+### Exercise 1.24
+Prove that if $f(x)$ is everwhere twice differentiable and $f''(x)\ge 0$ for $x$, then $f(x)$ is convex.
+
+Let $a = \alpha x+(1-\alpha y).$ Since $f''(x)\ge 0$, the Mean Value Theorem implies, $r_1(x,a)=\frac{1}{2}(x-a)^2f''(x^{*})\ge 0.$,then by Taylors' expansion,
+$$\alpha f(x) \ge \alpha f(a) + \alpha(x-a)f'(a)$$
+and
+$$(1-\alpha) f(y) \ge (1-\alpha) f(a) + (1-\alpha)(x-a)f'(a).$$
+Therefore, 
+\begin{align*}
+\alpha f(x) +(1-\alpha )f(x) & \ge f(a) + f'(a)\left(\alpha(x-a)+(1-\alpha)(y-a)\right)\\
+& = f(a)+f'(a)\left(\alpha x - \alpha a + y -\alpha y - a +\alpha a\right)\\
+& = f(a) +f'(a)\left([\alpha x + (1-\alpha)y]-a\right)\\
+& = f(\alpha x - (1-\alpha)y).
+\end{align*}
+Thus, since $\alpha f(x) +(1-\alpha )f(x) \ge f(\alpha x - (1-\alpha)y), f(x)$ is convex.
+
+### Exercise 1.27 
+Recall that $\log n$ always denotes the natural logarithm of $n$. Assuming that $\log n$ means $\log_{10} n$ will change some of the answers in this exercise!
+
+a. The following 5 sequences have the property that each tends to 1 as $n\rightarrow\infty$, and for any pair of sequences, one is little-o of the other. List them in order of rate of increase from slowest to fastest. In other words, give an ordering such that first sequence = o(second sequence), second sequence = o(third sequence), etc.
+\begin{align*}
+&n &\sqrt{\log n!} && \sum_{i = 1}^n {^3\sqrt{i}} && 2^{\log n} && (\log n)^{\log\log n}
+\end{align*}
+Prove the 4 order relationships that result from your list.
+
+Hint: Here and in part (b), using a computer to evaluate some of the sequences for large values of n can be helpful in suggesting the correct ordering. However, note that this procedure does not constitute a proof!
+
+Ordering the 5 sequences above from slowest to fastest is:
+$$(\log n)^{\log\log n}, \sqrt{\log n!}, 2^{\log n}, n,\sum_{i = 1}^n {^3\sqrt{i}}.$$
+\newpage
+
+Many of the following proofs depend on the equivalence of a function, $f(x)$, existing similar to the sequence on the positive integers and therefore, uses l'Hopital's rule. Then proving the following:
+
+(1) $(\log n)^{\log\log n} =o\left(\sqrt{\log n!}\right)$
+
+Proceeding by induction. Let n = 6. Then $\log n! = \log 6! = 6.57 > 6 = n.$ Assume it is true for $n = k$ for $k\ge6.$ Then let $n = k+1$. Then $\log((k+1)!) = \log((k+1)k!) = \log(k!) + \log(k+1) > k + \log(k+1) > k+1.$ Thus, for $n\ge 6$, $\log n! > n$ implies $\sqrt{\log n!} > \sqrt{n}.$ Then since $-\log$ is a convex function, taking the $-\log$ of both sides, we can show that $-\log(\log(n))^{\log(\log(n)))} = o\left(-\log{\sqrt{n}}\right).$ Denote $a = \log n.$ Consider, 
+
+$$\lim_{n\rightarrow\infty} \frac{(\log(\log(n)))^2}{\frac{1}{2}\log n}=\lim_{a\rightarrow \infty}\frac{\log(a)^2}{\frac{1}{2}a}.$$ Then let $f(x) = \frac{\log(x)^2}{\frac{1}{2}x}$, by l'Hopitals' rule, taking the derivative two times,  
+$$\lim_{x\rightarrow\infty} \frac{\log(x)^2}{\frac{1}{2}x} = \lim_{x\rightarrow\infty}\frac{2\log a}{a\frac{1}{2}}=\lim_{x\rightarrow\infty}\frac{4}{a^2}=0.$$
+Therefore, $-\log(\log(n))^2 = o\left(-\frac{1}{2}\log n\right)$ implies $\log(n)^{\log(\log(n))}=o\left(\sqrt{\log n!}\right)$.
+
+(2) $\sqrt{\log n!}=o\left( 2^{\log n}\right)$
+
+Consider $\log n! = \log(n) + \log(n+1) + ...\le n\log n.$ and $2^{\log n} = e^{\log(2)\log(n)} = n^{\log(2)}.$ Then 
+$$\lim_{n\rightarrow \infty}\frac{\sqrt{n\log n}}{n^{\log 2}} =\lim_{n\rightarrow \infty}\frac{\sqrt{n}\sqrt{\log n}}{n^{\log 2}}=\lim_{n\rightarrow \infty}\frac{\sqrt{\log n}}{n^{\log 2 - 0.5}}.$$
+Consider $f(x) = \frac{\sqrt{\log x}}{x^{\log 2 - 0.5}}.$ Then by l'Hopital's rule and order of polynomials, 
+$$\lim_{x\rightarrow\infty} = \frac{\sqrt{\log x}}{x^{\log 2 - 0.5}} = \lim_{x\rightarrow\infty} = \frac{\frac{1}{2x\sqrt{\log x}}}{\frac{0.19}{x^{0.81}}}=\lim_{x\rightarrow\infty}\frac{x^{0.81}}{(0.19)2x\sqrt{\log x}} = 0.$$
+Therefore, $\frac{\sqrt{n\log n}}{n^{\log 2}}\rightarrow 0$ and $\sqrt{n\log n}=o\left( n^{\log 2}\right)$ implies $\sqrt{\log n!}=o\left( 2^{\log n}\right)$.
+
+(3) $2^{\log n} = o(n)$
+
+From (2), we know that $2^{\log n} = n^{\log(2)}.$ Then 
+$$\frac{n^{\log 2}}{n}=\frac{n^{0.69}}{n^1}\rightarrow 0.$$ Therefore, $\frac{2^{\log n}}{n}\rightarrow 0$ and $2^{\log n} = o(n)$.
+
+(4) $n = o\left(\sum_{i = 1}^n {^3\sqrt{i}}\right)$
+
+Using the geometric series, we know $\lim_{n\rightarrow \infty}\frac{\frac{4}{3}n^{4/3}}{\sum_{i = 1}^n {^3\sqrt{i}}} \le 1$. Then,
+$$\frac{n}{\sum_{i = 1}^n {^3\sqrt{i}}}=\frac{n}{\frac{4}{3} n^{4/3}}\frac{\frac{4}{3}n^{4/3}}{\sum_{i = 1}^n {^3\sqrt{i}}}\rightarrow 0.$$
+Thus, $n = o\left(\sum_{i = 1}^n {^3\sqrt{i}}\right)$.
+
+b. Follow the directions of part (a) for the following 13 sequences.
+\begin{align*}
+&& \log (n!) && n^2 && n^n && 3^n \\
+&\log(\log n) && n && \log n && 2^{3\log n} && n^{n/2} \\
+&& n! && 2^{2^n} && n^{\log n} && (\log n)^n
+\end{align*}
+Proving the 12 order relationships is challenging but not quite as tedious as it sounds; some of the proofs will be very short.
+
+Ordering the 12 sequences above from slowest to fastest is:
+$$\log(\log n), \log(n), n, \log(n!), n^2, 2^{3\log n}, n^{\log n}, 3^n, \log(n)^n, n^{n/2}, n!, n^n, 2^{2^n}$$ Then proving the following:
+
+Many of the following proofs depend on the equivalence of a function, $f(x)$, existing similar to the sequence on the positive integers and therefore, uses l'Hopital's rule. Then proving the following:
+
+(1) $\log(\log n) = o\left(\log(n)\right)$
+
+Consider $f(x) = \frac{\log\log n}{\log n}.$ Then by l'Hopital's rule, 
+$$\lim_{x\rightarrow\infty}\frac{\log\log x}{\log x} = \lim_{x\rightarrow\infty}\frac{\frac{1}{x\log x}}{\frac{1}{x}}=\lim_{x\rightarrow\infty}=\frac{1}{\log x}=0.$$
+Therefore, $\frac{\log\log n}{\log n}\rightarrow 0.$
+
+(2) $\log(n)= o\left( n \right)$
+
+Consdier $f(x) = \frac{\log x}{x}.$ Then by l'Hopital's rule,
+$$\lim_{x\rightarrow\infty}\frac{\log x}{x} = \lim_{x\rightarrow\infty}\frac{\frac{1}{x}}{x} = \lim_{x\rightarrow\infty}\frac{1}{x^2} = 0.$$
+Therefore, $\frac{\log n}{n}\rightarrow 0.$
+
+(3) $n = o\left( \log(n!)\right)$
+
+In part a (1) above, we used induction to show that $n>\log n!$ for $n\ge 6$. Thus, $n = o\left( \log(n!)\right)$.
+
+(4) $\log(n!)= o\left( n^2 \right)$
+
+Recall, $\log n! \le n \log n.$ Then using (2) from above, 
+$$\lim_{n\rightarrow\infty} \frac{n\log n}{n^2} = \lim_{n\rightarrow\infty}\frac{\log n}{n} =0.$$
+Therefore, $\frac{\log n!}{n^2}\rightarrow 0.$
+
+(5) $n^2= o\left( 2^{3\log n}\right)$
+
+Recall from part (a), $2^{\log n} = n^{\log 2}.$ Then 
+$$\lim_{n \rightarrow \infty} \frac{n^2}{2^{3\log n}} = \lim_{n \rightarrow \infty} \frac{n^2}{n^{3\log 2}}=\lim_{n \rightarrow \infty} \frac{n^2}{n^{2.08}}=0.$$
+Therefore, $\frac{n^2}{2^{3\log n}}\rightarrow 0$.
+
+(6) $2^{3\log n}= o\left(  n^{\log n}\right)$
+
+Notice, $\log n > 3\log 2$ for $n>8$. Then,
+$$\lim_{n\rightarrow \infty}\frac{n^{3 \log 2}}{n^{\log n}}=0.$$
+Therefore, $\frac{n^{3 \log 2}}{n^{\log n}}\rightarrow 0$.
+
+(7) $n^{\log n}= o\left(3^n\right)$
+
+Consider the convex function, $f(x) = e^{\log x}.$ Then, from equation 1.26, with $\alpha = 2$ and $\beta = 1,$
+
+$$\lim_{n\rightarrow\infty}\frac{n^{\log n}}{3^n}=\lim_{n\rightarrow\infty}\frac{e^{\log(n)^2}}{e^{n\log(3)}}=0$$ since logarithm gorws slower than polynomial. Therefore, $n^{\log n}= o\left(3^n\right)$.
+
+
+(8) $3^n= o\left( \log(n)^n\right)$
+
+Consider the convex function, $f(x) = e^{\log x}.$ Then,
+$$\lim_{n\rightarrow\infty}\frac{3^n}{\log(n)^n}=\lim_{n\rightarrow\infty}\frac{e^{n\log 3}}{e^{n\log n}}=\lim_{n\rightarrow\infty}\frac{(e^n)^{\log 3}}{(e^n)^{\log n}}=0.$$ Therefore, $3^n= o\left( \log(n)^n\right)$.
+
+(9) $\log(n)^n= o\left(n^{n/2}\right)$
+
+Consider $f(x) = \frac{\log x}{x^{1/2}}.$ Then by l'Hopitals 's rule, taking the derivative twice,
+$$\lim_{x\rightarrow\infty}\frac{\log x}{x^{1/2}}=\lim_{x\rightarrow\infty}\frac{1/x}{\frac{1}{2}x^{-1/2}}=\lim_{x\rightarrow\infty}\frac{2x^{1/2}}{x}=0.$$ Therefore, $\frac{\log(n)^n}{(n^{1/2})^n}\rightarrow 0$ and $\log(n)^n= o\left(n^{n/2}\right)$.
+
+(10) $n^{n/2}= o\left(n!\right)$
+
+Consider
+$$\lim_{n\rightarrow\infty} \frac{n^{n/2}}{n!}=\lim_{n\rightarrow\infty} \frac{n^{n/2}}{n^n + ...}=0.$$ Therefore, $n^{n/2} = o\left( n!\right)$.
+
+(11) $n!= o\left(n^n\right)$
+
+Let $n = 2.$ Then $2! = 2 < 4 = 2^2$. Assume it is true for $n =k.$ Let $n = k+1.$ Then $$(k+1)! = (k+1)k!<(k+1)k^k<(k+1)(k+1)^k=(k+1)^{k+1}.$$ Therefore, for all $n\ge 2, n! < n^n$. Thus, $n!= o\left(n^n\right).$
+
+(12) $n^n = o\left(n^{2^n}\right)$
+
+Consider $f(x) = \frac{x\log x}{2^x}.$ Then using l'Hopital's rule, $$\lim_{x\rightarrow\infty}\frac{x\log x}{2^x}=\lim_{x\rightarrow\infty}\frac{1+\log n}{2^n\log(2)}=\lim_{x\rightarrow\infty}\frac{1}{n(2^n\log(2)^2)}=0.$$ Thus $\frac{n\log n}{2^n}\rightarrow 0$. Then taking the convex function, $f(x) = e^{\log(x)}$,
+$$\lim_{n\rightarrow\infty}\frac{n^n}{2^{2^n}}=\lim_{n\rightarrow\infty}\frac{e^{n\log n}}{e^{2^n\log2}}=\lim_{n\rightarrow\infty}e^{n\log n-2^n\log 2}=\lim_{n\rightarrow\infty}e^{2^n(\frac{n\log n}{2^n}-\log 2)}=\lim_{n\rightarrow\infty}e^{-2^n\log 2}=0.$$
+Therefore, $n^n = o\left(n^{2^n}\right)$.
+
+### Exercise 1.29
+Suppose that $a_{nj} \rightarrow c_j$ as $n\rightarrow \infty$ for $j = 1, ..., k.$ Prove that if $f:\mathbb{R}^k \rightarrow \mathbb{R}$ is continuous at the point $\boldsymbol{c}$, then $f(\boldsymbol{a}_n)\rightarrow f(\boldsymbol{c}).$ This proves every part of Exercise 1.1. (The hard work of an exercise like 1.1(b) is in showing that multiplication is continuous.)
+
+\begin{proof}
+We need to show that for any $\epsilon>0,$ there exists an $N$ such that for all $n>n$, $||f(\boldsymbol{a_n})-f(\boldsymbol{c})||<\epsilon$. Then from the definition of continuity, we know there exists some $\delta >0$ such that $||f(\boldsymbol{x})-f(\boldsymbol{c})||<\epsilon$ for all $x$ such that $||\boldsymbol{x}-\boldsymbol{c}||<\delta.$ Since $a_{nj}\rightarrow c_j$ for all $1\le j \le k$, then we know $\boldsymbol{a_n}\rightarrow \boldsymbol{c}$ as $n\rightarrow \infty$. Then since $\delta >0,$ there must by definition be some $N$ such that $||\boldsymbol{a_n}-\boldsymbol{c}||<\delta$ for all $n>N.$ We conclude that for all $n>N$, $||f(\boldsymbol{a_n})-f(\boldsymbol{c})||<\epsilon.$
+\end{proof}
+
+### Exercise 1.31
+Prove that the converse of Theorem 1.38 is not true by finding a function that is not differentiable at some point but whose partial derivatives at that point all exist.
+
+Consider $f(x,y) = I(xy = 0).$ Then along the $x$ and $y$ axis, $f(x,y) = 1.$ Therefore, the partial derivatives with respect to both $x$ and $y$ exist at the orgin where the two lines cross. However, since $f(x,y) = 0$ everywhere else, $f(x,y)$ is not continuous at the orgin. Thus, $\triangledown f(x,y)$ does not exist.
+
+### Exercise 1.34
+
+a. Find the Hessian matrix of the loglikelihood function defined in Exercise 1.32.
+
+Consider
+\begin{align*}
+&&f(\boldsymbol{x};\mu, \sigma^2) & = \frac{exp\{-\frac{1}{2\sigma^2}(x_i-\mu)^2\}}{\sqrt(2\pi\sigma^2)}\\
+&\implies& L(\mu,\sigma^2;\boldsymbol{x}) &= \prod_{i = 1}^n \frac{1}{\sqrt(2\pi\sigma^2)}e^{-\frac{1}{2\sigma^2}(x_i-\mu)^2}\\
+&&&=(s\pi\sigma^2)^{-n/2}e^{-\frac{1}{2\sigma^2}\sum_{i=1}^n(x_i-\mu^2)}\\
+&\implies& \log L(\mu,\sigma^2;\boldsymbol{x}) &= -\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2}\sum_{i = 1}^n (x_i-\mu)^2.
+\end{align*}
+
+Then taking partial derivatives, 
+$$\triangledown \log L(\mu,\sigma^2;\boldsymbol{x}) = 
+\begin{bmatrix}
+\frac{d^2}{d\mu^2}\log L(\mu,\sigma^2;\boldsymbol{x}) & \frac{d^2}{d\mu d\sigma^2}\log L(\mu,\sigma^2;\boldsymbol{x}) \\
+\frac{d^2}{d\mu d\sigma^2}\log L(\mu,\sigma^2;\boldsymbol{x}) & \frac{d^2}{d\sigma^4}\log L(\mu,\sigma^2;\boldsymbol{x})\\
+\end{bmatrix} =
+\begin{bmatrix}
+-\frac{n}{\sigma^2} & -\frac{\sum_{i=1}^n(x_i-\mu)}{\sigma^4}\\
+-\frac{\sum_{i=1}^n(x_i-\mu)}{\sigma^4} & \frac{n}{2\sigma^4}-\frac{\sum_{i=1}^n(x_i-\mu)^2}{\sigma^6}\\
+\end{bmatrix} $$
+
+b. Suppose that $n = 10$ and that we observe this sample:
+```{r exe1.34b, message=FALSE, warning=FALSE}
+x <- c(2.946, 0.975, 1.333, 4.484, 1.711, 2.627,-0.628, 2.476, 2.599, 2.143)
+kable(t(x))
+```
+
+Evaluate the Hessian matrix at the maximum likelihood estimator $(\hat{\mu}, \hat{\sigma}^2)$. (A formula for the MLE is given in the hint to Exercise 1.32)
+
+```{r exe1.34bb, message=FALSE, warning=FALSE}
+n         <- 10
+muhat     <- mean(x)
+sigma2hat <- mean((x-muhat)^2)
+Hessian   <- matrix(c(-n/sigma2hat, -(sum(x-rep(muhat,n)))/sigma2hat^2, -(sum(x-rep(muhat,n)))/sigma2hat^2, n/(2*sigma2hat^2)-(sum((x-rep(muhat,n))^2))/sigma2hat^3), 2,2, byrow = T)
+kable(Hessian)
+```
+

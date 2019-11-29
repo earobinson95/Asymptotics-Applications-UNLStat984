@@ -1,0 +1,521 @@
+\documentclass[12pt,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework 9},
+            pdfauthor={Emily Robinson},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Homework 9}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \subtitle{STAT 984}
+  \author{Emily Robinson}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{November 21, 2019}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\begin{document}
+\maketitle
+
+\hypertarget{exercise-7.3}{%
+\subsubsection{Exercise 7.3}\label{exercise-7.3}}
+
+Suppose that \(X_1, ..., X_n\) are independent and identically
+distributed with density \(f_\theta(x),\) where
+\(\theta \in (0,\infty).\) For each of the following forms of
+\(f_\theta(x),\) prove that the likelihood equation has a unique
+solution and that this solution maximizes the likelihood function.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  \textit{Weibull:} For some constant \(a>0,\)
+  \[f_\theta(x)=a\theta^ax^{a-1}\exp\{-(\theta x)^a\}I\{x>0\}\] Consider
+  \begin{align*}
+  &&f_\theta(x)&=a\theta^ax^{a-1}\exp\{-(\theta x)^a\}I\{x>0\}\\
+  &\implies& L(\theta)&=\prod_{i=1}^n a\theta^ax_i^{a-1}\exp\{-(\theta x_i)^a\}I\{x_i>0\}\\
+  &&&=a^n\theta^{an}\prod_{i=1}^nx+i^{a-1} e^{-\theta^a\sum_{i=1}^n(x_i^a)}\\
+  &\implies&\ell(\theta) &=n\log(a)+an\log(\theta)+(a-1)\sum_{i=1}^n\log(x_i)-\theta^a\sum_{i=1}^n(x_i^a)\\
+  &\implies&\ell'(\theta)&=\frac{an}{\theta}-a\theta^{(a-1)}\sum_{i=1}^n(x_i^a).
+  \end{align*} Then setting \(\ell'(\theta)=0,\) implies \begin{align*}
+  &&\frac{an}{\theta}-a\theta^{(a-1)}\sum_{i=1}^n(x_i^a) & = 0\\
+  &\implies& n-\theta^a\sum_{i=1}^n(x_i^a) & = 0\\
+  &\implies& \theta^a\sum_{i=1}^n(x_i^a) & = n\\
+  &\implies& \theta^a & = \frac{n}{\sum_{i=1}^n(x_i^a)}\\
+  &\implies& \hat{\theta}_{\text{MLE}} & = \left(\frac{n}{\sum_{i=1}^n(x_i^a)}\right)^{1/a}.
+  \end{align*} Then consider
+  \[\ell''(\theta)=-\frac{an}{\theta^2}-a(a-1)\theta^{(a-2)}\sum_{i=1}^n(x_i^a)= -an-a(a-1)\theta^a\sum_{i=1}^n(x_i^a)\le 0.\]
+  Therefore,
+  \(\hat{\theta}_{\text{MLE}} = \left(\frac{n}{\sum_{i=1}^n(x_i^a)}\right)^{1/a}\)
+  is unique maximizes the likelihood function.
+\item
+  \textit{Cauchy:}
+  \[f_\theta(x)=\frac{\theta}{\pi}\frac{1}{x^2+\theta^2}\] Consider
+  \begin{align*}
+  &&f_\theta(x)&=\frac{\theta}{\pi}\frac{1}{x^2+\theta^2}\\
+  &\implies& L(\theta)&=\prod_{i=1}^n \frac{\theta}{\pi}\frac{1}{x_i^2+\theta^2}\\
+  &&& =\frac{\theta^n}{\pi^n}\frac{1}{\prod_{i=1}^n(x_i^2-\theta^2)}\\
+  &\implies&\ell(\theta) &=n\log(\theta)-n\log(\pi)-\sum_{i=1}^n\log(x_i^2+\theta^2)\\
+  &\implies&\ell'(\theta)&=\frac{n}{\theta}-2\theta \sum_{i=1}^n\frac{1}{x_i^2-\theta^2}.
+  \end{align*} Then setting \(\ell'(\theta)=0,\) implies \begin{align*}
+  &&\frac{n}{\theta}-2\theta \sum_{i=1}^n\frac{1}{x_i^2-\theta^2} & = 0\\
+  &\implies& \sum_{i=1}^n\frac{\theta^2}{x_i^2-\theta^2} & = \frac{n}{2}.
+  \end{align*} Then consider
+  \[\ell''(\theta)=-\frac{n}{\theta^2}+\frac{2(\theta^2-x^2)}{(x^2+\theta^2)^2}\le 0.\]
+  Therefore,
+  \(\sum_{i=1}^n\frac{\hat\theta^2}{x_i^2-\hat\theta^2} = \frac{n}{2}\)
+  has a unique solution that maximizes the likelihood function.
+\item
+  \[f_\theta(x)=\frac{3\theta^2\sqrt{3}}{2\pi(x^3+\theta^3)}I\{x>0\}\]
+  Consider \begin{align*}
+  &&f_\theta(x)&=\frac{3\theta^2\sqrt{3}}{2\pi(x^3+\theta^3)}I\{x>0\}\\
+  &\implies& L(\theta)&=\prod_{i=1}^n \frac{3\theta^2\sqrt{3}}{2\pi(x_i^3+\theta^3)}I\{x_i>0\}\\
+  &&& =\frac{3^n\theta^{2n}3^{n/2}}{2^n\pi^n\prod_{i=1}n(x_i^3+\theta^3)}\\
+  &\implies&\ell(\theta) &=n\log(3)+2n\log(\theta)+\frac{n}{2}\log(3)-n\log(2)-n\log(\pi)-\sum_{i=1}^n\log(x_i^3+\theta^3)\\
+  &\implies&\ell'(\theta)&=\frac{2n}{\theta}-3\theta^2 \sum_{i=1}^n\frac{1}{x_i^3-\theta^3}.
+  \end{align*} Then setting \(\ell'(\theta)=0,\) implies \begin{align*}
+  &&\frac{2n}{\theta}-3\theta^2 \sum_{i=1}^n\frac{1}{x_i^3-\theta^3} & = 0\\
+  &\implies& \sum_{i=1}^n\frac{\theta^3}{x_i^3-\theta^3} & = \frac{2n}{3}.
+  \end{align*} Then consider
+  \[\ell''(\theta)=-\frac{2n}{\theta^2}+\frac{3(\theta^4-2x^3\theta)}{(x^3+\theta^3)^2}\le 0.\]
+  Therefore,
+  \(\sum_{i=1}^n\frac{\hat\theta^3}{x_i^3-\hat\theta^3} = \frac{2n}{3}\)
+  has a unique solution that maximizes the likelihood function.
+\end{enumerate}
+
+\hypertarget{exercise-7.8}{%
+\subsubsection{Exercise 7.8}\label{exercise-7.8}}
+
+Prove Theorem 7.9
+
+\textbf{Hint:} Start with
+\(\sqrt{n}(\delta_n-\theta_0)=\sqrt{n}(\delta_n-\tilde \theta_n)+\sqrt{n}(\tilde \theta_n-\theta_0)\),
+then expand \(\ell'(\tilde\theta_n)\) in a Taylor series about
+\(\theta_0\) and substitute the result into Equation (7.15). After
+simplifying. use the result of Exercise 2.2 along with arguments similar
+to those leading up to Theorem 7.8.
+
+\begin{proof}
+Consider $\tilde\theta_n\overset{P}\rightarrow \theta_0$. Then by Taylor's expansion,
+$$\ell'(\tilde\theta_n)=\ell'(\theta_0)+(\tilde\theta_n-\theta_0)[\ell''(\theta_0)+o_p(1)]$$
+and
+$$\ell''(\tilde\theta_n)=\theta_0)+o_p(1).$$
+Then substituing in,
+\begin{align*}
+\sqrt{n}(\delta_n-\theta_0) & = \sqrt{n}(\delta_n-\tilde \theta_n)+\sqrt{n}(\tilde \theta_n-\theta_0)\\
+& = -\frac{\sqrt{n}\ell'(\tilde\theta_n)}{\ell''(\tilde\theta_n)}+\sqrt{n}(\tilde\theta_n-\theta_0)\\
+& = -\sqrt{n}\left(\frac{\ell'(\theta_0)+(\tilde\theta_n-\theta_0)[\ell''(\theta_0)+o_p(1)]}{\ell''(\theta_0)+o_p(1)}\right)+\sqrt{n}(\tilde\theta_n-\theta_0)\\
+& = -\frac{\sqrt{n}\ell'(\theta_0)}{\ell''(\theta_0)+o_p(1)}+\sqrt{n}(\tilde\theta_n-\theta_0)\left[1-\frac{\ell''(\theta_0)+o_p(1)}{\ell''(\theta_0)+o_p(1)}\right]\\
+&\overset{p}\rightarrow -\frac{\sqrt{n}\ell'(\theta_0)}{\ell''(\theta_0)}+\sqrt{n}(\tilde\theta_n-\theta_0)\times 0\\
+&= -\frac{\sqrt{n}\ell'(\theta_0)}{\ell''(\theta_0)}.
+\end{align*}
+Therefore, by Slutsky's Theroem and proof of Theorem 7.8 done in class, we know
+$$ -\frac{\sqrt{n}\ell'(\theta_0)}{\ell''(\theta_0)}\overset{d}\rightarrow N\left(0,\frac{1}{I(\theta_0)}\right).$$
+\end{proof}
+
+\hypertarget{exercise-7.9}{%
+\subsubsection{Exercise 7.9}\label{exercise-7.9}}
+
+Suppose that the following is a random sample from a logistic density
+with distribution function
+\(F_\theta(x)=(1+\exp\{\theta-x\})^{-1}\)(I'll cheat and tell you that I
+used \(\theta=2.\))
+
+\begin{longtable}[]{@{}rrrrr@{}}
+\toprule
+\endhead
+1.0944 & 6.4723 & 3.118 & 3.8318 & 4.1262\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}rrrrr@{}}
+\toprule
+\endhead
+1.2853 & 1.0439 & 1.7472 & 4.9483 & 1.7001\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}rrrrr@{}}
+\toprule
+\endhead
+1.0422 & 0.169 & 3.6111 & 0.997 & 2.9438\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Evaluate the unique root of the likelihood equation numerically. Then,
+  taking the sample median as our known \(\sqrt{n}\)-consistent
+  estimator \(\tilde\theta_n\) of \(\theta\), evaluate the estimator
+  \(\delta_n\) in Equation (7.15) numerically.
+\end{enumerate}
+
+Consider \begin{align*}
+&&f_\theta(x)&=\frac{d}{d\theta}F_\theta(x)\\
+&&&=\frac{e^{\theta-x}}{(1+e^{\theta-x})^2}\\
+&\implies&L(\theta)&=\prod_{i=1}^n\frac{e^{\theta-x}}{(1+e^{\theta-x})^2}\\
+&&&=\frac{e^{n\theta-\sum_{i=1}^nx_i}}{\prod_{i=1}^n(1+e^{\theta-x_i})^2}\\
+&\implies&\ell(\theta)&=n\theta-\sum_{i=1}^n x_i-2\sum_{i=1}^n\log(1+e^{\theta-x_i})\\
+&\implies&\ell'(\theta)&=n-2\sum_{i=1}^n\frac{e^\theta}{(e^{x_i}+e^\theta)^2}\\
+&\implies&\ell''(\theta)&=-2\sum_{i=1}^n\frac{e^{\theta+x_i}}{(e^{x_i}+e^\theta)^2}\\
+&\implies&I(\theta)&=-E[\ell''(\theta)]\\
+&&&=\frac{1}{3}.
+\end{align*} Then the code below solves for
+\(\hat\theta_{\text{MLE}}=2.39173\) and \(\delta_n=2.385235.\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{logLogistic <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{theta =}\NormalTok{ theta, }\DataTypeTok{der =} \DecValTok{0}\NormalTok{, }\DataTypeTok{x =}\NormalTok{ x) \{}
+\NormalTok{    n =}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
+    
+\NormalTok{    value =}\StringTok{ }\NormalTok{theta }\OperatorTok{*}\StringTok{ }\NormalTok{n }\OperatorTok{-}\StringTok{ }\KeywordTok{sum}\NormalTok{(x) }\OperatorTok{-}\StringTok{ }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\KeywordTok{exp}\NormalTok{(theta }\OperatorTok{-}\StringTok{ }
+\StringTok{        }\NormalTok{x)))}
+    \ControlFlowTok{if}\NormalTok{ (der }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{) }
+        \KeywordTok{return}\NormalTok{(value)}
+    
+\NormalTok{    der1 =}\StringTok{ }\NormalTok{n }\OperatorTok{-}\StringTok{ }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{exp}\NormalTok{(theta)}\OperatorTok{/}\NormalTok{(}\KeywordTok{exp}\NormalTok{(x) }\OperatorTok{+}\StringTok{ }\KeywordTok{exp}\NormalTok{(theta)))}
+    \ControlFlowTok{if}\NormalTok{ (der }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }
+        \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{value =}\NormalTok{ value, }\DataTypeTok{der1 =}\NormalTok{ der1))}
+    
+\NormalTok{    der2 =}\StringTok{ }\DecValTok{-2} \OperatorTok{*}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{exp}\NormalTok{(theta }\OperatorTok{+}\StringTok{ }\NormalTok{x)}\OperatorTok{/}\NormalTok{(}\KeywordTok{exp}\NormalTok{(x) }\OperatorTok{+}\StringTok{ }\KeywordTok{exp}\NormalTok{(theta))}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+    \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{value =}\NormalTok{ value, }\DataTypeTok{der1 =}\NormalTok{ der1, }\DataTypeTok{der2 =}\NormalTok{ der2))}
+\NormalTok{\}}
+
+\NormalTok{newtonUni =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(f, xInit, }\DataTypeTok{maxIt =} \DecValTok{20}\NormalTok{, }\DataTypeTok{relConvCrit =} \FloatTok{1e-10}\NormalTok{, }
+\NormalTok{    ...) \{}
+    
+\NormalTok{    results =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, maxIt, }\DecValTok{5}\NormalTok{)}
+    \KeywordTok{colnames}\NormalTok{(results) =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"value"}\NormalTok{, }\StringTok{"x"}\NormalTok{, }\StringTok{"Conv"}\NormalTok{, }\StringTok{"slope"}\NormalTok{, }
+        \StringTok{"Hess"}\NormalTok{)}
+    
+\NormalTok{    xCurrent =}\StringTok{ }\NormalTok{xInit}
+    \ControlFlowTok{for}\NormalTok{ (t }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{maxIt) \{}
+\NormalTok{        evalF =}\StringTok{ }\KeywordTok{f}\NormalTok{(xCurrent, }\DataTypeTok{der =} \DecValTok{2}\NormalTok{, ...)}
+\NormalTok{        results[t, }\StringTok{"value"}\NormalTok{] =}\StringTok{ }\NormalTok{evalF}\OperatorTok{$}\NormalTok{value}
+\NormalTok{        results[t, }\StringTok{"x"}\NormalTok{] =}\StringTok{ }\NormalTok{xCurrent}
+\NormalTok{        results[t, }\StringTok{"slope"}\NormalTok{] =}\StringTok{ }\NormalTok{evalF}\OperatorTok{$}\NormalTok{der1}
+\NormalTok{        results[t, }\StringTok{"Hess"}\NormalTok{] =}\StringTok{ }\NormalTok{evalF}\OperatorTok{$}\NormalTok{der2}
+\NormalTok{        xNext =}\StringTok{ }\NormalTok{xCurrent }\OperatorTok{-}\StringTok{ }\NormalTok{evalF}\OperatorTok{$}\NormalTok{der1}\OperatorTok{/}\NormalTok{evalF}\OperatorTok{$}\NormalTok{der2}
+\NormalTok{        Conv =}\StringTok{ }\KeywordTok{abs}\NormalTok{(xNext }\OperatorTok{-}\StringTok{ }\NormalTok{xCurrent)}\OperatorTok{/}\NormalTok{(}\KeywordTok{abs}\NormalTok{(xCurrent) }\OperatorTok{+}\StringTok{ }
+\StringTok{            }\NormalTok{relConvCrit)}
+\NormalTok{        results[t, }\StringTok{"Conv"}\NormalTok{] =}\StringTok{ }\NormalTok{Conv}
+        \ControlFlowTok{if}\NormalTok{ (Conv }\OperatorTok{<}\StringTok{ }\NormalTok{relConvCrit }\OperatorTok{|}\StringTok{ }\NormalTok{t }\OperatorTok{>}\StringTok{ }\NormalTok{maxIt) }
+            \ControlFlowTok{break}
+\NormalTok{        xCurrent =}\StringTok{ }\NormalTok{xNext}
+\NormalTok{    \}}
+    \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{theta =}\NormalTok{ xNext, }\DataTypeTok{value =} \KeywordTok{f}\NormalTok{(xNext, }\DataTypeTok{der =} \DecValTok{0}\NormalTok{, }
+\NormalTok{        ...), }\DataTypeTok{convergence =}\NormalTok{ (Conv }\OperatorTok{<}\StringTok{ }\NormalTok{relConvCrit), }\DataTypeTok{t =}\NormalTok{ t))}
+\NormalTok{\}}
+
+\NormalTok{thetaMLE <-}\StringTok{ }\KeywordTok{newtonUni}\NormalTok{(logLogistic, }\DataTypeTok{xInit =} \KeywordTok{median}\NormalTok{(x), }
+    \DataTypeTok{x =}\NormalTok{ x)}\OperatorTok{$}\NormalTok{theta}
+\NormalTok{delta <-}\StringTok{ }\KeywordTok{newtonUni}\NormalTok{(logLogistic, }\DataTypeTok{xInit =} \KeywordTok{median}\NormalTok{(x), }
+    \DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{maxIt =} \DecValTok{1}\NormalTok{)}\OperatorTok{$}\NormalTok{theta}
+
+\KeywordTok{kable}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(thetaMLE, delta))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rr@{}}
+\toprule
+thetaMLE & delta\tabularnewline
+\midrule
+\endhead
+2.39173 & 2.385235\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Find the asymptotic distributions of \(\sqrt{n})(\tilde \theta_n-2)\)
+  and \(\sqrt{n}(\delta_n-2)\). Then, simulate 200 samples of size
+  \(n=15\) from the logistic distribution with \(\theta=2.\) Find the
+  sample variances of the resulting sample medians and
+  \(\delta_n\)-estimators. How well does the asymptotic theory match
+  reality?
+\end{enumerate}
+
+Then by Theorem 6.7, since \(p=1/2\) and \(f(\theta)=1/4,\) we know
+\[\sqrt{n}(\tilde\theta_n-2)\overset{d}\rightarrow N(0,4).\] Then by
+Theorem 7.9, since \(I(\theta)=1/3\), we know
+\[\sqrt{n}(\delta_n-2)\overset{d}\rightarrow N(0,3).\] Our empirical
+results are consistent with the theoretical results above, \(\delta_n\)
+is more efficent than \(\tilde \theta_n.\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{empiricalLogistic <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{samps =} \DecValTok{200}\NormalTok{, }\DataTypeTok{n =} \DecValTok{15}\NormalTok{, }
+    \DataTypeTok{theta =} \DecValTok{2}\NormalTok{) \{}
+\NormalTok{    median =}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, samps)}
+\NormalTok{    delta =}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, samps)}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{samps) \{}
+\NormalTok{        x =}\StringTok{ }\KeywordTok{rlogis}\NormalTok{(n, }\DataTypeTok{location =}\NormalTok{ theta)}
+\NormalTok{        median[i] =}\StringTok{ }\KeywordTok{median}\NormalTok{(x)}
+\NormalTok{        delta[i] =}\StringTok{ }\KeywordTok{newtonUni}\NormalTok{(logLogistic, }\DataTypeTok{xInit =}\NormalTok{ median[i], }
+            \DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{maxIt =} \DecValTok{1}\NormalTok{)}\OperatorTok{$}\NormalTok{theta}
+\NormalTok{    \}}
+\NormalTok{    estVar <-}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{var}\NormalTok{(median), }\KeywordTok{var}\NormalTok{(delta))}
+\NormalTok{    estVar}
+\NormalTok{\}}
+\KeywordTok{empiricalLogistic}\NormalTok{(}\DataTypeTok{samps =} \DecValTok{200}\NormalTok{, }\DataTypeTok{n =} \DecValTok{15}\NormalTok{, }\DataTypeTok{theta =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.591794 3.366153
+\end{verbatim}
+
+\hypertarget{exercise-7.11}{%
+\subsubsection{Exercise 7.11}\label{exercise-7.11}}
+
+If \(f_\theta(x)\) forms a location family, so that
+\(f_\theta(x)=f(x-\theta)\) for some density \(f(x)\), then the Fisher
+information \(I(\theta)\) is a constant (you may assume this fact
+without proof).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Verify that for the Cauchy location family,
+  \[f_\theta(x)=\frac{1}{\pi\{1+(x-\theta)^2\}},\] we have
+  \(I(\theta)=\frac{1}{2}\).
+\end{enumerate}
+
+Consider \begin{align*}
+&&f_\theta(x)&=\frac{1}{\pi\{1+(x-\theta)^2\}}\\
+&\implies&L(\theta)&=\prod_{i=1}^n\frac{1}{\pi\{1+(x-\theta)^2\}}\\
+&&&=\pi^{-n}\prod_{i=1}^n\frac{1}{1+(x_i-\theta)^2}\\
+&\implies&\ell(\theta)&=-n\log(\pi)-\sum_{i=1}^n\log(1+(x_i-\theta)^2)\\
+&\implies&\ell'(\theta)&=\sum_{i=1}^n\frac{2(x_i-\theta)}{1+(x_i-\theta)^2}\\
+&\implies&\ell''(\theta)&=\sum_{i=1}^n\frac{2(x_i-\theta)^2-2}{(1+(x_i-\theta)^2)^2}\\
+&\implies&I(\theta)&=-E[\ell''(\theta)]\\
+&&&=\frac{1}{2}.
+\end{align*}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  For 500 samples of size \(n=51\) from a standard Cauchy distribution,
+  calculate the sample median \(\tilde \theta_n\) and the efficient
+  estimator \(\delta_n^*\) of Equation (7.19). Compare the variances of
+  \(\tilde\theta_n\) and \(\delta_n^*\) with their theoretical
+  asymptotic limits.
+\end{enumerate}
+
+Then by Theorem 6.7, since \(p=1/2\) and \(f(\theta)=1/\pi,\) we know
+\[\sqrt{n}(\tilde\theta_n-\theta)\overset{d}\rightarrow N\left(0,\frac{\pi^2}{4}\right).\]
+Then by Equation (7.19), since \(I(\theta)=1/2\), we know
+\[\sqrt{n}(\delta^*_n-2)\overset{d}\rightarrow N(0,2).\] Our empirical
+results are consistent with the theoretical results above,
+\(\delta^*_n\) is more efficent than \(\tilde \theta_n.\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{logCauchy <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{theta =}\NormalTok{ theta, }\DataTypeTok{der =} \DecValTok{0}\NormalTok{, }\DataTypeTok{x =}\NormalTok{ x) \{}
+\NormalTok{    n =}\StringTok{ }\KeywordTok{length}\NormalTok{(x)}
+    
+\NormalTok{    value =}\StringTok{ }\OperatorTok{-}\NormalTok{n }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(pi) }\OperatorTok{-}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{(x }\OperatorTok{-}\StringTok{ }\NormalTok{theta)}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+    \ControlFlowTok{if}\NormalTok{ (der }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{) }
+        \KeywordTok{return}\NormalTok{(value)}
+    
+\NormalTok{    der1 =}\StringTok{ }\KeywordTok{sum}\NormalTok{((}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{(x }\OperatorTok{-}\StringTok{ }\NormalTok{theta))}\OperatorTok{/}\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{(x }\OperatorTok{-}\StringTok{ }\NormalTok{theta)}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+    \ControlFlowTok{if}\NormalTok{ (der }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) }
+        \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{value =}\NormalTok{ value, }\DataTypeTok{der1 =}\NormalTok{ der1))}
+    
+\NormalTok{    der2 =}\StringTok{ }\KeywordTok{sum}\NormalTok{((}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{(x }\OperatorTok{-}\StringTok{ }\NormalTok{theta)}\OperatorTok{^}\DecValTok{2} \OperatorTok{-}\StringTok{ }\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{(x }\OperatorTok{-}\StringTok{ }\NormalTok{theta)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+    \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{value =}\NormalTok{ value, }\DataTypeTok{der1 =}\NormalTok{ der1, }\DataTypeTok{der2 =}\NormalTok{ der2))}
+\NormalTok{\}}
+
+\NormalTok{empiricalCauchy <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{samps =} \DecValTok{500}\NormalTok{, }\DataTypeTok{n =} \DecValTok{51}\NormalTok{, }\DataTypeTok{theta =} \DecValTok{2}\NormalTok{) \{}
+\NormalTok{    median =}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, samps)}
+\NormalTok{    delta =}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, samps)}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{samps) \{}
+\NormalTok{        x =}\StringTok{ }\KeywordTok{rcauchy}\NormalTok{(n, }\DataTypeTok{location =}\NormalTok{ theta)}
+\NormalTok{        median[i] =}\StringTok{ }\KeywordTok{median}\NormalTok{(x)}
+        \CommentTok{# delta[i] = newtonUni(logCauchy, xInit =}
+        \CommentTok{# median[i], x = x, maxIt = 1)$theta}
+\NormalTok{        delta[i] =}\StringTok{ }\NormalTok{median[i] }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{logCauchy}\NormalTok{(}\DataTypeTok{theta =}\NormalTok{ median[i], }
+            \DataTypeTok{der =} \DecValTok{1}\NormalTok{, }\DataTypeTok{x =}\NormalTok{ x)}\OperatorTok{$}\NormalTok{der1)}\OperatorTok{/}\NormalTok{n}
+\NormalTok{    \}}
+\NormalTok{    n }\OperatorTok{*}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{var}\NormalTok{(median), }\KeywordTok{var}\NormalTok{(delta))}
+\NormalTok{\}}
+\KeywordTok{empiricalCauchy}\NormalTok{(}\DataTypeTok{samps =} \DecValTok{500}\NormalTok{, }\DataTypeTok{n =} \DecValTok{51}\NormalTok{, }\DataTypeTok{theta =} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.612552 2.151267
+\end{verbatim}
+
+\hypertarget{exercise-7.15}{%
+\subsubsection{Exercise 7.15}\label{exercise-7.15}}
+
+Suppose that \(\boldsymbol\theta \in \mathbb{R}x\mathbb{R_+}\) (that is
+\(\theta_1\in \mathbb{R}\) and \(\theta_2 \in (0,\infty)\)) and
+\[f_\theta(x)=\frac{1}{\theta_2}f\left(\frac{x-\theta_1}{\theta_2}\right)\]
+for some continuous, differentiable density \(f(x)\) that is symmetric
+about the origin. Find \(I(\boldsymbol\theta)\).
+
+Let \(\boldsymbol \theta = (\theta_1, \theta_2)\) and suppose
+\[f_\theta(x)=\frac{1}{\theta_2}f\left(\frac{x-\theta_1}{\theta_2}\right).\]
+Then
+\[\log f_\theta(x)=-\log(\theta_2)+\log\left(f\left(\frac{x-\theta_1}{\theta_2}\right)\right)\]
+so
+\[\frac{\partial}{\partial\theta_1}\log f_\theta(x)=-\frac{1}{\theta_2}\frac{f'\left(\frac{x-\theta_1}{\theta_2}\right)}{f\left(\frac{x-\theta_1}{\theta_2}\right)} \text{ and } f_\theta(x)=-\frac{1}{\theta_2}\left(\frac{f\left(\frac{x-\theta_1}{\theta_2}\right)+\left(\frac{x-\theta_1}{\theta_2}\right)f'\left(\frac{x-\theta_1}{\theta_2}\right)}{f\left(\frac{x-\theta_1}{\theta_2}\right)}\right).\]
+
+Consider \(u=\frac{x-\theta_1}{\theta_2},\) therefore,
+\(du = \frac{dx}{\theta_2}\) implies \(\theta_2 du = dx\). Thus, the
+entries in the information matrix are as follows:
+
+\begin{align*}
+I_{11}(\boldsymbol\theta) & =E_\theta\left[\left(-\frac{1}{\theta_2}\frac{f'\left(\frac{x-\theta_1}{\theta_2}\right)}{f\left(\frac{x-\theta_1}{\theta_2}\right)}\right)^2\right]\\
+& =\frac{1}{\theta_2^2}\int\frac{\left[f'\left(\frac{x-\theta_1}{\theta_2}\right)\right]^2}{f\left(\frac{x-\theta_1}{\theta_2}\right)^2}\frac{1}{\theta_2}f\left(\frac{x-\theta_1}{\theta_2}\right)dx\\
+& =\frac{1}{\theta_2^3}\int\frac{\left[f'\left(\frac{x-\theta_1}{\theta_2}\right)\right]^2}{f\left(\frac{x-\theta_1}{\theta_2}\right)}dx\\
+& =\frac{1}{\theta_2^2}\int\frac{[f'(u)]^2}{f(u)}du
+\end{align*}
+
+\begin{align*}
+I_{22}(\boldsymbol\theta)& =E_\theta\left[\left(-\frac{1}{\theta_2}\left(\frac{f\left(\frac{x-\theta_1}{\theta_2}\right)+\left(\frac{x-\theta_1}{\theta_2}\right)f'\left(\frac{x-\theta_1}{\theta_2}\right)}{f\left(\frac{x-\theta_1}{\theta_2}\right)}\right)\right)^2\right]\\
+& =\frac{1}{\theta_2^2}\int\frac{\left[f\left(\frac{x-\theta_1}{\theta_2}\right)+\left(\frac{x-\theta_1}{\theta_2}\right)f'\left(\frac{x-\theta_1}{\theta_2}\right)\right]^2}{f\left(\frac{x-\theta_1}{\theta_2}\right)^2}\frac{1}{\theta_2}f\left(\frac{x-\theta_1}{\theta_2}\right)dx\\
+& =\frac{1}{\theta_2^3}\int\frac{\left[f\left(\frac{x-\theta_1}{\theta_2}\right)+\left(\frac{x-\theta_1}{\theta_2}\right)f'\left(\frac{x-\theta_1}{\theta_2}\right)\right]^2}{f\left(\frac{x-\theta_1}{\theta_2}\right)}dx\\
+& =\frac{1}{\theta_2^2}\int\frac{[f(u)+uf'(u)]^2}{f(u)}du\\
+\\
+I_{12}(\boldsymbol\theta)=I_{21}(\boldsymbol\theta)&=E_\theta\left[\left(-\frac{1}{\theta_2}\frac{f'\left(\frac{x-\theta_1}{\theta_2}\right)}{f\left(\frac{x-\theta_1}{\theta_2}\right)}\right)\left(-\frac{1}{\theta_2}\left(\frac{f\left(\frac{x-\theta_1}{\theta_2}\right)+\frac{xf'\left(\frac{x-\theta_1}{\theta_2}\right)}{\theta_2^2}}{f\left(\frac{x-\theta_1}{\theta_2}\right)}\right)\right)\right]\\
+&=\frac{1}{\theta_2^2}\int\frac{f'\left(\frac{x-\theta_1}{\theta_2}\right)\left[f\left(\frac{x-\theta_1}{\theta_2}\right)+\left(\frac{x-\theta_1}{\theta_2}\right)f'\left(\frac{x-\theta_1}{\theta_2}\right)\right]}{f\left(\frac{x-\theta_1}{\theta_2}\right)^2}\frac{1}{\theta_2}f\left(\frac{x-\theta_1}{\theta_2}\right)dx\\
+&=\frac{1}{\theta_2^3}\int\frac{f'\left(\frac{x-\theta_1}{\theta_2}\right)\left[f\left(\frac{x-\theta_1}{\theta_2}\right)+\left(\frac{x-\theta_1}{\theta_2}\right)f'\left(\frac{x-\theta_1}{\theta_2}\right)\right]}{f\left(\frac{x-\theta_1}{\theta_2}\right)}dx\\
+&=\frac{1}{\theta_2^2}\int\frac{f'(u)[f(u)+uf'(u)]}{f(u)}du
+\end{align*}
+
+Thus,
+
+\[I(\boldsymbol\theta)=\frac{1}{\theta_2^2}\begin{pmatrix}
+\int\frac{[f'(u)]^2}{f(u)}du & \int\frac{f'(u)[f(u)+uf'(u)]}{f(u)}du\\
+\int\frac{f'(u)[f(u)+uf'(u)]}{f(u)}du &\int\frac{[f(u)+uf'(u)]^2}{f(u)}du
+\end{pmatrix}.\]
+
+
+\end{document}

@@ -1,0 +1,433 @@
+\documentclass[12pt,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework 4},
+            pdfauthor={Emily Robinson},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Homework 4}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \subtitle{STAT 984}
+  \author{Emily Robinson}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{October 3, 2019}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\begin{document}
+\maketitle
+
+\hypertarget{exercise-2.6}{%
+\subsubsection{Exercise 2.6}\label{exercise-2.6}}
+
+Prove Theorem 2.17(a): For a constant \(c\),
+\(X_n \overset{qm}\rightarrow c\) if and only if \(E[X_n]\rightarrow c\)
+and \(Var(X_n) \rightarrow 0.\)
+
+\begin{proof}
+Assume $E[X_n] \rightarrow c$ and Var$(X_n) \rightarrow 0.$ Then
+\begin{align*}
+E\left[(X_n-c)^2\right]&=E[X_n^2]-2cE[X_n]+c^2\\
+&=Var(X_n)+\left(E[X]\right)^2-2cE[X_n]+c^2\\
+&\rightarrow 0+c^2-2c^2+c^2\\
+&=0.
+\end{align*}
+Therefore, for a constant $c$, if $E[X_n]\rightarrow c$ and $Var(X_n) \rightarrow 0.$, then $X_n \overset{qm}\rightarrow c$.
+
+Now assume $E\left[(X_n-c)^2\right]\rightarrow 0.$ Then 
+$$E\left[(X_n-c)^2\right]=Var(X_n)+(E[X]-c)^2.$$
+Since $Var(X_n) \ge 0$ and $(E[X]-c)^2 \ge 0, Var(X_n) \rightarrow 0$ and $(E[X]-c)^2\rightarrow 0.$ Then since $f(x) = \sqrt{x}$ is a continuous function, $E[X_n]-c\rightarrow 0$ implies $E[X]\rightarrow c.$ Therefore, for a constant $c$, if $X_n \overset{qm}\rightarrow c$ then $E[X_n]\rightarrow c$ and $Var(X_n) \rightarrow 0.$
+
+Thus, for a constant $c$, $X_n \overset{qm}\rightarrow c$ if and only if $E[X_n]\rightarrow c$ and $Var(X_n) \rightarrow 0.$
+\end{proof}
+
+\hypertarget{exercise-2.9}{%
+\subsubsection{Exercise 2.9}\label{exercise-2.9}}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Prove that if \(0<a<b\), then convergence in \(b^{th}\) mean is
+  stronger than convergence in \(a^{th}\) mean;
+  i.e.~\(X_n \overset{b}\rightarrow X\) implies
+  \(X_n \overset{a}\rightarrow X\).
+\end{enumerate}
+
+Hint: Use Exercise 1.40 with \(\alpha = b/a.\)
+
+\begin{proof}
+Using the result from Exercise 1.40, we have 
+\begin{align*}
+&&(E|X_n-X|)^{b/a}&\le E|X_n-X|^{b/a}\\
+&\implies&(E|X_n-X|^a)^{b/a}&\le E|X_n-X|^{b}\rightarrow 0\\
+&\implies&(E|X_n-X|^a)^{b/a}\rightarrow 0\\
+&\implies&E|X_n-X|^a\rightarrow 0.
+\end{align*}
+Thus, $X_n \overset{a}\rightarrow X$.
+\end{proof}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Prove by counterexample that the conclusion of part (a) is not true in
+  general if \(0 < b < a.\)
+\end{enumerate}
+
+Let \[X_n = \begin{cases}
+                                   0 & \text{with probability $1-\frac{1}{n^2}$} \\
+                                   n & \text{with probability $\frac{1}{n^2}$}.
+  \end{cases}\] Then \(X_n\overset{1}\rightarrow 0\) since
+\[E|X_n|=0\cdot \left(1-\frac{1}{n^2}\right)+n\left(\frac{1}{n^2}\right)=\frac{1}{n}\rightarrow 0.\]
+However,
+\[E|X_n^2|=0^2\cdot \left(1-\frac{1}{n^2}\right)+n^2\left(\frac{1}{n^2}\right)=1\rightarrow 1.\]
+Therefore, \(X_n\overset{2}\rightarrow 1\). Thus,
+\(X_n\overset{1}\rightarrow 0\) does not imply
+\(X_n\overset{2}\rightarrow 0.\)
+
+\hypertarget{exercise-2.10}{%
+\subsubsection{Exercise 2.10}\label{exercise-2.10}}
+
+The goal of this Exercise is to construct an example of an independent
+sequence \(X_1, X_2, ...\) with \(E[X_i] = \mu\) such that
+\(\bar{X}_n\overset{P}\mu\) but \(Var(\bar{X}_n)\) does not converge to
+0. There are numerous ways we could proceed, but let us suppose that for
+some positive constants \(c_i\) and \(p_i\),
+\(X_i = c_i Y_i(2Z_i - 1)\), where \(Y_i\) and \(Z_i\) are independent
+Bernoulli random variables with \(E[Y_i] = p_i\) and \(E[Z_i] = 1/2.\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Verify that \(E[X_i] = 0\) and find \(Var(\bar{X}_n).\)
+\end{enumerate}
+
+Suppose there exist a \(c_i\) and \(p_i\) such that
+\(X_i = c_iY_i(2Z_i-1)\) where \(Y_i\sim Bern(p_i)\) and
+\(Z_i\sim Bern(1/2)\) with \(Y_i\) and \(Z_i\) independent. Then
+\[X_n = \begin{cases}
+                                   c_i & \text{with probability $\frac{p_i}{2}$} \\
+                                   -c_i & \text{with probability $\frac{p_i}{2}$} \\
+                                   0 & \text{with probability $1-p_i$}.
+  \end{cases}\]
+
+Then
+\[E[X_i]=c_i\left(\frac{p_i}{2}\right)-c_i\left(\frac{p_i}{2}\right)+0(1-p_i)=0\]
+and
+\[E[X_i]=c_i^2\left(\frac{p_i}{2}\right)+(-c_i)^2\left(\frac{p_i}{2}\right)+0^2(1-p_i)=c_i^2p_i\].
+Therefore, Var\((X_i) = c_i^2p_i.\) Thus,
+Var\((\bar{X}_i)=\frac{1}{n^2}\sum_{i=1}^n c_i^2p_i\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Show that \(\bar{X}_n \overset{P} 0\) if
+  \[\frac{1}{n}\sum_{i=1}^n c_ip_i\rightarrow 0.\]
+\end{enumerate}
+
+Hint: Use the triangle inequality to show that if Condition (2.21) is
+true, then \(\bar{X}_n\) converges in mean to 0 (see Definition 2.15).
+
+Consider
+\(E|X_i|=|c_i|\frac{p_i}{2}+|-c_i|\frac{p_i}{2}+|0|(1-p_i)=c_ip_i.\)
+Then by the triangle inequality,
+\[E|\bar{X_n}|\le \frac{1}{n}\sum_{i=1}^nE|X_i|=\frac{1}{n}\sum_{i=1}^nc_ip_i\rightarrow 0.\]
+Therefore, by Theroem 2.17 (2), \(\bar{X}_n\overset{1}\rightarrow 0\)
+implies \(\bar{X}_n\overset{P}\rightarrow 0.\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Now specify \(c_i\) and \(p_i\) so that \(Var(\bar{X}_n)\) does not
+  converge to 0 but Contdition (2.21) holds. Remember that \(p_i\) must
+  be less than or equal to 1 because it is the mean of a Bernoulli
+  random variable.
+\end{enumerate}
+
+Let \(c_i=i^3\) and \(p_i = \frac{1}{i^4}.\) Then
+\(c_ip_i = \frac{1}{i}\) and
+\(\frac{1}{n}\sum_{i=1}^n c_ip_i = \frac{1}{n}\sum_{i=1}^n\frac{1}{i}=\frac{\log(n)}{n}\frac{\sum_{i=1}^n\frac{1}{i}}{\log(n)}\rightarrow 0\)
+since \(\sum_{i=1}^n\frac{1}{i}\sim\log(n).\) However,
+Var\((\bar{X}_n) = c_i^2p_i=i^2\rightarrow \infty.\)
+
+\hypertarget{exercise-2.13}{%
+\subsubsection{Exercise 2.13}\label{exercise-2.13}}
+
+Let \(Y_1, Y_2,...\) be independent and identically distributed with
+mean \(\mu\) and variance \(\sigma^2 < \infty.\) Let
+\[X_1 = Y_1,  X_2 = \frac{Y_2+Y_3}{2},  X_3 = \frac{Y_4+Y_5+Y_6}{3}, etc.\]
+Define \(\delta_n\) as in Equation (2.14).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Show that \(\delta_n\) and \(\bar{X}_n\) are both consistent
+  estimators of \(\mu.\)
+\end{enumerate}
+
+Consider \(E[X_i]=\mu\) and Var\((X_i) =\sigma_i^2=\frac{\sigma^2}{i}.\)
+Then
+\[\delta_n = \frac{\sum_{i=1}^n\frac{X_i}{\sigma_i^2}}{\sum_{j=1}^n\frac{1}{\sigma_j^2}}=\frac{\frac{1}{\sigma^2}\sum_{i=1}^niX_i}{\frac{1}{\sigma^2}\sum_{j=1}^nj}=\frac{\sum_{i=1}^niX_i}{\sum_{j=1}^nj}.\]
+
+Then, \begin{align*}
+E[\delta_n]&=E\left[\frac{\sum_{i=1}^niX_i}{\sum_{j=1}^nj}\right]\\
+&=\frac{\sum_{i=1}^niE[X_i]}{\sum_{j=1}^nj}\\
+&=\frac{\mu \sum_{i=1}^ni}{\sum_{j=1}^nj}\\
+&=\mu
+\end{align*} and \begin{align*}
+Var[\delta_n]&=Var\left[\frac{\sum_{i=1}^niX_i}{\sum_{j=1}^nj}\right]\\
+&=\frac{\sum_{i=1}^ni^2Var[X_i]}{\left(\sum_{j=1}^nj\right)^2}\\
+&=\frac{\sum_{i=1}^ni^2\frac{\sigma^2}{i}}{\left(\sum_{j=1}^nj\right)^2}\\
+&=\frac{\sigma^2\sum_{i=1}^ni}{\left(\sum_{j=1}^nj\right)^2}\\
+&=\frac{\sigma^2}{\sum_{j=1}^nj}.
+\end{align*}
+
+Then, using Chebyshev's inequlaity,
+\[P\left((\delta_n-\mu)^2\ge \epsilon^2\right)\le \frac{E\left[(\delta_n-\mu)\right]}{\epsilon^2}\rightarrow 0\]
+and \(\delta_n\overset{P}\rightarrow \mu.\) Thus, \(\delta_n\) is a
+consistent esitmator of \(\mu.\)
+
+Similarly, \(E[\bar X_n]=\mu\) and
+\(Var(\bar X_n)=\frac{1}{n^2}\sum_{i=1}^n\frac{\sigma^2}{i}=\frac{\sigma^2}{n^2}\sum_{i=1}^n\frac{1}{i}.\)
+Therefore,
+\[P\left((\bar X_n-\mu)^2\ge \epsilon^2\right)\le \frac{E\left[(\bar X_n-\mu)\right]}{\epsilon^2}\rightarrow 0\]
+and \(\bar X_n\overset{P}\rightarrow \mu.\) Thus, \(\bar X_n\) is a
+consistent esitmator of \(\mu.\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Calculate the relative efficiency \(e_{\bar{X}_n,\delta_n}\) of
+  \(\bar{X}_n\) to \(\delta_n\), defined as
+  \(Var(\delta_n)/Var(\bar{X}_n)\), for \(n = 5,10, 20, 50, 100,\) and
+  \(\infty\) and report the results in a table. For \(n = \infty\), give
+  the limit (with proof) of the efficiency.
+\end{enumerate}
+
+\[e_{\bar{X}_n,\delta_n}=\frac{\frac{\sigma^2}{\sum_{j=1}^nj}}{\frac{\sigma^2}{n^2}\sum_{i=1}^n\frac{1}{i}}=\frac{n^2}{\sum_{j=1}^nj \sum_{i=1}^n\frac{1}{i}}.\]
+The results are reported in the table below.
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+n & Eff & Asy & Ratio\tabularnewline
+\midrule
+\endhead
+5 & 0.73 & 1.243 & 0.587\tabularnewline
+10 & 0.621 & 0.869 & 0.715\tabularnewline
+20 & 0.529 & 0.668 & 0.793\tabularnewline
+50 & 0.436 & 0.511 & 0.852\tabularnewline
+100 & 0.382 & 0.434 & 0.879\tabularnewline
+infinity & 0 & 0 & NA\tabularnewline
+\bottomrule
+\end{longtable}
+
+Consider \(n = \infty.\) Then from Example 1.23,
+\[\frac{n^2}{\sum_{j=1}^nj \sum_{i=1}^n\frac{1}{i}}=\frac{n^2}{\frac{1}{2}n^2\log(n)} \frac{\frac{1}{2}n^2}{\sum_{j=1}^nj}\frac{\log(n)}{\sum_{i=1}^n\frac{1}{i}}=\frac{2}{\log(n)} \frac{\frac{1}{2}n^2}{\sum_{j=1}^nj}\frac{\log(n)}{\sum_{i=1}^n\frac{1}{i}}\rightarrow 0\cdot 1 \cdot 1 = 0\]
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Using Example 1.23, give a simple expression asymptotically equivalent
+  to \(e_{\bar{X}_n,\delta_n}\). Report its values in your table for
+  comparison. How good is the approximation for small \(n\)?
+\end{enumerate}
+
+Similar to the proof in part (b), consider,
+\[\frac{n^2}{\sum_{j=1}^nj \sum_{i=1}^n\frac{1}{i}}\sim\frac{n^2}{\frac{1}{2}n^2\log(n)} =\frac{2}{\log(n)}.\]
+The ratios in the table above indicate that the approximation improves
+as \(n\) increases.
+
+\vspace{40pt}
+
+\hypertarget{exercise-2.19}{%
+\subsubsection{Exercise 2.19}\label{exercise-2.19}}
+
+Suppose that \((X, Y)\) is a bivariate normal vector such that both
+\(X\) and \(Y\) are marginally standard normal and Corr\((X,Y) = \rho\).
+Construct a computer program that simulates the distribution function
+\(F_\rho(x,y)\) of the joint distribution of \(X\) and \(Y\). For a
+given \((x,y)\), the program should generate at least 50,000 random
+realizations from the distribution of \((X,Y)\), then report the
+proportion for which \((X,Y) \le (x,y)\). (If you wish, you can also
+report a confidence interval for the true value.) Use your function to
+approximate \(F_{.5}(1,1), F_{.25}(-1,-1),\) and \(F_{.75}(0,0)\). As a
+check of your program, you can try it on \(F_0(x,y)\), whose true values
+are not hard to calculate directly for an arbitrary \(x\) and \(y\)
+assuming your software has the ability to evaluate the standard normal
+distribution function.
+
+Hint: To generate a bivariate normal random vector \((X,Y)\) with
+covariance matrix
+\(\begin{pmatrix} 1 & \rho \\ \rho & 1 \end{pmatrix}\), start with
+independent standard normal \(U\) and \(V\), then take \(X = U\) and
+\(Y = \rho U + \sqrt{1-\rho^2}V.\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BVN_func <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(rho, x, y, }\DataTypeTok{n =} \DecValTok{50000}\NormalTok{) \{}
+\NormalTok{    U <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(n, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{    V <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(n, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{    X <-}\StringTok{ }\NormalTok{U}
+\NormalTok{    Y <-}\StringTok{ }\NormalTok{rho }\OperatorTok{*}\StringTok{ }\NormalTok{U }\OperatorTok{+}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{rho}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{*}\StringTok{ }\NormalTok{V}
+\NormalTok{    results <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(rho, x, y, }\DataTypeTok{quantile =} \KeywordTok{mean}\NormalTok{(X }\OperatorTok{<=}\StringTok{ }
+\StringTok{        }\NormalTok{x }\OperatorTok{&}\StringTok{ }\NormalTok{Y }\OperatorTok{<=}\StringTok{ }\NormalTok{y))}
+\NormalTok{\}}
+\NormalTok{a <-}\StringTok{ }\KeywordTok{BVN_func}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{y =} \DecValTok{1}\NormalTok{, }\DataTypeTok{n =} \DecValTok{50000}\NormalTok{)}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{BVN_func}\NormalTok{(}\FloatTok{0.25}\NormalTok{, }\DataTypeTok{x =} \DecValTok{-1}\NormalTok{, }\DataTypeTok{y =} \DecValTok{-1}\NormalTok{, }\DataTypeTok{n =} \DecValTok{50000}\NormalTok{)}
+\NormalTok{c <-}\StringTok{ }\KeywordTok{BVN_func}\NormalTok{(}\FloatTok{0.75}\NormalTok{, }\DataTypeTok{x =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\NormalTok{, }\DataTypeTok{n =} \DecValTok{50000}\NormalTok{)}
+\KeywordTok{kable}\NormalTok{(}\KeywordTok{rbind}\NormalTok{(a, b, c))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrrr@{}}
+\toprule
+rho & x & y & quantile\tabularnewline
+\midrule
+\endhead
+0.50 & 1 & 1 & 0.74382\tabularnewline
+0.25 & -1 & -1 & 0.04246\tabularnewline
+0.75 & 0 & 0 & 0.38352\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{exercise-2.21}{%
+\subsubsection{Exercise 2.21}\label{exercise-2.21}}
+
+Construct a counterexample to show that Slutsky's Theorem 2.39 may not
+be strengthened by changing \(Y_n \overset{P}\rightarrow c\) to
+\(Y_n\overset{P}\rightarrow Y.\)
+
+Let \(Y_n = Z\overset{P}\rightarrow Z\) and
+\(X_n = -Y_n = -Z \overset{d}\rightarrow Z\). However,
+\[\begin{pmatrix} X_n \\ Y_n \end{pmatrix} \overset{d}\rightarrow \begin{pmatrix} Z \\ Z \end{pmatrix}\ne \begin{pmatrix} -Z \\ Z \end{pmatrix}.\]
+
+
+\end{document}

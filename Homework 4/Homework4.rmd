@@ -1,0 +1,214 @@
+---
+title: "Homework 4"
+author: "Emily Robinson"
+date: "October 3, 2019"
+output:
+  pdf_document:
+      keep_tex:  true
+subtitle: STAT 984
+theme: cerulean
+fontsize: 12pt
+header-includes:
+- \usepackage{amsmath}
+- \usepackage{amssymb}
+- \usepackage{amsthm}
+---
+
+<style type="text/css">
+
+h1.title {
+  font-size: 18px;
+  color: Black;
+  text-align: center;
+}
+h3.subtitle{
+  font-size: 12px;
+  color: Black;
+  text-align: center;
+}
+h4.author { /* Header 4 - and the author and data headers use this too  */
+  font-size: 12px;
+  font-family: "Times New Roman", Times, serif;
+  color: Black;
+  text-align: center;
+}
+h4.date { /* Header 4 - and the author and data headers use this too  */
+  font-size: 12px;
+  font-family: "Times New Roman", Times, serif;
+  color: Black;
+  text-align: center;
+}
+</style>
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width=5, fig.height=4, fig.align = "center")
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=50),tidy=TRUE)
+```
+
+### Exercise 2.6
+Prove Theorem 2.17(a): For a constant $c$, $X_n \overset{qm}\rightarrow c$ if and only if $E[X_n]\rightarrow c$ and $Var(X_n) \rightarrow 0.$
+\begin{proof}
+Assume $E[X_n] \rightarrow c$ and Var$(X_n) \rightarrow 0.$ Then
+\begin{align*}
+E\left[(X_n-c)^2\right]&=E[X_n^2]-2cE[X_n]+c^2\\
+&=Var(X_n)+\left(E[X]\right)^2-2cE[X_n]+c^2\\
+&\rightarrow 0+c^2-2c^2+c^2\\
+&=0.
+\end{align*}
+Therefore, for a constant $c$, if $E[X_n]\rightarrow c$ and $Var(X_n) \rightarrow 0.$, then $X_n \overset{qm}\rightarrow c$.
+
+Now assume $E\left[(X_n-c)^2\right]\rightarrow 0.$ Then 
+$$E\left[(X_n-c)^2\right]=Var(X_n)+(E[X]-c)^2.$$
+Since $Var(X_n) \ge 0$ and $(E[X]-c)^2 \ge 0, Var(X_n) \rightarrow 0$ and $(E[X]-c)^2\rightarrow 0.$ Then since $f(x) = \sqrt{x}$ is a continuous function, $E[X_n]-c\rightarrow 0$ implies $E[X]\rightarrow c.$ Therefore, for a constant $c$, if $X_n \overset{qm}\rightarrow c$ then $E[X_n]\rightarrow c$ and $Var(X_n) \rightarrow 0.$
+
+Thus, for a constant $c$, $X_n \overset{qm}\rightarrow c$ if and only if $E[X_n]\rightarrow c$ and $Var(X_n) \rightarrow 0.$
+\end{proof}
+
+### Exercise 2.9
+
+(a) Prove that if $0<a<b$, then convergence in $b^{th}$ mean is stronger than convergence in $a^{th}$ mean; i.e. $X_n \overset{b}\rightarrow X$ implies $X_n \overset{a}\rightarrow X$.
+
+Hint: Use Exercise 1.40 with $\alpha = b/a.$
+
+\begin{proof}
+Using the result from Exercise 1.40, we have 
+\begin{align*}
+&&(E|X_n-X|)^{b/a}&\le E|X_n-X|^{b/a}\\
+&\implies&(E|X_n-X|^a)^{b/a}&\le E|X_n-X|^{b}\rightarrow 0\\
+&\implies&(E|X_n-X|^a)^{b/a}\rightarrow 0\\
+&\implies&E|X_n-X|^a\rightarrow 0.
+\end{align*}
+Thus, $X_n \overset{a}\rightarrow X$.
+\end{proof}
+
+(b) Prove by counterexample that the conclusion of part (a) is not true in general if $0 < b < a.$
+
+Let $$X_n = \begin{cases}
+                                   0 & \text{with probability $1-\frac{1}{n^2}$} \\
+                                   n & \text{with probability $\frac{1}{n^2}$}.
+  \end{cases}$$
+  Then $X_n\overset{1}\rightarrow 0$ since 
+  $$E|X_n|=0\cdot \left(1-\frac{1}{n^2}\right)+n\left(\frac{1}{n^2}\right)=\frac{1}{n}\rightarrow 0.$$
+  However, 
+  $$E|X_n^2|=0^2\cdot \left(1-\frac{1}{n^2}\right)+n^2\left(\frac{1}{n^2}\right)=1\rightarrow 1.$$
+  Therefore, $X_n\overset{2}\rightarrow 1$. Thus, $X_n\overset{1}\rightarrow 0$ does not imply $X_n\overset{2}\rightarrow 0.$
+
+### Exercise 2.10
+The goal of this Exercise is to construct an example of an independent sequence $X_1, X_2, ...$ with $E[X_i] = \mu$ such that $\bar{X}_n\overset{P}\mu$ but $Var(\bar{X}_n)$ does not converge to 0. There are numerous ways we could proceed, but let us suppose that for some positive constants $c_i$ and $p_i$, $X_i = c_i Y_i(2Z_i - 1)$, where $Y_i$ and $Z_i$ are independent Bernoulli random variables with $E[Y_i] = p_i$ and $E[Z_i] = 1/2.$
+
+(a) Verify that $E[X_i] = 0$ and find $Var(\bar{X}_n).$
+
+Suppose there exist a $c_i$ and $p_i$ such that $X_i = c_iY_i(2Z_i-1)$ where $Y_i\sim Bern(p_i)$ and $Z_i\sim Bern(1/2)$ with $Y_i$ and $Z_i$ independent. Then 
+$$X_n = \begin{cases}
+                                   c_i & \text{with probability $\frac{p_i}{2}$} \\
+                                   -c_i & \text{with probability $\frac{p_i}{2}$} \\
+                                   0 & \text{with probability $1-p_i$}.
+  \end{cases}$$
+
+Then $$E[X_i]=c_i\left(\frac{p_i}{2}\right)-c_i\left(\frac{p_i}{2}\right)+0(1-p_i)=0$$
+and $$E[X_i]=c_i^2\left(\frac{p_i}{2}\right)+(-c_i)^2\left(\frac{p_i}{2}\right)+0^2(1-p_i)=c_i^2p_i$$.
+Therefore, Var$(X_i) = c_i^2p_i.$ Thus, Var$(\bar{X}_i)=\frac{1}{n^2}\sum_{i=1}^n c_i^2p_i$.
+
+(b) Show that $\bar{X}_n \overset{P} 0$ if $$\frac{1}{n}\sum_{i=1}^n c_ip_i\rightarrow 0.$$
+
+Hint: Use the triangle inequality to show that if Condition (2.21) is true, then $\bar{X}_n$ converges in mean to 0 (see Definition 2.15). 
+
+Consider $E|X_i|=|c_i|\frac{p_i}{2}+|-c_i|\frac{p_i}{2}+|0|(1-p_i)=c_ip_i.$ Then by the triangle inequality, 
+$$E|\bar{X_n}|\le \frac{1}{n}\sum_{i=1}^nE|X_i|=\frac{1}{n}\sum_{i=1}^nc_ip_i\rightarrow 0.$$ Therefore, by Theroem 2.17 (2), $\bar{X}_n\overset{1}\rightarrow 0$ implies $\bar{X}_n\overset{P}\rightarrow 0.$
+
+(c) Now specify $c_i$ and $p_i$ so that $Var(\bar{X}_n)$ does not converge to 0 but Contdition (2.21) holds. Remember that $p_i$ must be less than or equal to 1 because it is the mean of a Bernoulli random variable.
+
+Let $c_i=i^3$ and $p_i = \frac{1}{i^4}.$ Then $c_ip_i = \frac{1}{i}$ and $\frac{1}{n}\sum_{i=1}^n c_ip_i = \frac{1}{n}\sum_{i=1}^n\frac{1}{i}=\frac{\log(n)}{n}\frac{\sum_{i=1}^n\frac{1}{i}}{\log(n)}\rightarrow 0$ since $\sum_{i=1}^n\frac{1}{i}\sim\log(n).$ However, Var$(\bar{X}_n) = c_i^2p_i=i^2\rightarrow \infty.$
+
+### Exercise 2.13
+Let $Y_1, Y_2,...$ be independent and identically distributed with mean $\mu$ and variance $\sigma^2 < \infty.$ Let
+$$X_1 = Y_1,  X_2 = \frac{Y_2+Y_3}{2},  X_3 = \frac{Y_4+Y_5+Y_6}{3}, etc.$$
+Define $\delta_n$ as in Equation (2.14).
+
+(a) Show that $\delta_n$ and $\bar{X}_n$ are both consistent estimators of $\mu.$
+
+Consider $E[X_i]=\mu$ and Var$(X_i) =\sigma_i^2=\frac{\sigma^2}{i}.$ Then $$\delta_n = \frac{\sum_{i=1}^n\frac{X_i}{\sigma_i^2}}{\sum_{j=1}^n\frac{1}{\sigma_j^2}}=\frac{\frac{1}{\sigma^2}\sum_{i=1}^niX_i}{\frac{1}{\sigma^2}\sum_{j=1}^nj}=\frac{\sum_{i=1}^niX_i}{\sum_{j=1}^nj}.$$
+
+Then,
+\begin{align*}
+E[\delta_n]&=E\left[\frac{\sum_{i=1}^niX_i}{\sum_{j=1}^nj}\right]\\
+&=\frac{\sum_{i=1}^niE[X_i]}{\sum_{j=1}^nj}\\
+&=\frac{\mu \sum_{i=1}^ni}{\sum_{j=1}^nj}\\
+&=\mu
+\end{align*}
+and
+\begin{align*}
+Var[\delta_n]&=Var\left[\frac{\sum_{i=1}^niX_i}{\sum_{j=1}^nj}\right]\\
+&=\frac{\sum_{i=1}^ni^2Var[X_i]}{\left(\sum_{j=1}^nj\right)^2}\\
+&=\frac{\sum_{i=1}^ni^2\frac{\sigma^2}{i}}{\left(\sum_{j=1}^nj\right)^2}\\
+&=\frac{\sigma^2\sum_{i=1}^ni}{\left(\sum_{j=1}^nj\right)^2}\\
+&=\frac{\sigma^2}{\sum_{j=1}^nj}.
+\end{align*}
+
+Then, using Chebyshev's inequlaity,
+$$P\left((\delta_n-\mu)^2\ge \epsilon^2\right)\le \frac{E\left[(\delta_n-\mu)\right]}{\epsilon^2}\rightarrow 0$$ and $\delta_n\overset{P}\rightarrow \mu.$ Thus, $\delta_n$ is a consistent esitmator of $\mu.$
+
+Similarly, $E[\bar X_n]=\mu$ and $Var(\bar X_n)=\frac{1}{n^2}\sum_{i=1}^n\frac{\sigma^2}{i}=\frac{\sigma^2}{n^2}\sum_{i=1}^n\frac{1}{i}.$ Therefore, $$P\left((\bar X_n-\mu)^2\ge \epsilon^2\right)\le \frac{E\left[(\bar X_n-\mu)\right]}{\epsilon^2}\rightarrow 0$$ and $\bar X_n\overset{P}\rightarrow \mu.$ Thus, $\bar X_n$ is a consistent esitmator of $\mu.$
+
+(b) Calculate the relative efficiency $e_{\bar{X}_n,\delta_n}$ of $\bar{X}_n$ to $\delta_n$, defined as $Var(\delta_n)/Var(\bar{X}_n)$, for $n = 5,10, 20, 50, 100,$ and $\infty$ and report the results in a table. For $n = \infty$, give the limit (with proof) of the efficiency.
+
+$$e_{\bar{X}_n,\delta_n}=\frac{\frac{\sigma^2}{\sum_{j=1}^nj}}{\frac{\sigma^2}{n^2}\sum_{i=1}^n\frac{1}{i}}=\frac{n^2}{\sum_{j=1}^nj \sum_{i=1}^n\frac{1}{i}}.$$ The results are reported in the table below.
+
+```{r Exercise_1.13, echo = F}
+func_2.13 <- function(n){
+  Eff<- n^2/(sum(seq(1,n))*sum(1/seq(1:n)))
+  Asy <- 2/log(n)
+  Ratio <- Eff/Asy
+  results <- cbind(n, Eff, Asy, Ratio)
+}
+a <- round(func_2.13(5),3)
+b <- round(func_2.13(10),3)
+c <- round(func_2.13(20),3)
+d <- round(func_2.13(50),3)
+e <- round(func_2.13(100),3)
+f <- c("infinity", 0, 0, NA)
+kable(rbind(a,b,c,d,e, t(f)))
+```
+
+Consider $n = \infty.$ Then from Example 1.23, $$\frac{n^2}{\sum_{j=1}^nj \sum_{i=1}^n\frac{1}{i}}=\frac{n^2}{\frac{1}{2}n^2\log(n)} \frac{\frac{1}{2}n^2}{\sum_{j=1}^nj}\frac{\log(n)}{\sum_{i=1}^n\frac{1}{i}}=\frac{2}{\log(n)} \frac{\frac{1}{2}n^2}{\sum_{j=1}^nj}\frac{\log(n)}{\sum_{i=1}^n\frac{1}{i}}\rightarrow 0\cdot 1 \cdot 1 = 0$$
+
+(c) Using Example 1.23, give a simple expression asymptotically equivalent to $e_{\bar{X}_n,\delta_n}$. Report its values in your table for comparison. How good is the approximation for small $n$?
+
+Similar to the proof in part (b), consider, 
+$$\frac{n^2}{\sum_{j=1}^nj \sum_{i=1}^n\frac{1}{i}}\sim\frac{n^2}{\frac{1}{2}n^2\log(n)} =\frac{2}{\log(n)}.$$ The ratios in the table above indicate that the approximation improves as $n$ increases.
+
+\vspace{40pt}
+
+### Exercise 2.19
+Suppose that $(X, Y)$ is a bivariate normal vector such that both $X$ and $Y$ are marginally standard normal and Corr$(X,Y) = \rho$. Construct a computer program that simulates the distribution function $F_\rho(x,y)$ of the joint distribution of $X$ and $Y$. For a given $(x,y)$, the program should generate at least 50,000 random realizations from the distribution of $(X,Y)$, then report the proportion for which $(X,Y) \le (x,y)$. (If you wish, you can also report a confidence interval for the true value.) Use your function to approximate $F_{.5}(1,1), F_{.25}(-1,-1),$ and
+$F_{.75}(0,0)$. As a check of your program, you can try it on $F_0(x,y)$, whose true values are not hard to calculate directly for an arbitrary $x$ and $y$ assuming your software has the ability to evaluate the standard normal distribution function.
+
+Hint: To generate a bivariate normal random vector $(X,Y)$ with covariance matrix 
+$\begin{pmatrix} 
+1 & \rho \\
+\rho & 1 
+\end{pmatrix}$,
+start with independent standard normal $U$ and $V$, then take $X = U$ and $Y = \rho U + \sqrt{1-\rho^2}V.$
+
+```{r exe2.19}
+BVN_func <- function(rho, x, y, n = 50000){
+  U <- rnorm(n, 0, 1)
+  V <- rnorm(n, 0, 1)
+  X <- U
+  Y <- rho*U + sqrt(1-rho^2)*V
+  results <- cbind(rho, x, y, quantile = mean(X <= x & Y <= y))
+}  
+a <- BVN_func(0.5,  x =  1, y =  1, n = 50000)
+b <- BVN_func(0.25, x = -1, y = -1, n = 50000)
+c <- BVN_func(0.75, x =  0, y =  0, n = 50000)
+kable(rbind(a,b,c))
+```
+
+### Exercise 2.21
+Construct a counterexample to show that Slutsky's Theorem 2.39 may not be strengthened by changing $Y_n \overset{P}\rightarrow c$ to $Y_n\overset{P}\rightarrow Y.$
+
+Let $Y_n = Z\overset{P}\rightarrow Z$ and $X_n = -Y_n = -Z \overset{d}\rightarrow Z$. However, 
+$$\begin{pmatrix} X_n \\ Y_n \end{pmatrix} \overset{d}\rightarrow \begin{pmatrix} Z \\ Z \end{pmatrix}\ne \begin{pmatrix} -Z \\ Z \end{pmatrix}.$$
+

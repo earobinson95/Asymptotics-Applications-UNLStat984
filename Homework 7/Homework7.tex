@@ -1,0 +1,521 @@
+\documentclass[12pt,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework 7},
+            pdfauthor={Emily Robinson},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Homework 7}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \subtitle{STAT 984}
+  \author{Emily Robinson}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{November 7, 2019}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\begin{document}
+\maketitle
+
+\hypertarget{exercise-5.3}{%
+\subsubsection{Exercise 5.3}\label{exercise-5.3}}
+
+Suppose \(X_n \sim \text{binomial}(n,p)\), where \(0<p<1\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Find the asymptotic distribution of \(g(X_n/n)-g(p)\), where
+  \(g(x) = \min\{x,1-x\}.\)
+\end{enumerate}
+
+By the CLT, we know
+\[\sqrt{n}\left(\frac{X_n}{n}-p\right)\overset{d}\rightarrow N\left(0, p(1-p)\right).\]
+Then \[g(x) = \begin{cases}
+                                   p & \text{when } p\in (0,1/2) \\
+                                   1-p & \text{when } p\in (1/2,1).
+        \end{cases}\] Therefore, \(g'(p)=1\implies [g''(p)]^2=1\) when
+\(p \in \{(0,1/2)\cup (1/2,1)\}.\) Then by the delta method,
+\[\sqrt{n}\left(g\left(\frac{X_n}{n}\right)-g(p)\right)\overset{d}\rightarrow N(0,p(1-p).\]
+However, consider \(p=1/2.\) Then \(g'(p)\) does not exist, thus, the
+delta method does not apply. Therefore, note
+\[\sqrt{n}\left(g\left(\frac{X_n}{n}\right)-g(1/2)\right)=-\sqrt{n}\left|\frac{X_n}{n}-1/2\right|.\]
+Thus, since the absolute value is a continuous function, by the CLT, for
+\(p=1/2\), we obtain
+\[\sqrt{n}\left(g\left(\frac{X_n}{n}\right)-g(p)\right)\overset{d}\rightarrow -\sqrt{p(1-p)}|Z|\]
+where \(Z\sim N(0,1)\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\item
+  Show that \(h(x) = \sin ^{-1}(\sqrt{x})\) is a variance-stabilizing
+  transformation for \(X_n/n\). This is called the
+  \textit{arcsine transformation} of a sample proportion.
+
+  \textbf{Hint:} \((d/du)\text{sin}^{-1}(u) = 1/\sqrt{1-u^2}\).
+\end{enumerate}
+
+Consider \(h(x)=\sin^{-1}(\sqrt{x}).\) Then by the chain rule,
+\(h'(x)=\frac{1}{\sqrt{1-x}}\frac{1}{2\sqrt{x}}=\frac{1}{2\sqrt{x(1-x)}}\).
+Then by the CLT and delta method,
+\[\sqrt{n}\left[h\left(\frac{X_n}{n}\right)-h(p)\right]\overset{d}\rightarrow N\left(0,[h'(p)]^2p(1-p)\right)=N\left(0,\frac{p(1-p)}{4p(1-p)}\right)=N\left(0,\frac{1}{4}\right).\]
+
+\hypertarget{exercise-5.4}{%
+\subsubsection{Exercise 5.4}\label{exercise-5.4}}
+
+Let \(X_1, X_2, ...\) be independent from \(N(\mu,\sigma^2)\) where
+\(\mu \ne 0\). Let \[s_n^2=\frac{1}{n}\sum_{i=1}^n(X_i-\bar X_n)^2.\]
+Find the asymptotic distribution of the coefficient of variation
+\(S_n/\bar X_n.\)
+
+Note \(s_n\overset{p}\rightarrow \sigma\) and
+\(\bar X_n \overset{P}\rightarrow \mu\) implies
+\(s_n/\bar X_n\overset{P}\rightarrow \sigma/\mu.\) Therefore,
+\(s_n/\bar X_n\) is a consistent estimator for \(\sigma/\mu.\) Then
+\[\sqrt{n}\left(s_n/\bar X_n-\sigma/\mu\right)=\frac{1}{\bar X_n}\sqrt{n}\left(s_n-\frac{\sigma}{\mu}\bar X_n\right)=\frac{1}{\bar X_n}\left(\sqrt{n}(s_n-\sigma)-\sqrt{n}\left(\frac{\sigma}{\mu}\bar X_n\right)\right).\]
+Let \(g(x) = \frac{\sigma}{\mu}x.\) Then \(g'(x)=\frac{\sigma}{\mu}.\)
+Therefore, by the CLT and delta method, \begin{align*}
+&&\sqrt{n}(\bar X_n-\mu)&\overset{d}\rightarrow N(0,\sigma^2)\\
+&\implies&\sqrt{n}(g(\bar X_n)-g(\mu))&\overset{d}\rightarrow N(0,[g'(\mu)]^2\sigma^2)\\
+&\implies&\sqrt{n}(\frac{\sigma}{\mu}\bar X_n-\sigma)&\overset{d}\rightarrow N(0,\sigma^4/\mu^2).\\
+\end{align*} Then consider
+\[\sqrt{n}(s_n-\sigma)=\sqrt{n}\left(\frac{s_n^2-\sigma^2}{s_n+\sigma}\right).\]
+Note, \(s_n+\sigma\overset{P}\rightarrow 2\sigma\) and
+\(\sqrt{n}(s_n^2-\sigma^2)\overset{d}\rightarrow N(0,2\sigma^4).\) Then
+by Slutsky's Theorem,
+\[\sqrt{n}\left(\frac{s_n^2-\sigma^2}{s_n+\sigma}\right)\overset{d}\rightarrow \frac{1}{2\sigma}N(0,2\sigma^4)=N\left(0, \frac{2\sigma^4}{(2\sigma)^2}\right)=N\left(0, \frac{\sigma^2}{2}\right)\].
+Then, since \(\bar X_n\) and \(s_n\) are independent,
+\[\sqrt{n}(s_n-\sigma)-\sqrt{n}\left(\frac{\sigma}{\mu}\bar X_n\right)\overset{d}\rightarrow N\left(0, \frac{\sigma^4}{\mu^2}+\frac{\sigma^2}{2}\right).\]
+Recall, \(\bar X_n \overset{P}\rightarrow \mu.\) Then by Slutksy's
+Theorem,
+\[\frac{1}{\bar X_n}\left(\sqrt{n}(s_n-\sigma)-\sqrt{n}\left(\frac{\sigma}{\mu}\bar X_n\right)\right)\overset{d}\rightarrow \frac{1}{\mu}N\left(0, \frac{\sigma^4}{\mu^2}+\frac{\sigma^2}{2}\right)=N\left(0, \frac{\sigma^4}{\mu^4}+\frac{\sigma^2}{2\mu^2}\right).\]
+
+\hypertarget{exercise-5.5}{%
+\subsubsection{Exercise 5.5}\label{exercise-5.5}}
+
+Let \(X_n\sim \text{binomial}(n,p)\), where \(p\in(0,1)\) is unknown.
+Obtain confidence intervals for \(p\) in two different ways:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Since \(\sqrt{n}(X_n/n-p)\overset{d}\rightarrow N[0,p(1-p)]\), the
+  variance of the limiting distribution depends only on \(p\). Use the
+  fact that \(X_n/n\overset{P}\rightarrow p\) to find a consistent
+  estimator of the variance and use it to derive a 95\% confidence
+  interval for \(p\).
+\end{enumerate}
+
+Since
+\(\sqrt{n}\left(\frac{\bar X_n}{n}-p\right)\overset{d}\rightarrow N(0,p(1-p))\),
+the variance of the limiting distribution depends only on \(p\). Note
+that \(\frac{X_n}{n}\overset{P}\rightarrow p\) implies
+\(\frac{X_n(n-X_n)}{n^2}\overset{P}\rightarrow p(1-p)\). Then by the CLT
+and Slutksy's Theorem,
+\[\sqrt{n}(X_n/n-p)\sqrt{\frac{n^2}{X_n(n-X_n)}}\overset{d}\rightarrow N(0,1).\]
+Therefore, \begin{align*}
+&&P\left[-1.96<\sqrt{n}(X_n/n-p)\sqrt{\frac{n^2}{X_n(n-X_n)}}<1.96\right] & \approx 0.95\\
+&\implies& P\left[-1.96\frac{\sqrt{X_n(n-X_n)}}{n^{3/2}}<X_n/n-p<1.96\frac{\sqrt{X_n(n-X_n)}}{n^{3/2}}\right] & \approx 0.95\\
+&\implies& P\left[X_n/n-1.96\frac{\sqrt{X_n(n-X_n)}}{n^{3/2}}<p<X_n/n+1.96\frac{\sqrt{X_n(n-X_n)}}{n^{3/2}}\right] &\approx 0.95.
+\end{align*}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Use the result of problem 5.3(b) to derive a 95\% confidence interval
+  for \(p\).
+\end{enumerate}
+
+From 5.3(b), we know
+\[2\sqrt{n}\left[\sin^{-1}\left(\sqrt{\frac{X_n}{n}}\right)-\sin^{-1}(\sqrt{p})\right]\overset{d}\rightarrow N(0,1).\]
+Therefore, \begin{align*}
+&&P\left[-1.96 <2\sqrt{n}\left[\sin^{-1}\left(\sqrt{\frac{X_n}{n}}\right)-\sin^{-1}(\sqrt{p})\right]< 1.96\right] & \approx 0.95\\
+&\implies&P\left[-\frac{1.96}{2\sqrt{n}} <\sin^{-1}\left(\sqrt{\frac{X_n}{n}}\right)-\sin^{-1}(\sqrt{p})< \frac{1.96}{2\sqrt{n}}\right] & \approx 0.95\\
+&\implies&P\left[\sin^{-1}\left(\sqrt{\frac{X_n}{n}}\right)-\frac{1.96}{2\sqrt{n}} <\sin^{-1}(\sqrt{p})<\sin^{-1}\left(\sqrt{\frac{X_n}{n}}\right)+ \frac{1.96}{2\sqrt{n}}\right] & \approx 0.95.
+\end{align*} Then consider \[f(x) = \begin{cases}
+                                   0 & \text{if } x\le 0 \\
+                                   [\sin(x)]^2 & \text{if } 0<x<\pi/2\\
+                                   1 & \text{if } x \ge \pi/2.
+        \end{cases}\] Thus,
+\[P\left[f\left(\sin^{-1}\left(\sqrt{\frac{X_n}{n}}\right)-\frac{1.96}{2\sqrt{n}} \right)<p<f\left(\sin^{-1}\left(\sqrt{\frac{X_n}{n}}\right)+ \frac{1.96}{2\sqrt{n}}\right)\right] \approx 0.95.\]
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Evaluate the two confidence intervals in parts (a) and (b) numerically
+  for all combinations of \(n \in \{10,100,1000\}\) and
+  \(p\in \{.1,.3,.5\}\) as follows: For 1000 realizations of
+  \(X\sim \text{bin}(n,p)\), construct both 95\% confidence intervals
+  and keep track of how many times (out of 1000) that the confidence
+  intervals contain \(p\). Report the observed proportion of successes
+  for each \((n,p)\) combination. Does your study reveal any differences
+  in the performance of these two competing methods?
+\end{enumerate}
+
+The two methods appear to perfrom close to equally.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sim <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n, p) \{}
+\NormalTok{    x <-}\StringTok{ }\KeywordTok{rbinom}\NormalTok{(}\DecValTok{1000}\NormalTok{, n, p)}
+\NormalTok{    ci1 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{abs}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(x}\OperatorTok{/}\NormalTok{n }\OperatorTok{-}\StringTok{ }\NormalTok{p) }\OperatorTok{*}\StringTok{ }\NormalTok{n}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(x }\OperatorTok{*}\StringTok{ }
+\StringTok{        }\NormalTok{(n }\OperatorTok{-}\StringTok{ }\NormalTok{x))) }\OperatorTok{<}\StringTok{ }\FloatTok{1.96}\NormalTok{)}
+\NormalTok{    ci2 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{abs}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\KeywordTok{asin}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(x}\OperatorTok{/}\NormalTok{n)) }\OperatorTok{-}\StringTok{ }\KeywordTok{asin}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(p)))) }\OperatorTok{<}\StringTok{ }
+\StringTok{        }\FloatTok{0.98}\NormalTok{)}
+    \KeywordTok{c}\NormalTok{(ci1, ci2)}\OperatorTok{/}\DecValTok{1000}
+\NormalTok{\}}
+
+\NormalTok{nseq <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{100}\NormalTok{, }\DecValTok{1000}\NormalTok{)}
+\NormalTok{pseq <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.3}\NormalTok{, }\FloatTok{0.5}\NormalTok{)}
+\NormalTok{results <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(results) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"n"}\NormalTok{, }\StringTok{"p"}\NormalTok{, }\StringTok{"coverageA"}\NormalTok{, }\StringTok{"coverageB"}\NormalTok{, }
+    \StringTok{"ratio"}\NormalTok{)}
+\NormalTok{it =}\StringTok{ }\DecValTok{0}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{) \{}
+    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{) \{}
+\NormalTok{        it =}\StringTok{ }\NormalTok{it }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+\NormalTok{        coverage <-}\StringTok{ }\KeywordTok{sim}\NormalTok{(nseq[i], pseq[j])}
+\NormalTok{        results[it, }\DecValTok{1}\NormalTok{] <-}\StringTok{ }\NormalTok{nseq[i]}
+\NormalTok{        results[it, }\DecValTok{2}\NormalTok{] <-}\StringTok{ }\NormalTok{pseq[j]}
+\NormalTok{        results[it, }\DecValTok{3}\NormalTok{] <-}\StringTok{ }\NormalTok{coverage[}\DecValTok{1}\NormalTok{]}
+\NormalTok{        results[it, }\DecValTok{4}\NormalTok{] <-}\StringTok{ }\NormalTok{coverage[}\DecValTok{2}\NormalTok{]}
+\NormalTok{        results[it, }\DecValTok{5}\NormalTok{] <-}\StringTok{ }\NormalTok{coverage[}\DecValTok{1}\NormalTok{]}\OperatorTok{/}\NormalTok{coverage[}\DecValTok{2}\NormalTok{]}
+\NormalTok{    \}}
+\NormalTok{\}}
+\KeywordTok{kable}\NormalTok{(results)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrrrr@{}}
+\toprule
+n & p & coverageA & coverageB & ratio\tabularnewline
+\midrule
+\endhead
+10 & 0.1 & 0.671 & 0.666 & 1.0075075\tabularnewline
+10 & 0.3 & 0.845 & 0.970 & 0.8711340\tabularnewline
+10 & 0.5 & 0.871 & 0.871 & 1.0000000\tabularnewline
+100 & 0.1 & 0.927 & 0.955 & 0.9706806\tabularnewline
+100 & 0.3 & 0.946 & 0.946 & 1.0000000\tabularnewline
+100 & 0.5 & 0.943 & 0.943 & 1.0000000\tabularnewline
+1000 & 0.1 & 0.952 & 0.948 & 1.0042194\tabularnewline
+1000 & 0.3 & 0.954 & 0.955 & 0.9989529\tabularnewline
+1000 & 0.5 & 0.955 & 0.955 & 1.0000000\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{exercise-5.6}{%
+\subsubsection{Exercise 5.6}\label{exercise-5.6}}
+
+Suppose that \(X_1, X_2,...\) are independent and identically
+distributed Normal \((0,\sigma^2)\) random variables.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Based on the result of Example 5.7, Give an approximate test at
+  \(\alpha = .05\) for \(H_0:\sigma^2=\sigma_0^2\) vs
+  \(H_a:\sigma^2\ne \sigma_0^2.\)
+\end{enumerate}
+
+From Example 5.7, we know
+\[\sqrt{n}\left[\log\left(\frac{1}{n}\sum_{i=1}^n X_i^2\right)-\log(\sigma^2)\right]\overset{d}\rightarrow N(0,2).\]
+Then,
+\[T_n = \frac{\sqrt{n}\left[\log\left(\frac{1}{n}\sum_{i=1}^n X_i^2\right)-\log(\sigma_0^2)\right]}{\sqrt{2}}\overset{d}\rightarrow N(0,1).\]
+For a size \(\alpha = 0.05\) test, we reject if \(|T_n|>1.96.\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  For \(n=25\), estimate the true level of the test in part (a) for
+  \(\sigma_0^=1\) by simulating 5000 samples of size \(n=25\) from the
+  null distribution. Report the proportion of cases in which you reject
+  the null hypothesis according to your test (ideally, this proportion
+  will be about .05).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sim2 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n, sigsq, samps) \{}
+\NormalTok{    reject <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\OtherTok{NA}\NormalTok{, samps)}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{samps) \{}
+\NormalTok{        Xn <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =}\NormalTok{ n, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \KeywordTok{sqrt}\NormalTok{(sigsq))}
+\NormalTok{        Tn <-}\StringTok{ }\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\KeywordTok{log}\NormalTok{((}\DecValTok{1}\OperatorTok{/}\NormalTok{n) }\OperatorTok{*}\StringTok{ }\KeywordTok{sum}\NormalTok{(Xn}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{-}\StringTok{ }
+\StringTok{            }\KeywordTok{log}\NormalTok{(sigsq)))}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+        \ControlFlowTok{if}\NormalTok{ (Tn }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+\NormalTok{            pvalue <-}\StringTok{ }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ Tn, }\DataTypeTok{lower.tail =}\NormalTok{ T)}
+\NormalTok{        \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{            pvalue <-}\StringTok{ }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{pnorm}\NormalTok{(}\DataTypeTok{q =}\NormalTok{ Tn, }\DataTypeTok{lower.tail =}\NormalTok{ F)}
+\NormalTok{        \}}
+\NormalTok{        reject[i] <-}\StringTok{ }\NormalTok{(pvalue }\OperatorTok{<}\StringTok{ }\FloatTok{0.05}\NormalTok{)}
+\NormalTok{    \}}
+    \KeywordTok{sum}\NormalTok{(reject)}\OperatorTok{/}\NormalTok{samps}
+\NormalTok{\}}
+\KeywordTok{sim2}\NormalTok{(}\DecValTok{25}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{5000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0626
+\end{verbatim}
+
+\hypertarget{exercise-5.8}{%
+\subsubsection{Exercise 5.8}\label{exercise-5.8}}
+
+Assume \((X_1,Y_1),...,(X_n,Y_n)\) are independent and identically
+distributed from some bivariate normal distribution. Let \(\rho\) denote
+the population correlation coefficient and \(r\) the sample correlation
+coefficient.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Describe a test of \(H_0:\rho=0\) against \(H_1:\rho\ne 0\) based on
+  the fact that \[\sqrt{n}[f(r)-f(\rho)]\overset{d}\rightarrow N(0,1),\]
+  where \(f(x)\) is a Fisher's transformation
+  \(f(x) = (1/2)\log [(1+x)/(1-x)]\). Use \(\alpha = .05\).
+\end{enumerate}
+
+Consider
+\[T_n = \sqrt{n}[f(r)-f(\rho_0)]\overset{d}\rightarrow N(0,1).\] For a
+size \(\alpha = 0.05\) test, we reject if \(|T_n|>1.96.\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Based on 5000 repetitions each, estimate the actual level for this
+  test in the case when
+  \(\text{E}(X_i)=\text{E} (Y_i)=0, \text{Var}(X_i)=\text{Var}(Y_i)=1,\)
+  and \(n\in\{3,5,10,20\}\).
+\end{enumerate}
+
+The level of the test improves as the sample increases.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fisher <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+    \KeywordTok{log}\NormalTok{((}\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{x)}\OperatorTok{/}\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{x))}\OperatorTok{/}\DecValTok{2}
+\NormalTok{\}}
+\NormalTok{rtest <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n) \{}
+\NormalTok{    z <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10000} \OperatorTok{*}\StringTok{ }\NormalTok{n), }\KeywordTok{c}\NormalTok{(}\DecValTok{5000}\NormalTok{, n, }\DecValTok{2}\NormalTok{))}
+\NormalTok{    r <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(z, }\DecValTok{1}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{cor}\NormalTok{(x[, }\DecValTok{1}\NormalTok{], x[, }\DecValTok{2}\NormalTok{]))}
+\NormalTok{    Tn <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{(}\KeywordTok{fisher}\NormalTok{(r) }\OperatorTok{-}\StringTok{ }\KeywordTok{fisher}\NormalTok{(}\DecValTok{0}\NormalTok{))}
+    \KeywordTok{sum}\NormalTok{(}\KeywordTok{abs}\NormalTok{(Tn) }\OperatorTok{>}\StringTok{ }\FloatTok{1.96}\NormalTok{)}
+\NormalTok{\}}
+\KeywordTok{sapply}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{), rtest)}\OperatorTok{/}\DecValTok{5000}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3872 0.1858 0.1060 0.0724
+\end{verbatim}
+
+\hypertarget{exercise-5.9}{%
+\subsubsection{Exercise 5.9}\label{exercise-5.9}}
+
+Suppose that \(X\) and \(Y\) are jointly distributed such that \(X\) and
+\(Y\) are Bernoulli \((1/2)\) random variables with \(P(XY=1)=\theta\)
+for \(\theta\in (0,1/2)\). Let \((X_1,Y_1), (X_2,Y_2),...\) be
+independent and identically distributed with \((X_i, Y_i)\) distributed
+as \((X,Y)\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Find the asymptotic distribution of
+  \(\sqrt{n}[(\bar X_n, \bar Y_n) - (1/2, 1/2)].\)
+\end{enumerate}
+
+Since \(X\sim\text{Bern}(1/2)\) and \(Y\sim\text{Bern}(1/2)\), we know
+\(\sigma_x^2 = \sigma_y^2 = 1/4\). Since \(P(XY=1)=\theta,\) we know
+\(\sigma_xy = E[XY]-E[X]E[Y]=\theta-1/4\) and \(\rho = 4\theta - 1.\)
+Then
+\[\sqrt{n}\left[\begin{pmatrix}\bar X_n \\ \bar Y_n\end{pmatrix}-\begin{pmatrix}1/2 \\ 1/2\end{pmatrix}\right]\overset{d}\rightarrow N_2\left(\begin{pmatrix}0 \\ 0\end{pmatrix}, \begin{pmatrix} 1/4 & \theta-1/4 \\ \theta - 1/4 & 1/4\end{pmatrix}\right).\]
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  If \(r_n\) is the sample correlation coefficient for a sample of size
+  \(n\), find the asymptotic distribution of \(\sqrt{n}(r_n-\rho).\)
+\end{enumerate}
+
+We know,
+\(\sqrt{n}(r_n-\rho) \overset{d}\rightarrow N(0, A\Sigma^{*} A^T)\)
+where
+
+\[A = \left(\frac{-\sigma_{xy}}{2\sigma_x^3\sigma_y}, \frac{-\sigma_{xy}}{2\sigma_x\sigma_y^3}, \frac{1}{\sigma_x\sigma_y}\right) =\left(2(1-4\theta), 2(1-4\theta), 4\right)\]
+and \[\Sigma^{*} = \begin{pmatrix}
+cov(X,X) & cov(X,Y) & cov(X,XY)\\
+cov(Y,X) & cov(Y,Y) & cov(Y,XY)\\
+cov(XY,X) & cov(XY,Y) & cov(XY,XY)
+\end{pmatrix} =\begin{pmatrix}
+1/4 & \theta - 1/4 & \theta/2\\
+\theta - 1/4 & 1/4 & \theta/2\\
+\theta/2 & \theta/2 & \theta(1-\theta)
+\end{pmatrix}\]
+
+since \(X^2 = X\) and \(Y^2=Y\). Therefore,
+
+\[A\Sigma^{*}A^T = 128\theta^3-144\theta^2+40\theta.\] Thus, since
+\(\theta = \frac{\rho+1}{r},\)
+\[\sqrt{n}(r_n-\rho)\overset{d}\rightarrow N(0,128\theta^3-144\theta^2+40\theta)\overset{d}=N(0, 2\rho^3-3\rho^2-2\rho+3).\]
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\item
+  Find a variance stabilizing transformation for \(r_n\).
+\item
+  Based on your answer to part (c), construct a 95\% confidence interval
+  for \(\theta\).
+\item
+  For each combination of \(n\in\{5,20\}\) and
+  \(\theta \in \{.05, .25, .45\}\), estimate the true coverage
+  probability of the confidence interval in part (d) by simulating 5000
+  samples and the corresponding confidence intervals. One problem you
+  will face is that in some samples, the sample correlation coefficient
+  is undefined because with positive probability each of the \(X_i\) or
+  \(Y_i\) will be the same. In such cases, consider the confidence
+  interval to be undefined and the true parameter therefore not
+  contained therein.
+
+  \textbf{Hint:} To generate a sample of \((X,Y)\), first simulate the
+  \(X\)'s from their marginal distribution, then simulate the \(Y\)'s
+  according to the conditional distribution of \(Y\) given \(X\). TO
+  obtain this conditional distribution, find \(P(Y=1|X=1)\) and
+  \(P(Y=1|X=0).\)
+\end{enumerate}
+
+
+\end{document}

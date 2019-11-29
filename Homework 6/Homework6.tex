@@ -1,0 +1,505 @@
+\documentclass[12pt,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework 6},
+            pdfauthor={Emily Robinson},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Homework 6}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \subtitle{STAT 984}
+  \author{Emily Robinson}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{October 17, 2019}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\begin{document}
+\maketitle
+
+\hypertarget{exercise-4.7}{%
+\subsubsection{Exercise 4.7}\label{exercise-4.7}}
+
+Use the Cramer-Wold Theorem along with the univariate Central Limit
+Theorem (from Example 2.12) to prove Theorem 4.9.
+
+\begin{proof}
+Let $\boldsymbol X \sim N_k(\boldsymbol 0, \Sigma)$ and take any vector $\boldsymbol a \in \mathbb{R}^k$. We wish to show that
+$$\boldsymbol a^T[\sqrt{n}(\bar{\boldsymbol X}_n-\boldsymbol\mu)]\overset{d}\rightarrow \boldsymbol a^T\boldsymbol X.$$
+But this follows immediately from the univariate Central Limit Theorem, since $\boldsymbol a^T(\boldsymbol X_1-\boldsymbol \mu), \boldsymbol a^T(\boldsymbol X_2-\boldsymbol \mu),...$ are independent and identically distributed with mean 0 and variance $\boldsymbol a^T\Sigma \boldsymbol a.$
+\end{proof}
+
+\hypertarget{exercise-4.9}{%
+\subsubsection{Exercise 4.9}\label{exercise-4.9}}
+
+In this probelm, we prove the converse of Exercise 4.8, which is the
+part of the Lindeberg-Feller Theorem due to Feller: Under the
+assumptions of the Exercise 4.8, the variance condition (4.14) and the
+asymptotic normality (4.12) together imply the Lindeberg condition
+(4.13).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Define \[a_{ni}=\phi_{Y_{ni}}(t/s_n)-1.\] Prove that
+  \[\underset{1\le i\le n}\max|a_{ni}|\le 2\underset{1\le i\le n}\max P(|Y_{ni}|\ge \epsilon s_n)+2\epsilon|t|\]
+  and thus
+  \[\underset{1\le i\le n}\max|A_{ni}|\rightarrow 0 \text{ as } n\rightarrow \infty.\]
+\end{enumerate}
+
+\textbf{Hint:} Use the result of Exercise 1.43(a) to show that
+\(|\exp\{it\}-1|\le 2\min\{1,|t|\}\) for \(t\in \mathbb{R}\). Then use
+Chebyshev's inequality along with condition (4.14).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Use part (a) to prove that
+  \[\sum_{i=1}^n |\alpha_{ni}|^2\rightarrow 0\] as
+  \(n\rightarrow \infty.\)
+\end{enumerate}
+
+\textbf{Hint:} Use the result of Exercise 1.43(b) to show that
+\(|\alpha_{ni}| \le t^2\sigma^2_{ni}/s_n^2.\) Then write
+\(|\alpha_{ni}|^2\le |\alpha_{ni}\max_i|\alpha_{ni}|.\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Prove that for \(n\) large enough so that
+  \(\max_i|\alpha_{ni}|\le 1/2,\)
+  \[\left|\prod_{i=1}^n \exp(\alpha_{ni})-\prod_{i=1}^n(1+\alpha_{ni})\right|\le \sum_{i=1}^n|\alpha_{ni}|^2.\]
+\end{enumerate}
+
+\textbf{Hint:} Use the fact that
+\(|\exp(z-1)|=\exp(\text{Re } z-1)\le 1\) for \(|z| \le 1\) to argue
+that Inequality (4.19) applies. Also use the fact that
+\(|\exp(z)-1-z|\le |z|^2\) for \(|z|\le 1/2.\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  From part (c) and condition (4.12), conclude that
+\end{enumerate}
+
+\[\sum_{i=1}^n \text{Re } (\alpha_{ni})\rightarrow -\frac{1}{2}t^2.\]
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Show that
+  \[0\le \sum_{i=1}^n\text{E}\left(\cos\frac{tY_{ni}}{s_n}-1+\frac{t^2Y_{ni}^2}{2s_n^2}\right)\rightarrow 0.\]
+\item
+  For arbitrary \(\epsilon>0\), choose \(t\) large enough so that
+  \(t^2/2 > 2/\epsilon^2\). Show that
+  \[\left(\frac{t^2}{2}-\frac{2}{\epsilon^2}\right)\frac{1}{s_n^2}\sum_{i=1}^n\text{E}(Y_{ni}^2I\{|Y_{ni}|\ge\epsilon s_n\})\le \sum_{i=1}^n\text{E}\left(\cos\frac{tY_{ni}}{s_n}-1+\frac{t^2Y_{ni}^2}{2s_n^2}\right),\]
+  which completes the proof.
+\end{enumerate}
+
+\textbf{Hint:} Bound the expression in part (e) below by using the fact
+that \(-1\) is a lower bound for \(\cos x\). Also note that
+\(|Y_{ni}|\ge \epsilon s_n\) implies
+\(-2\ge -2Y_{ni}^2/(\epsilon^2 s_n^2)\).
+
+\hypertarget{exercise-4.12}{%
+\subsubsection{Exercise 4.12}\label{exercise-4.12}}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Suppose that \(X_1, X_2,...\) are independent and identically
+  distributed with \(\text{E}X_i =\mu\) and
+  \(0<\text{Var} X_i=\sigma^2<\infty.\) Let \(a_{n1},...,a_{nn}\) be
+  constants satisfying
+  \[\frac{\max_{i\le n} a_{ni}^2}{\sum_{j=1}^na_{nj}^2}\rightarrow 0 \text{ as } n\rightarrow \infty.\]
+  Let \(T_n=\sum_{i=1}^n a_{ni}X_i\), and prove that
+  \((T_n-\text{E}T_n)/\sqrt{\text{Var} T_n}\overset{d}\rightarrow N(0,1).\)
+\end{enumerate}
+
+Let \(\epsilon > 0\) and \(m_n = \max_{1\le i \le n} a_{ni}^2\). Then by
+Lindeberg condition, we know
+\[I\{|a_{ni}(X_i-\mu)|\ge \epsilon s_n\} \le I\{m_n(X_i-\mu)^2\ge \epsilon^2s_n^2\}\]
+where \(s_n^2 = \sum_{i=1}^n \text{Var}(a_{ni}X_i).\) Then let
+\[Y_i = (X_i-\mu)^2 I\{m_n(X_i-\mu)^2\ge \epsilon^2 s_n^2\}, \text{ for } 1\le i\le n\]
+where \(Y_i\) are iid. Then by the DCT, \(\text{E}Y_2 \rightarrow 0.\)
+Thus,
+\[\frac{1}{s_n^2}\sum_{i=1}^n\text{E}[a_{ni}(X_i-\mu)^2I\{|a_{ni}(X_i-\mu)|\ge \epsilon s_n\}]\le \frac{1}{s_n^2}\sum_{1}^na_{ni}^2\text{E}Y_i=\frac{\text{E}Y_1}{\sigma^2}\rightarrow 0.\]
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Reconsider Example 2.22, the simple linear regression case in which
+  \[\hat\beta_{0n}=\sum_{i=1}^n v_i^{(n)}Y_i \text{ and } \hat\beta_{1n}=\sum_{i=1}^nw_i^{(n)}Y_i,\]
+  where
+  \[w_i^{(n)}=\frac{z_i-\bar z_n}{\sum_{j=1}^n(z_j-\bar z_n)^2} \text{ and } v_i^{(n)}=\frac{1}{n}-\bar z_nw_i^{(n)}\]
+  for constants \(z_1, z_2, ...\). Using part (a), state and prove
+  sufficient conditions on the constants \(z_i\) that ensure the
+  asymptotic normality of \(\sqrt{n}(\hat\beta_{0n}-\beta_0)\) and
+  \(\sqrt{n}(\hat]beta_{1n}-\beta_1).\) You may assume the results of
+  Example 2.22, where it was shown that
+  \(\text{E} \hat\beta_{0n}=\beta_{0}\) and
+  \(\text{E}\hat\beta_{1n}=\beta_1\)
+\end{enumerate}
+
+\textbackslash{}begin\{proof\} We will proceed by showing (1)
+\(\frac{(\hat\beta_{0n}-\beta_0)}{\sqrt{\text{Var}(\hat\beta_{0n})}}\)
+and
+\(\frac{(\hat\beta_{1n}-\beta_1)}{\sqrt{\text{Var}(\hat\beta_{1n})}}\)
+are asymptotically normal and (2)
+\(\sqrt{n\text{Var}(\hat\beta_0n)}\rightarrow c_1>0\) and
+\(\sqrt{n\text{Var}(\hat\beta_0n)}\rightarrow c_2>0\).
+
+Assume \(\bar z_n^2\rightarrow \mu_z\) and
+\(\frac{1}{n}\sum_{j=1}^n(z_i-\bar z_n)^2\rightarrow\sigma_z^2.\) Then
+\[n\text{Var}(\hat\beta_{0n})=\sigma^2+\frac{\sigma^2 \bar z_n^2}{\frac{1}{n}\sum_{j=1}^n(z_i-\bar z_n)^2}\rightarrow \sigma^2+\frac{\sigma^2\mu_z^2}{\sigma_z^2}=c_1^2\]
+and
+\[n\text{Var}(\hat\beta_{1n})=\frac{\sigma^2}{\frac{1}{n}\sum_{j=1}^n(z_i-\bar z_n)^2}\rightarrow \frac{\sigma^2}{\sigma_z^2}=c_2^2.\]
+Then using part a, we know
+\[\frac{\max_{i\le n}(z_i-\bar z_n)^2}{\frac{1}{n}\sum_{j=1}^n(z_i-\bar z_n)^2}\rightarrow 0.\]
+Thus, (a) is satisfied for \(v_i^{(n)}\) and \(w_i^{(n)}\) since each
+Y\_i is shifted by \(\epsilon_i\) iid.Therefore,
+
+\[\frac{1}{\frac{1}{n}\sum_{j=1}^n(z_i-\bar z_n)^2}\rightarrow 0\] and
+\[\frac{\bar z_n^2}{\frac{1}{n}\sum_{j=1}^n(z_i-\bar z_n)^2}\rightarrow 0\].
+Thus, \(\hat\beta_{0n}\) and \(\hat\beta_{1n}\) are sufficient.
+\textbackslash{}end\{proof\}
+
+\hypertarget{exercise-4.13}{%
+\subsubsection{Exercise 4.13}\label{exercise-4.13}}
+
+Give an example (with proof) of a sequence of independent random
+variables \(Z_1, Z_2, ...\) with \(\text{E}(Z_i)=0, \text{Var}(Z_i)=1\)
+such that \(\sqrt{n}(\bar Z_n)\) does not converge in distribution to
+\(N(0,1).\)
+
+Let \(Z_1, Z_2, ...\) be independent with
+
+\[Z_n = \begin{cases}
+                                   2^n & \text{with probability $\frac{1}{2^{2n+1}}$} \\
+                                   0 & \text{with probability $1-\frac{1}{n^{2n}}$} \\
+                                  -2^n & \text{with probability $\frac{1}{2^{2n+1}}$}.
+        \end{cases}\] Then
+\[\text{E}Z_i=2^n\left(\frac{1}{2^{2n+1}}\right) + 0\left(\frac{1}{2^{2n}}\right) - 2^n\left(\frac{1}{2^{2n+1}}\right)=0\]
+and
+\[\text{Var}(Z_i)=2^{2n}\left(\frac{1}{2^{2n+1}}\right) + 0^2\left(\frac{1}{2^{2n}}\right) + 2^{2n}\left(\frac{1}{2^{2n+1}}\right)=1.\]
+Consider \(S_n \sum_{i=1}^n(Z_i-\bar Z_n)\) and
+\(s_n^2\sum_{i=1}^n \sigma_i^2.\) Then
+\(\max_{i\le n}\frac{\sigma_i}{s_n}\rightarrow 0\) as
+\(n\rightarrow \infty.\) However,
+\[P(S_n=0)>P(X_i=0 \forall i)>1-\sum_{i=1}^n\frac{1}{2^{2i}}=\frac{2}{3} \ne 0.\]
+Thus, \(\sqrt{n}\bar Z_n \overset{d}\nrightarrow N(0,1).\)
+
+\hypertarget{exercise-4.15}{%
+\subsubsection{Exercise 4.15}\label{exercise-4.15}}
+
+Suppose that \(X_1, X_2, X_3\) is a sample of size 3 from a beta
+\((2,1)\) distribution.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Find \(P(X_1 + X_2 + X_3 \le 1)\) exactly.
+\end{enumerate}
+
+Then \(f(x_i) = 2x_i^{2-1}(1-x_i)^{1-1}=2x_i\) for \(x\in(0,1).\)
+Therefore, \(f(x_1,x_2,x_3) = 8x_1x_2x_3.\) Thus, \begin{align*}
+P(X_1 + X_2 + X_3 \le 1) & = \int_0^1 \int_0^{1-x_1} \int_0^{1-x_1-x_2} 8x_1x_2x_3 dx_3 dx_2 dx_1\\
+& = \int_0^1 \int_0^{1-x_1} 4x_1x_2(1-x_1-x_2)^2 dx_2 dx_1\\
+& = \frac{1}{3} \int_0^1 (x_1-4x_1+6x_1^3-4x_1^4+x_1^5) dx_1\\
+& = \frac{1}{90}\\
+& = 0.0111.
+\end{align*}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\item
+  Find \(P(X_1 + X_2 + X_3 \le 1)\) using a normal approximation derived
+  from the central limit theorem. Consider \(\text{E}X_i = \frac{2}{3}\)
+  and \(\text{Var}X_i = \frac{1}{18}.\) Therefore, using the central
+  limit theorem, \(X_1 + X_2 + X_3 \approx N(2,\frac{1}{6})\). Thus,
+  \[P(X_1+X_2+X_3\le 1)\approx P\left(Z\le \frac{1-2}{\sqrt{1/6}}\right)=0.00715.\]
+\item
+  Let \(Z = I\{X_1 + X_2 + X_3 \le 1\}\). Approximate
+  \(\text{E} Z = P(X_1 + X_2 + X_3 \le 1)\) by
+  \(\bar Z = \sum_{i=1}^{1000} Z_i/1000,\) where
+  \(Z_i = I \{ X_{i1} + X_{i2} + X_{i3} \le 1 \}\) and the \(X_{ij}\)
+  are independent beta \((2,1)\) random variables. In addition to
+  \(\bar Z\), report \(\text{Var} Z\) for your sample. (To think about:
+  What is the theoretical value of \(\text{Var} Z\)?)
+\end{enumerate}
+
+Then \(Z\sim\text{Bern}(1/90).\) Thus, the theroretical variance is
+\(\frac{1}{90}\left(1-\frac{1}{90}\right) = 0.011.\) Simulating 1000
+random variables, I got \(\hat p = 0.011\), therefore
+\(\hat{Var}(\hat Z) = 0.010879\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{56156}\NormalTok{)}
+\NormalTok{p <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{apply}\NormalTok{(}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rbeta}\NormalTok{(}\DecValTok{3000}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{nrow =} \DecValTok{1000}\NormalTok{), }
+    \DecValTok{1}\NormalTok{, sum) }\OperatorTok{<}\StringTok{ }\DecValTok{1}\NormalTok{)}\OperatorTok{/}\DecValTok{1000}
+\NormalTok{p <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(p)}
+\NormalTok{p }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.010879
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Approximate \(P\left( X_1 + X_2 + X_3 \le \frac{3}{2} \right)\) using
+  the normal approximation and the simulation approach. (Don't compute
+  the exact value, which is more difficult to do than in part (a); do
+  you see why?) With the normal approximation, we see that
+  \[P\left( X_1 + X_2 + X_3 \le \frac{3}{2} \right)=P(Z\le \frac{3/2 - 2}{\sqrt{1/6}}=0.1103.\]
+  Simulating 1000 random variables, I got 0.111616. The triple integral
+  is much more complex in this case.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{56156}\NormalTok{)}
+\NormalTok{p <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{apply}\NormalTok{(}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rbeta}\NormalTok{(}\DecValTok{3000}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{nrow =} \DecValTok{1000}\NormalTok{), }
+    \DecValTok{1}\NormalTok{, sum) }\OperatorTok{<}\StringTok{ }\DecValTok{3}\OperatorTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\DecValTok{1000}
+\NormalTok{p <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(p)}
+\NormalTok{p }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.111616
+\end{verbatim}
+
+\hypertarget{exercise-4.16}{%
+\subsubsection{Exercise 4.16}\label{exercise-4.16}}
+
+Lindeberg and Lyapunov impose sufficient conditions on moments so that
+asymptotic normality occurs. However, these conditions are not
+necessary; it is possible to have asymptotic nomrality even if there are
+no moments at all. Let \(X_n\) assume the values \(+1\) and \(-1\) with
+probability \((1-2^{-n})/2\) each and the value \(2^k\) with probability
+\(2^{-k}\) with probability \(2^{-k}\) for \(k>n.\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Show that \(\text{E}(X_n^j) = \infty\) for all positive integers \(j\)
+  and \(n\).
+\end{enumerate}
+
+Then \[X_a=\begin{cases}
+1 &\text{with probability } \frac{1-2^{-a}}{2}\\
+-1 &\text{with probability } \frac{1-2^{-a}}{2}\\
+2^k &\text{with probability } \frac{1}{2^k} \text{ for } k = a+1, a+2,...
+\end{cases}
+\]
+
+Consider \(j\) odd. Then Then
+\[\text{E}(X_n^j) = \sum_{k=a+1}^\infty 2^{kj}\left(\frac{1}{2^k}\right)=\sum_{k=a+1}^\infty 2^{k(j-1)}=\infty.\]
+
+Consider \(j\) even. Then
+\[\text{E}(X_n^j) =1-2^{-a}+\sum_{k=a+1}^\infty 2^{k(j-1)}=\infty.\]
+
+Therefore, \(\text{E}(X_n^j) = \rightarrow infty\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Show that \(\sqrt(n)(\bar X_n) \overset{d}\rightarrow N(0,1).\)
+\end{enumerate}
+
+Consider the characteristic function of \(X_a,\) \begin{align*}
+\text{E}\left[e^{itX_a}\right] & = \cos(t)\left(\frac{1-2^{-a}}{2}\right) + i\sin(t)\left(\frac{1-2^{-a}}{2}\right)\\
+& + \cos(t)\left(\frac{1-2^{-a}}{2}\right)-i\sin(t)\left(\frac{1-2^{-a}}{2}\right)\\
+& +\sum_{k=a+1}^\infty \cos(t2^k)\left(\frac{1}{2^k}\right) + i\sum_{k=a+1}^\infty \sin(t2^k)\left(\frac{1}{2^k}\right)\\
+& = \cos(t)(1-2^{-a})+\sum_{k=a+1}^\infty\left[\left(\cos(t2^k)+isin(t2^k\right)\left(\frac{1}{2^k}\right)\right].
+\end{align*} Then consider
+\(\sqrt{n}\bar X_n=\frac{1}{\sqrt{n}}\sum_{a=1}^nX_a.\) Then,
+\begin{align*}
+\text{E}\left[e^{i\frac{t}{\sqrt{n}}\sum_{a=1}^nX_a}\right] & = \prod_{a=1}^n \text{E}\left[e^{i\frac{t}{\sqrt{n}}X_a}\right]\\
+& = \prod{a=1}^n\left[\cos(\frac{t}{\sqrt{n}})(1-2^{-a})+\sum_{k=a+1}^\infty\left[\left(\cos(\frac{t}{\sqrt{n}}2^k)+isin(\frac{t}{\sqrt{n}}2^k\right)\left(\frac{1}{2^k}\right)\right]\right]\\
+& = \prod{a=1}^n\left[\cos(\frac{t}{\sqrt{n}})(1-2^{-a})\right] \text{ since cos and sin bounded by 1}\\
+& = \prod{a=1}^n (1-2^{-a})(1-\frac{t^2}{2!n}+\frac{t^4}{4!n}-\frac{t^6}{6!n}+...)\\
+& \rightarrow e^{-t^2/2} \text{ for all } t\in \mathbb{R}.
+\end{align*} Therefore,
+\(\sqrt{n}\bar X_n \overset{d}\rightarrow N(0,1)\).
+
+\hypertarget{exercise-4.18}{%
+\subsubsection{Exercise 4.18}\label{exercise-4.18}}
+
+Suppose that \(X_1, X_2,...\) are independent binomial\((2,p)\) random
+variables. Define \(Y_i=I\{X_i=0\}.\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Find \(\boldsymbol a\) such that the joint asymptotic distribution of
+  \[\sqrt{n}\left[ \begin{pmatrix} \bar X_n \\ \bar Y_n \end{pmatrix} -\boldsymbol a\right]\]
+  is nontirivial, and find this joint asymptotic distribution.
+\end{enumerate}
+
+Consider \(X_1, X_2,...\) are independent binomial\((2,p)\) and
+\(Y_i=I\{X_i=0\}\sim \text{Bern}\left((1-p)^2\right).\)Then from the
+Central Limit Theorem, we know
+\[\sqrt{n} (\bar X_n -2p)\sim N(0, 2p(1-p))\] and
+\[\sqrt{n}(\bar Y_n-(1-p)^2)\sim N\left(0, (1-p)^2[1-(1-p)^2]\right).\]
+Therefore,
+\[\boldsymbol a = \begin{pmatrix} 2p \\ (1-p)^2\end{pmatrix}\] and the
+joint asymptotic distribution is \(N\left(\boldsymbol 0, \Sigma\right)\)
+with
+\[\Sigma = \begin{pmatrix} 2p(1-p) & -2p(1-p)^2\\ -2p(1-p)^2 & (1-p)^2(1-(1-p)^2)\end{pmatrix}.\]
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Using the Cramer-Wold Theorem, Theorem 4.12, find the asymptotic
+  distribution of \(sqrt{n}(\bar X_n + \bar Y_n - 1 - p^2).\)
+\end{enumerate}
+
+Then by Cramer-Wold Theorem, let \(A = (1 1).\) Then
+\[\begin{pmatrix} 1\\ 1 \end{pmatrix}^T\left[ \begin{pmatrix} \bar X_n \\ \bar Y_n \end{pmatrix} -\begin{pmatrix} 2p \\ (1-p)^2 \end{pmatrix}\right] = \bar X_n + \bar Y_n - 1 - p^2 \sim N\left(\boldsymbol 0, \Sigma\right)\]
+where
+\[\Sigma = \begin{pmatrix} 1\\ 1 \end{pmatrix}^T \begin{pmatrix} 2p(1-p) & -2p(1-p)^2\\ -2p(1-p)^2 & (1-p)^2(1-(1-p)^2)\end{pmatrix} \begin{pmatrix} 1\\ 1 \end{pmatrix}\]
+
+
+\end{document}

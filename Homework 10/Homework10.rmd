@@ -1,0 +1,79 @@
+---
+title: "Homework 10"
+author: "Emily Robinson"
+date: "December 5, 2019"
+output:
+  pdf_document:
+      keep_tex:  true
+subtitle: STAT 984
+theme: cerulean
+fontsize: 12pt
+header-includes:
+- \usepackage{amsmath}
+- \usepackage{amssymb}
+- \usepackage{amsthm}
+---
+
+<style type="text/css">
+
+h1.title {
+  font-size: 18px;
+  color: Black;
+  text-align: center;
+}
+h3.subtitle{
+  font-size: 12px;
+  color: Black;
+  text-align: center;
+}
+h4.author { /* Header 4 - and the author and data headers use this too  */
+  font-size: 12px;
+  font-family: "Times New Roman", Times, serif;
+  color: Black;
+  text-align: center;
+}
+h4.date { /* Header 4 - and the author and data headers use this too  */
+  font-size: 12px;
+  font-family: "Times New Roman", Times, serif;
+  color: Black;
+  text-align: center;
+}
+</style>
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width=5, fig.height=4, fig.align = "center")
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=50),tidy=TRUE)
+```
+
+### Exercise 8.1
+
+Let $X_1,...,X_n$ be a simple random sample from a Pareto distribution with density
+$$f(x)=\theta c^\theta x^{-(\theta+1)}I\{x>c\}$$
+for a known constant $c>0$ and parameter $\theta>0.$ Derive the Wald, Rao, and likelihood ratio tests of $\theta=\theta_0$ against a two-sided alternative.
+
+### Exercise 8.2
+
+Suppose that $\boldsymbol{X}$ is multinomial$(n,\boldsymbol{p})$, where $\boldsymbol{p}\in\mathbb{R}^k$. In order to satisfy the regularity condition that the parameter space be an open set, define $\boldsymbol\theta=(p_1,...,p_{k-1})$. Suppose that we wish to test $H_0:\boldsymbol\theta=\boldsymbol\theta^0$ against $H_1:\boldsymbol\theta\ne\boldsymbol\theta^0.$
+
+(a) Prove that the Wald and score tests are the same as the usual Pearson chi-square test.
+
+(b) Derive the likelihood ratio statistic $2\Delta_n$.
+
+### Exercise 8.8
+
+Let $X_1,...,X_n$ be an independent sample from an exponential distribution with mean $\lambda,$ and $Y_1,...,Y_n$ be an independent sample from an exponential distribution with mean $\mu.$ Assume that $X_i$ and $Y_i$ are independent. We are interested in testing the hypothesis $H_0: \lambda = \mu$ verses $H_1: \lambda > \mu$. Consider the statistic
+$$T_n=2\sum_{i=1}^n(I_i-1/2)/\sqrt{n},$$
+where $I_i$ is the indicator variable $I_i=I(X_i>Y_i).$
+
+(a) Derive the asymptotic distribution of $T_n$ under the null hypothesis.
+
+(b) Use the Lindeberg Theorem to show that, under the local alternative hypothesis $(\lambda_n,\mu_n)=)\lambda+n^{-1/2}\delta,\lambda),$ where $\delta>0$,
+$$\frac{\sum_{i=1}^n(I_i-\rho_n)}{\sqrt{n\rho_n(1-\rho_n)}}\overset{\mathbb{L}}\rightarrow N(0,1), \text{ where }\rho_n=\frac{\lambda_n}{\lambda_n+\mu_n}=\frac{\lambda+n^{-1/2}\delta}{2\lambda+n^{-1/2}\lambda}.$$
+
+### Exercise 8.9
+
+Suppose $X_1,...X_m$ is a simple random sample and $Y_1,...,Y_n$ is another simple random sample independent of the $X_i$, with $P(X_i\le t)=t^2$ for $t\in [0,1]$ and $P(Y_i\le t)=(t-\theta)^2$ for $t\in [\theta, \theta+1]$. Assume $m/(m+n)\rightarrow \rho$ as $m,n\rightarrow \infty$ and $0<\theta<1.$
+
+Find the asymptotic distribution of $\sqrt{m+n}[g(\bar Y-\bar X)-g(\theta)].$

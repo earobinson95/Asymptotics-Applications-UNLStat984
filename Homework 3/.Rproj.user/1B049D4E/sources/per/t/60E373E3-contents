@@ -1,0 +1,123 @@
+---
+title: "Homework 3"
+author: "Emily Robinson"
+date: "September 26, 2019"
+output:
+  pdf_document:
+      keep_tex:  true
+subtitle: STAT 984
+theme: cerulean
+fontsize: 12pt
+header-includes:
+- \usepackage{amsmath}
+- \usepackage{amssymb}
+- \usepackage{amsthm}
+---
+
+<style type="text/css">
+
+h1.title {
+  font-size: 18px;
+  color: Black;
+  text-align: center;
+}
+h3.subtitle{
+  font-size: 12px;
+  color: Black;
+  text-align: center;
+}
+h4.author { /* Header 4 - and the author and data headers use this too  */
+  font-size: 12px;
+  font-family: "Times New Roman", Times, serif;
+  color: Black;
+  text-align: center;
+}
+h4.date { /* Header 4 - and the author and data headers use this too  */
+  font-size: 12px;
+  font-family: "Times New Roman", Times, serif;
+  color: Black;
+  text-align: center;
+}
+</style>
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width=5, fig.height=4, fig.align = "center")
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=50),tidy=TRUE)
+```
+
+### Exercise 1.38
+Let $f(x)$ be a convex function on some interval, and let $x_0$ be any point on the interior of that interval.
+
+(a) Prove that
+\begin{align*}
+&&\lim_{x\rightarrow x_0+} \frac{f(x)-f(x_0)}{x-x_0} && (1.38)
+\end{align*}
+exists and is finite, that is, a one-sided derivative exists at $x_0$.
+
+Hint: Using Definition 1.30, show that the fraction in expression (1.38) is non-increasing and bounded below as $x$ decreases to $x_0.$
+
+
+(b) Prove that there exists a linear function $g(x) = ax+b$ such that $g(x_0) = f(x_0)$ and $g(x) \le f(x)$ for all $x$ in the interval. This fact is the supporting hyperplane property in the case of a convex function taking a real argument.
+
+Hint: Let $f'(x_0+)$ denote the one-sided derivative of part (a). Consider the line $f(x_0)+f'(x_0+)(x-x_0).$
+
+### Exercise 1.39
+Prove Holder's inequality: For random variables $X$ and $Y$ and positive $p$ and $a$ such that $p+q=1$,
+\begin{align*}
+&& E|XY|\le (E|X|^{1/p})^p(E|Y|^{1/q})^q. && (1.39)
+\end{align*}
+(If $p=q=1/2$, inequality 1.39 is also called the Cauchy-Schwartz inequality.)
+
+Hint: Use the convexity of $\exp(x)$ to prove that $|abXY|\le p|aX|^{1/p}+a|bY|^{1/q}$ whenever $aX\ne 0$ and $bY \ne 0$ (the same inequality is also true if $aX=0$ or $bY=0$). Take expectations, then find values for the scalars $a$ and $b$ that give the desired result when the right side of inequality (1.39) is nonzero.
+
+### Exercise 1.40
+Use Holder's Inequality (1.39) to prove that if $\alpha > 1,$ then
+$$(E|X|)^\alpha\le E|X|^\alpha.$$
+
+Hint: Take $Y$ to be a constant in Inequality (1.39).
+
+### Exercise 1.45
+For any nonnegative random variable $Y$ with finite expectation, prove that
+\begin{align*}
+&& \sum_{i=1}^{\infty} P(Y\ge i) EY. && (1.43)
+\end{align*}
+
+Hint: First, prove that equality holds if $Y$ is supported on the nonnegative integers. Then note for a general $Y$ that $E{\left\lfloor Y \right\rfloor} \le EY,$ where ${\left\lfloor x \right\rfloor}$ denotes the greatest integer less than or equal to $x.$
+
+Though we will not do so here, it is possible to prove a statement stronger than inequality (1.43) for nonnegative random variables, namely,
+$$\int_0^\infty P(Y\ge t)dt = EY.$$
+(This equation remains true if $EY = \infty$.) To sketch a proof, note that if we can prove $\int E f(Y,t)dt = E\int f(Y,t)dt$, the result follows immediately by taking $f(Y,t) = I\{Y\ge t\}.$
+
+### Exercise 2.1
+For each of the three cases below, prove that $X_n\overset{P}\rightarrow 1:$
+
+(a) $X_n=1+nY_n,$ where $Y_n$ is a Bernoulli random variable with mean $1/n.$
+
+(b) $X_n = Y_n/\log n$, where $Y_n$ is a Poisson random variable with mean $\sum_{i=1}^n(1/i)$.
+
+(c) $X_n = \frac{1}{n}\sum_{i=1}^n Y_i^2,$ where the $Y_i$ are independent standard normal random variables.
+
+### Exercise 2.2
+This exercise deals with bounded in probability sequences; see Definition 2.6.
+
+(a) Prove that if $X_n \overset{d}\rightarrow X$ for some random variable $X$, then $X_n$ is bounded in probability.
+
+Hint: You may use the fact that any interval of real numbers must contain a point of continuity of $F(x)$. Also, recall that $F(x)\rightarrow 1$ as $x\rightarrow \infty.$
+
+(b) Prove that if $X_n$ is bounded in probability and $Y_n \overset{P}\rightarrow 0$, then $X_nY_n\overset{P}\rightarrow 0.$
+
+Hint: For fixed $\epsilon > 0,$ argue that there must be $M$ and $N$ such that $P(|X_n|<M)>1-\epsilon/2$ and $P(|Y_n|<\epsilon/M)>1-\epsilon/2$ for all $n>N.$ What is then the smallest possible value of $P(|X_n|<M$ and $|Y_n|<\epsilon/M)$? Use this result to prove $X_nY_n\overset{P}\rightarrow 0.$
+
+### Exercise 2.4
+Suppose that $X_1,...X_n$ are independent and identically distributed Uniform(0,1) random variables. For a real number $t$, let 
+$$G_n(t) = \sum_{i=1}^nI\{X_i\le t\}.$$
+
+(a) What is the distribution of $G_n(t)$ if $0<t<1$?
+
+(b) Suppose $c>0.$ Find the distribution of a random variable $X$ such that $G_n(c/n)\overset{d}\rightarrow X$. Justify your answer.
+
+(c) How does your answer to part (b) change if $X_1,...,X_n$ are from a standard exponential distribution instead of a uniform distribution? The standard exponential distribution function is $F(t) = 1-e^{-t}.$
+
+

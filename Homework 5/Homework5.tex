@@ -1,0 +1,314 @@
+\documentclass[12pt,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework 5},
+            pdfauthor={Emily Robinson},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Homework 5}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \subtitle{STAT 984}
+  \author{Emily Robinson}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{October 10, 2019}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\begin{document}
+\maketitle
+
+\hypertarget{exercise-2.24}{%
+\subsubsection{Exercise 2.24}\label{exercise-2.24}}
+
+Prove Slutsky's Theorem, Theorem 2.39, using the following approach:
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Prove the following lemma:
+
+  \textbf{Lemma 2.42} Let \(\boldsymbol{V}_n\) and \(\boldsymbol{W}_n\)
+  be \textit{k}-dimensional random vectors on the same sample space.
+  \[\text{If } \boldsymbol{V}_n\overset{d}\rightarrow \boldsymbol V \text{ and } \boldsymbol{W}_n\overset{P}\rightarrow \boldsymbol 0, \text{ then } \boldsymbol{V}_n + \boldsymbol{W}_n \overset{d}\rightarrow \boldsymbol V.\]
+\end{enumerate}
+
+\textbf{Hint:} For \(\epsilon>0,\) let \(\boldsymbol \epsilon\) denote
+the \textit{k}-dimentional vector all of whose entries are \(\epsilon.\)
+Take \(\boldsymbol a \in \mathbb{R}^k\) to be a continuity point of
+\(\boldsymbol{F_v(v)}.\) Now argue that \(\boldsymbol a\), since it is a
+point of continuity, must be contained in a neighborhood consisting only
+of points of continuity; therefore, \(\epsilon\) may be taken small
+enough so that \(\boldsymbol{a-\epsilon}\) and
+\(\boldsymbol{a+\epsilon}\) are also points of continuity. Prove that
+\begin{align*}
+P(\boldsymbol V_n \le \boldsymbol a - \boldsymbol \epsilon) - P(||\boldsymbol W_n|| \ge \epsilon) & \le P(\boldsymbol V_n + \boldsymbol W_n \le \boldsymbol a)\\
+& \le P(\boldsymbol V_n \le \boldsymbol a+\boldsymbol \epsilon) + P(||\boldsymbol W_n|| \ge \epsilon).
+\end{align*} Next, take \(\text{limsup}_n\) and \(\text{liminf}_n\).
+Finally, let \(\epsilon \rightarrow 0.\)
+
+\begin{proof}
+Let $\epsilon>0,$ let $\boldsymbol \epsilon$ denote the \textit{k}-dimentional vector all of whose entries are $\epsilon.$ Then there exists a continuity point of $\boldsymbol{F_v(v)}, \boldsymbol a \in \mathbb{R}^k$. Then  since it is a point of continuity, $\boldsymbol a,$ must be contained in a neighborhood consisting only of points of continuity; therefore, $\epsilon$ may be taken small enough so that $\boldsymbol{a-\epsilon}$ and $\boldsymbol{a+\epsilon}$ are also points of continuity. Then whenever $\boldsymbol V_n + \boldsymbol W_n \le \boldsymbol a$ it must be true that either $\boldsymbol V_n \le \boldsymbol a + \boldsymbol \epsilon$ or $||\boldsymbol W_n || > \boldsymbol\epsilon.$ Therefore, 
+\begin{align*}
+&& &P( \boldsymbol V_n \le \boldsymbol a - \boldsymbol \epsilon) - P(||\boldsymbol W_n || \ge \boldsymbol\epsilon) \le P(\boldsymbol V_n + \boldsymbol W_n \le \boldsymbol a) \le P(\boldsymbol V_n \le \boldsymbol a + \boldsymbol \epsilon) + P(||\boldsymbol W_n || \ge \epsilon)\\
+&\implies& &F_{\boldsymbol V_n} (\boldsymbol a - \boldsymbol \epsilon) - P(||\boldsymbol W_n || \ge \boldsymbol\epsilon) \le F_{\boldsymbol V_n + \boldsymbol W_n} (\boldsymbol a) \le F_{\boldsymbol V_n}(\boldsymbol a + \boldsymbol \epsilon) + P(||\boldsymbol W_n || \ge \epsilon)\\
+&\rightarrow &&F_{\boldsymbol V} (\boldsymbol a - \boldsymbol \epsilon) - 0 \le F_{\boldsymbol V_n + \boldsymbol W_n} (\boldsymbol a) \le F_{\boldsymbol V}(\boldsymbol a + \boldsymbol \epsilon) + 0\\
+&\implies &&F_{\boldsymbol V} (\boldsymbol a - \boldsymbol \epsilon) \le \text{liminf}_nF_{\boldsymbol V_n + \boldsymbol W_n} (\boldsymbol a) \le \text{limsup}_nF_{\boldsymbol V_n + \boldsymbol W_n} (\boldsymbol a) \le F_{\boldsymbol V}(\boldsymbol a + \boldsymbol \epsilon)\\
+&\implies &&F_{\boldsymbol V} (\boldsymbol a) \le \text{liminf}_nF_{\boldsymbol V_n + \boldsymbol W_n} (\boldsymbol a) \le \text{limsup}_nF_{\boldsymbol V_n + \boldsymbol W_n} (\boldsymbol a) \le F_{\boldsymbol V}(\boldsymbol a) \text{    as } \epsilon \rightarrow 0.\\
+&\implies &&F_{\boldsymbol V} (\boldsymbol a) = \text{liminf}_nF_{\boldsymbol V_n + \boldsymbol W_n} (\boldsymbol a) = \text{limsup}_nF_{\boldsymbol V_n + \boldsymbol W_n} (\boldsymbol a)\\
+&\implies &&F_{\boldsymbol V_n + \boldsymbol W_n} (\boldsymbol a) \rightarrow F_{\boldsymbol V} (\boldsymbol a).
+\end{align*}
+Therefore, $\boldsymbol V_n + \boldsymbol W_n \overset{d} \rightarrow \boldsymbol V.$
+\end{proof}
+
+\newpage
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Show how to prove Theorem 2.39 using Lemma 2.42.
+\end{enumerate}
+
+\textbf{Hint:} Consider the random vectors
+
+\[\boldsymbol V_n = \begin{pmatrix} \boldsymbol X_n\\ \boldsymbol c\end{pmatrix} \text{ and } \boldsymbol W_n = \begin{pmatrix} \boldsymbol 0\\ \boldsymbol Y_n - \boldsymbol c\end{pmatrix}.\]
+
+\begin{proof}
+Let $X_n \overset{d}\rightarrow X$ and $Y_n\overset{P}\rightarrow c$. Then consider
+$$\boldsymbol V_n = \begin{pmatrix} \boldsymbol X_n\\ \boldsymbol c\end{pmatrix} \overset{d}\rightarrow \begin{pmatrix} \boldsymbol X\\ \boldsymbol c\end{pmatrix} \text{ and } \boldsymbol W_n = \begin{pmatrix} \boldsymbol 0\\ \boldsymbol Y_n - \boldsymbol c\end{pmatrix}\overset{P}\rightarrow \boldsymbol 0.$$ Then by Lemma 2.42, $$\boldsymbol V_n + \boldsymbol W_n \overset{d} \rightarrow \boldsymbol V \implies \begin{pmatrix} \boldsymbol X_n\\ \boldsymbol Y_n\end{pmatrix} \overset{d}\rightarrow \begin{pmatrix} \boldsymbol X\\ \boldsymbol c\end{pmatrix}.$$ Therefore, Slutsky's Theorem holds.
+\end{proof}
+
+\hypertarget{exercise-3.2}{%
+\subsubsection{Exercise 3.2}\label{exercise-3.2}}
+
+The diagram at the end of this section suggests that neither
+\(X_n \overset{a.s.} \rightarrow X\) nor
+\(X_n \overset{qm} \rightarrow X\) implies the other. Construct two
+counterexamples, one to show that \(X_n \overset{a.s.} \rightarrow X\)
+does not imply \(X_n \overset{qm} \rightarrow X\) and the other to show
+that \(X_n \overset{qm} \rightarrow X\) does not imply
+\(X_n \overset{a.s.} \rightarrow X.\)
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\item
+  Consider \(X_n \overset{a.s.}\rightarrow X\), but
+  \(X_n \overset{qm}\nrightarrow X\). Let \[X_n = \begin{cases}
+                                 n^2& \text{with probability $\frac{1}{n^2}$} \\
+                                 0 & \text{with probability $1-\frac{1}{n^2}$}.
+    \end{cases}\] Then \(X_n\overset{P}\rightarrow 0\) since
+  \[P(|X_n| < \epsilon) = P(X_n = 0) = 1 - \frac{1}{n^2}\rightarrow 1\]
+  and \(X_n\overset{a.s.}\rightarrow 0\) since \begin{align*}
+  &\text{ }\lim_{k\rightarrow \infty}\prod_{j=0}^k \left(1-\frac{1}{n^2}\right)\left(1-\frac{1}{(n+1)^2}\right)\cdot\cdot\cdot \left(1-\frac{1}{(n+k)^2}\right)\\ &=\lim_{k\rightarrow \infty}\prod_{j=0}^k \left(\frac{n^2-1}{n^2}\right)\left(\frac{(n+1)^2-1}{(n+1)^2}\right)\cdot\cdot\cdot \left(\frac{(n+k)^2-1}{(n+k)^2}\right)\\
+  &\rightarrow 1.
+  \end{align*} However, \(X_n \overset{P}\nrightarrow 0\) since
+  \[\text{E}[X_n]=n^2\left(\frac{1}{n^2}\right)+0\left(1-\frac{1}{n^2}\right)=1.\]
+\item
+  Consider \(X_n \overset{qm}\rightarrow X\), but
+  \(X_n \overset{a.s.}\nrightarrow X\). Let \[X_n = \begin{cases}
+                                 ^3\sqrt{n}& \text{with probability $\frac{1}{2n}$} \\
+                                 -^3\sqrt{n} & \text{with probability $\frac{1}{2n}$}\\
+                                 0 & \text{with probability $1-\frac{1}{n}$}.
+    \end{cases}\] Then \(X_n \overset{qm}\rightarrow 0\) since
+  \[\text{E}[X_n]=\text{ }^3\sqrt n\left(\frac{1}{2n}\right) - \text{ }^3\sqrt n\left(\frac{1}{2n}\right)+0\left(1-\frac{1}{n}\right)=0\rightarrow 0\]
+  and
+  \[\text{Var}(X_n)=n^{2/3}\left(\frac{1}{2n}\right) + (-n)^{2/3} \left(\frac{1}{2n}\right)+0^2\left(1-\frac{1}{n}\right)=\frac{n^{2/3}}{n}=\frac{1}{n^{1/3}}\rightarrow 0.\]
+  However, \(X_n\overset{a.s.}\nrightarrow 0\) since \begin{align*}
+  &\text{ } \lim_{k\rightarrow \infty}\prod_{j=0}^k \left(1-\frac{1}{n}\right)\left(1-\frac{1}{n+1}\right)\cdot\cdot\cdot \left(1-\frac{1}{n+k}\right)\\
+  &=\lim_{k\rightarrow \infty}\prod_{j=0}^k \left(\frac{n-1}{n}\right)\left(\frac{n}{n+1}\right)\cdot\cdot\cdot \left(\frac{n+k-1}{n+k}\right)\\
+  & =\lim_{k\rightarrow \infty}\prod_{j=0}^k \left(\frac{n-1}{n+k}\right)\\
+  & \rightarrow 0\ne 1.
+  \end{align*}
+\end{enumerate}
+
+\hypertarget{exercise-3.3}{%
+\subsubsection{Exercise 3.3}\label{exercise-3.3}}
+
+Let \(B_1, B_2, ...\) denote a sequence of events. Let \(B_n\) i.o.,
+which stands for \(B_n\) infinitely often, denote the set
+\[B_n \text{ i.o. }\overset{\text{def}} = \{\omega \in \Omega: \text{ for every } n, \text{ there exists } k\ge n \text{ such that } \omega \in B_k\}.\]
+Prove the \textit{First Borel-Cantelli Lemma}, which states that if
+\(\sum_{n=1}^\infty P(B_n) < \infty,\) then \(P(B_n \text{ i.o.})=0.\)
+
+\textbf{Hint:} Argue that
+\[B_n \text{ i.o. } = \bigcap_{n=1}^\infty \bigcup_{k=n}^\infty B_k,\]
+then adapt the proof of Lemma 3.9.
+
+\begin{proof}
+There exists some $k \ge n$ such that $\omega \in B_k$ is captured by the union and true for all $n$ is captured by the intersection. Therefore, $$B_n \text{ i.o. } = \bigcap_{n=1}^\infty \bigcup_{k=n}^\infty B_k.$$ Let $\epsilon > 0.$ Then if $\sum_{n = 1}^\infty P(B_n) < \infty$, there exists an $N$ such that $\sum_{n=N}^\infty P(B_n) < \epsilon.$ Then,
+$$P\left(B_n \text{ i.o. }\right) = P\left(\bigcap_{n=1}^\infty \bigcup_{k=n}^\infty B_k\right) \le P\left(\bigcup_{k=N}^\infty B_k\right)\le \sum_{k=N}^\infty P(B_k) < \epsilon.$$
+Therefore, if $\sum_{n=1}^\infty P(B_n) < \infty,$ then $P(B_n \text{ i.o.})=0.$
+\end{proof}
+
+\hypertarget{exercise-3.4}{%
+\subsubsection{Exercise 3.4}\label{exercise-3.4}}
+
+Use the steps below to prove a version of the Strong Law of Large
+Numbers for the special case in which the random variables
+\(X_1, X_2, ...\) have a finite fourth moment,
+\(\text{E}[X_1^4] < \infty.\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Assume without loss of generality that \(\text{E}[X_1]=0.\) Expand
+  \(\text{E}[(X_1+...+X_n)^4]\) and then count the nonzero terms.
+  \textbf{Hint:} The only nonzero terms are of the form
+  \(\text{E}[X_i^4]\) or \((\text{E}[X_i^2])^2.\)
+\end{enumerate}
+
+Consider \begin{align*}
+\text{E}[(X_1+X_2+...+X_n)^4] &= \text{E}[X_1^4]+\text{E}[X_2^4]+...+\text{E}[X_n^4] & (n \text{ of these})\\
+& + \text{E}[X_1^3X_2] + ... + \text{E}[X_n^3X_{n-1}] &(=0)\\
+& + \text{E}[X_1^2X_2^2] + \text{E}[X_1^2X_3^2]+...+\text{E}[X_1^2X_n^2] & (n-1\text{ columns of these})\\
+& + \text{E}[X_2^2X_1^2] + \text{E}[X_2^2X_3^2]+...+\text{E}[X_2^2X_n^2] & (3n \text{ rows of these})\\
+& .\\
+& .\\
+& . \\
+& + \text{E}[X_1^2X_2^2] + \text{E}[X_1^2X_3^2]+...+\text{E}[X_1^2X_n^2]\\
+& = n\text{E}[X_i^4]+3n(n-1)\left(\text{E}[X_i^2]\right)^2.
+\end{align*} Therefore, there are \(n+3n(n-1) = n(3n-2)\) nonzero terms.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\item
+  Use Markov's inequality (1.35) with \(r = 4.\) to put an upper bound
+  on \[P(|\bar X_n| > \epsilon)\] involving
+  \(\text{E}[(X_1+...+X_n)^4].\) Consider \begin{align*}
+  P\left(|\bar X_n| > \epsilon \right) &= P\left(|X_n| > n\epsilon\right)\\
+  & \le \frac{\text{E}[|X_n|^4]}{(n\epsilon)^4} & (\text{by Markov's Inequality})\\
+  & = \frac{n\text{E}[X_i^4]+3n(n-1)\left(\text{E}[X_i^2]\right)^2}{(n\epsilon)^4}\\
+  & = \frac{\text{E}[X_i^4]+3(n-1)\sigma^4}{\epsilon^4 n^3}\\
+  & = o\left(\frac{1}{n^2}\right).
+  \end{align*}
+\item
+  Combind parts (a) and (b) with Lemma 3.9 to show that
+  \(\bar X_n \overset{a.s.}\rightarrow 0.\) \textbf{Hint:} Use the fact
+  that \(\sum_{n=1}^\infty n^{-2} < \infty.\) Consider
+  \[\sum_{n=1}^\infty P\left(|\bar X_n|> \epsilon\right) \le \sum_{n=1}^\infty \frac{\text{E}[X_i^4]+3(n-1)\sigma^4}{\epsilon^4 n^3} \le \sum_{n=1}^\infty\frac{1}{n^2} <\infty.\]
+  Therefore, \(\bar X_n \overset{a.s.}\rightarrow 0.\)
+\end{enumerate}
+
+\hypertarget{exercise-3.13}{%
+\subsubsection{Exercise 3.13}\label{exercise-3.13}}
+
+Prove that if there exists \(\epsilon > 0\) such that
+\(\text{sup}_n\text{E}[Y_n]^{1+\epsilon} < \infty,\) then
+\(Y_1, Y_2, ...\) is uniformly integrable sequence.
+
+\textbf{Hint:} First prove that
+\[|Y_n|I\{|Y_n| \ge \alpha \} \le \frac{1}{\alpha^\epsilon}|Y_n|^{1+\epsilon}.\]
+
+\begin{proof}
+By the Markov Inequality, 
+$$P(|Y_n| \ge \alpha ) \le \frac{1}{\alpha^\epsilon}\text{E}|Y_n|^{\epsilon}.$$ Then multipliying by $|Y_n|$ and taking the absolute value of both sides,
+$$\text{E}\left[|Y_n|I\{|Y_n| \ge \alpha\}\right] \le \text{E}\left[\frac{1}{\alpha^\epsilon}\text{E}|Y_n|^\epsilon |Y_n|\right]=\frac{1}{\alpha^\epsilon}\text{E}|Y_n|^\epsilon \text{E}|Y_n|=\frac{1}{\alpha^\epsilon}\text{E}|Y_n|^{\epsilon+1}.$$
+Then since $\text{sup}_n \text{E}|Y_n|^{\epsilon+1} < \infty,$
+$$\text{sup}_n\text{E}\left[|Y_n|I\{|Y_n| \ge \alpha\}\right]\le \text{sup}_n \frac{1}{\alpha^\epsilon}\text{E}|Y_n|^{\epsilon+1}=\frac{1}{\alpha^\epsilon}\text{sup}_n \text{E}|Y_n|^{\epsilon+1}\rightarrow 0 \text{  (as } \alpha \rightarrow\infty).$$
+\end{proof}
+
+\hypertarget{exercise-3.14}{%
+\subsubsection{Exercise 3.14}\label{exercise-3.14}}
+
+Prove that if there exists a random variable \(Z\) such that
+\(\text{E}|Z|= \mu < \infty\) and \(P(|Y_n| \ge t) \le P(|Z|\ge t)\) for
+all \(n\) and for all \(t>0,\) then \(Y_1, Y_2, ...\) is a uniformly
+integrable sequence. You may use the fact (without proof) that for a
+nonngative \(X\), \[\text{E}[X]=\int_0^\infty P(X\ge t)dt.\]
+
+\textbf{Hint:} Consider the random variables \(|Y_n|I\{|Y_n|\ge t\}\)
+and \(|Z|I\{|Z|\ge t\}.\) In addition, use the fact that
+\[\text{E}|Z|=\sum_{i=1}^\infty \text{E}\left[|Z|I\{i=1\le |Z| < i\}\right]\]
+to argue that \(\text{E}[|Z|I\{|Z|< \alpha\}]\rightarrow \text{E}|Z|\)
+as \(\alpha \rightarrow \infty\).
+
+\begin{proof}
+Consider the random variable $Z$ such that $\text{E}|Z|= \mu < \infty$ and $P(|Y_n| \ge t) \le P(|Z|\ge t)$ for all $n$ and for all $t>0.$ Then
+$$\text{E}|Y_n| = \int_0^\infty P(|Y_n|\ge t)dt \le \int_0^\infty P(|Z|\ge t)dt=\text{E}|Z|.$$ Similarly, consider the random variables $|Y_n|I\{|Y_n|\ge t\}$ and $|Z|I\{|Z|\ge t\},$ it follows that 
+$$|Y_n|I\{|Y_n|\ge t\}\le|Z|I\{|Z|\ge t\}.$$
+Notice that $|z| < \infty.$ Therefore, $|Z|I\{|Z|\ge t\} \rightarrow 0$ as $t\rightarrow \infty.$
+Then,
+$$|Y_n|I\{|Y_n|\ge t\}\le|Z|I\{|Z|\ge t\}\rightarrow 0 \text{ (as } t\rightarrow \infty).$$
+Therefore, $|Y_n|I\{|Y_n|\ge t\}\rightarrow 0$ as $t\rightarrow \infty$. Thus, $Y_n$ is a uniformly integrable sequence. 
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,585 @@
+\documentclass[12pt,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework 8},
+            pdfauthor={Emily Robinson},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Homework 8}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \subtitle{STAT 984}
+  \author{Emily Robinson}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{November 14, 2019}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\begin{document}
+\maketitle
+
+\hypertarget{exercise-6.1}{%
+\subsubsection{Exercise 6.1}\label{exercise-6.1}}
+
+For a given \(n\), let \(X_1,...,X_n\) be independent and identically
+distributed with distribution function
+\[P(X_i\le t) = \frac{t^3+\theta^3}{2\theta^3} \text{ for } t\in[-\theta,\theta].\]
+Let \(X_{(1)}\) denote the first order statistic from the sample of size
+\(n\); that is, \(X_{(1)}\) is the smallest of the \(X_i\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Prove that \(-X_{(1)}\) is consistent for \(\theta.\)
+\end{enumerate}
+
+Let \(0 < \epsilon < 4\theta.\) Then \begin{align*}
+P(|-X_{(1)}-\theta|>\epsilon) & = P(-X_{(1)}-\theta \le -\epsilon)\\
+& = P(X_{(1)}+\theta \ge \epsilon)\\
+& = P(X_{(1)}\ge \epsilon - \theta)\\
+& = [P(X \ge \epsilon - \theta)]^n\\
+& = [1 - P(X \le \epsilon - \theta)]^n\\
+& = \left[1 - \frac{(\epsilon - \theta)^3 + \theta^3}{2\theta^3}\right]^n\\
+& \rightarrow 0 & \text{since}  \left[1 - \frac{(\epsilon - \theta)^3 + \theta^3}{2\theta^3}\right] \in (-1, 1).
+\end{align*}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Prove that \[n(\theta+X_{(1)})\overset{d}\rightarrow Y,\] where \(Y\)
+  is a random variable with an exponential distribution. Find E\((Y)\)
+  in terms of \(\theta\).
+\end{enumerate}
+
+Consider \begin{align*}
+P[n(\theta+X_{(1)})\ge y] & = P\left[\theta+X_{(1)}\ge \frac{y}{n}\right]\\
+& = P\left[X_{(1)}\ge \frac{y}{n}-\theta\right]\\
+& = \left(P\left[X \ge \frac{y-n\theta}{n}\right]\right)^n\\
+& = \left(1 - P\left[X \le \frac{y-n\theta}{n}\right]\right)^n\\
+& = \left(1 - \frac{\left(\frac{y-n\theta}{n}\right)^3+\theta^3}{2\theta^2}\right)^n\\
+& = \left(1 - \frac{\left(y-n\theta\right)^3+(n\theta)^3}{n^32\theta^2}\right)^n\\
+& \rightarrow e^{-\left(\frac{3y}{2\theta}\right)}\\
+& = e^{-\frac{y}{\frac{2\theta}{3}}}.
+\end{align*} Therefore,
+\(Y\overset{asy}\sim Exp\left(\frac{2\theta}{3}\right)\) and
+E\([Y]=\frac{2\theta}{3}.\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  For a fixed \(\alpha\), define
+  \[\delta_{\alpha,n}=-\left(1+\frac{\alpha}{n}X_{(1)}\right).\] Find,
+  with proof, \(\alpha^*\) such that
+  \[n(\theta-\delta_{\alpha^*,n})\overset{d}\rightarrow Y - \text{E}(Y),\]
+  where \(Y\) is the same random variable as in part (b).
+\end{enumerate}
+
+Consider
+
+\begin{align*}
+P\left(n(\theta - (1+\frac{\alpha^* }{n})X_{(1)}) > t \right) &= P\left(\theta - (1+\frac{\alpha^*}{n})X_{(1)} > t/n \right) \\
+& = P\left(X_{(1)} > \frac{t/n-\theta}{(1+\frac{\alpha^*}{n})} \right)\\
+& = \left[P\left(X > \frac{(t-n\theta)/n}{(n+\alpha^*)/n)} \right)\right]^n\\
+& = \left[1 - P\left(X \le \frac{t-n\theta}{\alpha^*+n} \right)\right]^n\\
+& = \left[1 - \frac{\left(\frac{t-n\theta}{\alpha^*+n}\right)^3+\theta^3}{2\theta^3}\right]^n\\
+&\rightarrow e^{-3(\alpha^* \theta+t)/(2\theta)} \\
+& = e^{-\frac{(t+\alpha^* \theta)}{\frac{2\theta}{3}}}.
+\end{align*}
+
+Then recall \(Y\sim Exp(\frac{2\theta}{3}).\) Let
+\(\alpha^* = \frac{2}{3},\) then
+\[n(\theta-\delta_{\alpha^*,n})\overset{d}\rightarrow Y - \alpha^* \theta \overset{d}= Y - \frac{2\theta}{3}=Y-E[Y].\]
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Compare the two consistent \(\theta\)-estimators
+  \(\delta_{\alpha^*,n}\) and \(-X_{(1)}\) empirically as follows. For
+  \(n\in\{10^2, 10^3, 10^4\}\), take \(\theta = 1\) and simulate 1000
+  samples of size \(n\) from the distribution of \(X_i\). From these
+  1000 samples, estimate the bias and mean squared error of each
+  estimator. Which of the two appears better? Do your empirical results
+  agree with the theoretical results in parts (b) and (c)?
+\end{enumerate}
+
+The \(\delta_{\alpha^*,n}\) appears to be the better estimator due to
+it's low unbiasedness. These agree with the theoretical results above.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(pracma)}
+\NormalTok{estCompare1 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{theta =} \DecValTok{1}\NormalTok{, }\DataTypeTok{samples =} \DecValTok{1000}\NormalTok{) \{}
+\NormalTok{    est <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, samples, }\DecValTok{2}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{samples) \{}
+\NormalTok{        x1 <-}\StringTok{ }\KeywordTok{min}\NormalTok{(theta }\OperatorTok{*}\StringTok{ }\KeywordTok{nthroot}\NormalTok{((}\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{runif}\NormalTok{(n) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{), }
+            \DecValTok{3}\NormalTok{))}
+\NormalTok{        est[i, }\DecValTok{1}\NormalTok{] <-}\StringTok{ }\NormalTok{x1}
+\NormalTok{        est[i, }\DecValTok{2}\NormalTok{] <-}\StringTok{ }\OperatorTok{-}\NormalTok{(}\DecValTok{1} \OperatorTok{+}\StringTok{ }\DecValTok{2}\OperatorTok{/}\NormalTok{(}\DecValTok{3} \OperatorTok{*}\StringTok{ }\NormalTok{n)) }\OperatorTok{*}\StringTok{ }\NormalTok{x1}
+\NormalTok{        bias <-}\StringTok{ }\NormalTok{est }\OperatorTok{-}\StringTok{ }\NormalTok{theta}
+\NormalTok{    \}}
+\NormalTok{    Bias <-}\StringTok{ }\KeywordTok{colMeans}\NormalTok{((bias))}
+\NormalTok{    Var <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(est, }\DecValTok{2}\NormalTok{, var)}
+\NormalTok{    MSE <-}\StringTok{ }\NormalTok{Var }\OperatorTok{+}\StringTok{ }\NormalTok{Bias}\OperatorTok{^}\DecValTok{2}
+\NormalTok{    bias_mse <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(Bias, MSE)}
+    \KeywordTok{rownames}\NormalTok{(bias_mse) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"X(1)"}\NormalTok{, }\StringTok{"Delta"}\NormalTok{)}
+    \KeywordTok{round}\NormalTok{(bias_mse, }\DecValTok{10}\NormalTok{)}
+\NormalTok{\}}
+\KeywordTok{estCompare1}\NormalTok{(}\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{theta =} \DecValTok{1}\NormalTok{, }\DataTypeTok{samples =} \DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                Bias          MSE
+## X(1)  -1.9932153099 3.9729544509
+## Delta -0.0001632547 0.0000478372
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{estCompare1}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{theta =} \DecValTok{1}\NormalTok{, }\DataTypeTok{samples =} \DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                Bias          MSE
+## X(1)  -1.9993258564 3.9973043764
+## Delta -0.0000079263 0.0000004968
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{estCompare1}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10000}\NormalTok{, }\DataTypeTok{theta =} \DecValTok{1}\NormalTok{, }\DataTypeTok{samples =} \DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                Bias          MSE
+## X(1)  -1.9999341975 3.9997367987
+## Delta  0.0000008598 0.0000000044
+\end{verbatim}
+
+\hypertarget{exercise-6.2}{%
+\subsubsection{Exercise 6.2}\label{exercise-6.2}}
+
+Let \(X_1, X_2,...\) be independent uniform \((0,\theta)\) random
+variables. Let \(X_{(n)}=\max\{X_1,...,X_n\}\) and consider the three
+estimators \begin{align*}
+\delta_n^0=X_{(n)} & \delta_n^1=\frac{n}{n-1}X_{(n)} & \delta_n^2=\left(\frac{n}{n-1}\right)^2X_{(n)}
+\end{align*}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Prove that each estimator is consistent for \(\theta.\)
+\end{enumerate}
+
+\begin{proof}
+Let $0<\epsilon<\theta.$ Then
+\begin{align*}
+P(|X_{(n)}-\theta|>\epsilon) & = P(X_{(n)} - \theta \le -\epsilon)\\
+& = P(X_{(n)} \le \theta - \epsilon)\\
+& = [P(X \le \theta - \epsilon)]^n\\
+& = [F_X(\theta-\epsilon)]^n\\
+& = \left(\frac{\theta-\epsilon}{\theta}\right)^n\\
+& \rightarrow 0. & (\text{since } \theta-\epsilon < 0)
+\end{align*}
+Therefore, $X_{(n)}\overset{P}\rightarrow\theta$ and $X_{(n)}$ is consistent for $\theta.$ Then since $\frac{n}{n-1}\rightarrow 1,$ we know $\delta_n^1\overset{P}\rightarrow\theta$ and $\delta_n^2\overset{P}\rightarrow\theta$.
+\end{proof}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Perform an empirical comparison of these three estimators for
+  \(n = 10^2, 10^3, 10^4.\) Use \(\theta = 1\) and simulate 1000 samples
+  of size \(n\) from uniform \((0,1)\). From these 1000 samples,
+  estimate the bias and mean squared error of each estimator. Which one
+  of the three appears to be best?
+\end{enumerate}
+
+Based on the results, it appears \(\delta_n^1\) is the best in terms of
+MSE. It is obvious that its bias is much lower than that of the other
+estimators.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{estCompare <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{theta =} \DecValTok{1}\NormalTok{, }\DataTypeTok{samples =} \DecValTok{1000}\NormalTok{) \{}
+\NormalTok{    est <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, samples, }\DecValTok{3}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{samples) \{}
+\NormalTok{        xn <-}\StringTok{ }\KeywordTok{max}\NormalTok{(theta }\OperatorTok{*}\StringTok{ }\KeywordTok{runif}\NormalTok{(n))}
+\NormalTok{        est[i, }\DecValTok{1}\NormalTok{] <-}\StringTok{ }\NormalTok{xn}
+\NormalTok{        est[i, }\DecValTok{2}\NormalTok{] <-}\StringTok{ }\NormalTok{xn }\OperatorTok{*}\StringTok{ }\NormalTok{(n}\OperatorTok{/}\NormalTok{(n }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{))}
+\NormalTok{        est[i, }\DecValTok{3}\NormalTok{] <-}\StringTok{ }\NormalTok{xn }\OperatorTok{*}\StringTok{ }\NormalTok{(n}\OperatorTok{/}\NormalTok{(n }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{))}\OperatorTok{^}\DecValTok{2}
+\NormalTok{        bias <-}\StringTok{ }\NormalTok{est }\OperatorTok{-}\StringTok{ }\NormalTok{theta}
+\NormalTok{    \}}
+\NormalTok{    Bias <-}\StringTok{ }\KeywordTok{colMeans}\NormalTok{((bias))}
+\NormalTok{    Var <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(est, }\DecValTok{2}\NormalTok{, var)}
+\NormalTok{    MSE <-}\StringTok{ }\NormalTok{Var }\OperatorTok{+}\StringTok{ }\NormalTok{Bias}\OperatorTok{^}\DecValTok{2}
+\NormalTok{    bias_mse <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(Bias, MSE)}
+    \KeywordTok{rownames}\NormalTok{(bias_mse) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"delta0"}\NormalTok{, }\StringTok{"delta1"}\NormalTok{, }\StringTok{"delta2"}\NormalTok{)}
+\NormalTok{    bias_mse}
+\NormalTok{\}}
+\KeywordTok{estCompare}\NormalTok{(}\DataTypeTok{n =} \DecValTok{100}\NormalTok{, }\DataTypeTok{theta =} \DecValTok{1}\NormalTok{, }\DataTypeTok{samples =} \DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 Bias          MSE
+## delta0 -0.0096872906 1.878845e-04
+## delta1  0.0003158681 9.605008e-05
+## delta2  0.0104200688 2.064763e-04
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{estCompare}\NormalTok{(}\DataTypeTok{n =} \DecValTok{1000}\NormalTok{, }\DataTypeTok{theta =} \DecValTok{1}\NormalTok{, }\DataTypeTok{samples =} \DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 Bias          MSE
+## delta0 -1.037019e-03 2.134514e-06
+## delta1 -3.705636e-05 1.062600e-06
+## delta2  9.639075e-04 1.992470e-06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{estCompare}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10000}\NormalTok{, }\DataTypeTok{theta =} \DecValTok{1}\NormalTok{, }\DataTypeTok{samples =} \DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 Bias          MSE
+## delta0 -1.053701e-04 2.235598e-08
+## delta1 -5.370634e-06 1.128421e-08
+## delta2  9.463883e-05 2.021413e-08
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Find the asymptotic distribution of \(n(\theta-\delta_n^i)\) for
+  \(i=0,1,2\). Based on your results, which of the three appears to be
+  the best estimator and why? (For the latter question, don't attempt to
+  make a rigorous mathematical argument; simply give an educated guess.)
+\end{enumerate}
+
+Consider \begin{align*}
+P[n(\theta-\delta_n^i)\ge t] & = P\left[n\left(\theta - X_{(n)}\left(\frac{n}{n-1}\right)^i\right)\ge t\right]\\
+& = P\left[X_{(n)}\left(\frac{n}{n-1}\right)^i \le \theta - \frac{t}{n}\right]\\
+& = P\left[X_{(n)}\le \left(\theta - \frac{t}{n}\right)\left(\frac{n-1}{n}\right)^i\right]\\
+& = \left[P\left[X\le \left(\theta - \frac{t}{n}\right)\left(\frac{n-1}{n}\right)^i\right]\right]^n\\
+& = \left[\left(\theta - \frac{t}{n}\right)\left(\frac{n-1}{n}\right)^i\right]^n\\
+& = \left(\frac{n-1}{n}\right)^ni\left(\theta - \frac{t}{n}\right)^n\\
+& \rightarrow e^{-1}e^{-t/\theta}\\
+& = e^{-(t+\theta i)/\theta}.
+\end{align*} Then consider \(T\sim \text{Exp}(\theta).\) Then
+\[n(\theta-\delta_n^i)\overset{d}\rightarrow T-i\theta.\] Therefore,
+when \(i=1,\) the estimator is asymptotically unbiased. This agrees with
+our results in part (b).
+
+\hypertarget{exercise-6.5}{%
+\subsubsection{Exercise 6.5}\label{exercise-6.5}}
+
+Let \(X_1,...,X_n\) be a simple random sample from the distribution
+function \(F(x)=[1-(1/x)]I\{x>1\}\).
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Find the joint asymptotic distribution of \((X_{(n-1)}/n,X_{(n)/n}).\)
+
+  \textbf{Hint:} Proceed as in Example 6.5.
+\end{enumerate}
+
+The inverse is \(F^{-1}(u)=\frac{1}{1-u}.\) Let
+\(U_1,...,U_n\overset{iid}\sim \text{Unif}(0,1).\) Then
+\[\begin{pmatrix} X_{(n-1)} \\ X_{(n)}\end{pmatrix} \overset{d}= \begin{pmatrix} \frac{1}{1-U_{(n-1)}} \\ \frac{1}{1-U{(n)}}\end{pmatrix}.\]
+Then from Example 6.4, we know
+
+\[\begin{pmatrix} n(1-U_{(n-1)}) \\ n(1-U{(n)})\end{pmatrix}\overset{d}\rightarrow \begin{pmatrix} Y_1+Y_2 \\ Y_1\end{pmatrix}\]
+where \(Y_1, Y_2 \overset{iid}\sim \text{Exp}(1).\) Therefore, by
+Slutksy's Theroem,
+\[\begin{pmatrix} \frac{X_{(n-1)}}{n} \\ \frac{X_{(n)}}{n}\end{pmatrix} \overset{d}= \begin{pmatrix} \frac{1}{n(1-U_{(n-1)})} \\ \frac{1}{n(1-U{(n)})}\end{pmatrix}\overset{d}\rightarrow \begin{pmatrix} \frac{1}{Y_1+Y_2} \\ \frac{1}{Y_1}\end{pmatrix}.\]
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Find the asymptotic distribution of \(X_{(n-1)}/n,X_{(n)/n}\).
+\end{enumerate}
+
+From part a, we know
+
+\[\frac{X_{(n-1)}}{X_{(n)}}\overset{d}\rightarrow \frac{Y_1}{Y_1+Y_2}.\]
+Then \(\frac{Y_1}{Y_1+Y_2}\in(0,1).\) Then \begin{align*}
+P\left(\frac{Y_1}{Y_1+Y_2} \le t \right) & = E\left[P\left(\frac{Y_1}{Y_1+Y_2} \le t |Y_2 \right)\right]\\
+& = E\left[P\left(Y_1 \le \frac{tY_2}{1-t} |Y_2 \right)\right]\\
+& = E\left[1 -  e^{\frac{tY_2}{1-t}}\right]\\
+& = 1 - \int_0^\infty e^{\frac{ty}{1-t}}e^{-y} dy\\
+& = 1 - \int_0^\infty e^{-\frac{y}{1-t}} dy & \text{looks like Exp}(1-t)\\
+& = 1 - (1-t)\\
+& = t.
+\end{align*}
+
+\hypertarget{exercise-6.8}{%
+\subsubsection{Exercise 6.8}\label{exercise-6.8}}
+
+Let \(X_1,...,X_n\) be independent uniform\((0,2\theta)\) random
+variables.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Let \(M=(X_{(1)}+X_{(n)})/2.\) Find the asymptotic distribution of
+  \(n(M-\theta)\).
+\end{enumerate}
+
+Recall from Example 6.3, we know
+
+\[\begin{pmatrix}nU_{(1)} \\ n(1-U_{(n)}\end{pmatrix}\overset{d}\rightarrow \begin{pmatrix}Y_1 \\ Y_2\end{pmatrix}\]
+where \(U_i \overset{iid}\sim \text{Unif}(0,1)\) and
+\(Y_1, Y_2 \overset{iid}\sim \text{Exp}(1).\)
+
+Therefore,
+\[\begin{pmatrix} \frac{n2\theta U_{(1)}}{2\theta} \\ \frac{2n(1-U_{(n)})}{2\theta}\end{pmatrix}\overset{d}\rightarrow \begin{pmatrix}Y_1 \\ Y_2\end{pmatrix} \implies \frac{n}{2\theta}\begin{pmatrix} X_{(1)} \\ 2\theta - X_{(n)}\end{pmatrix}\overset{d}\rightarrow \begin{pmatrix}Y_1 \\ Y_2\end{pmatrix}.\]
+
+Thus, \begin{align*}
+n(M-\theta) & = n(\frac{X_{(1)}+X_{(n)}}{2}-\theta)\\
+& = \frac{n}{2}(X_{(1)}+X_{(n)}-2\theta)\\
+& = \frac{n}{2}\left(X_{(1)}- (2\theta - X_{(n)})\right)\\
+&\overset{d}\rightarrow \theta(Y_1 - Y_2) \sim \text{Laplace}(0,\theta).
+\end{align*}
+
+Therefore, E\([\theta(Y_1 - Y_2)]=0\) and
+Var\([\theta(Y_1 - Y_2)]=2\theta^2.\)
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Compare the asymptotic performance of the three estimators
+  \(M, \bar X_n,\) and the sample median \(\tilde X_n\) by considering
+  their relative efficiencies.
+\end{enumerate}
+
+From part a, we know the asymptotic variance of
+\(M\approx \frac{2\theta^2}{n^2}\). Then since
+Var\((X_i) = \frac{(2\theta)^2}{12},\) we know
+Var\((\bar X_n) = \frac{\theta^2}{3n}\). Then, by Theorem 3.7, we know
+\[\sqrt{n}(\tilde X_n- \theta) \overset{d}\rightarrow N(0,\theta^2)\]
+since
+\(\frac{p(1-p)}{f(\xi)^2}=\frac{(1/2)(1/2)}{1/(2\theta)^2}=\frac{(2\theta)^2}{4}=\theta^2.\)
+Therefore, the asymptotic variance of
+\(\tilde X_n \approx \frac{\theta^2}{n}.\)
+
+Then \begin{align*}
+e_{M,\bar X_n} & = \frac{Var(M)}{Var(\bar X_n)}= \frac{6}{n} \rightarrow 0\\
+e_{M,\tilde X_n} & = \frac{Var(M)}{Var(\tilde X_n)}= \frac{2}{n} \rightarrow 0\\
+e_{\bar X_n, \tilde X_n} & = \frac{Var(\bar X_n)}{Var(\tilde X_n)}= \frac{1}{3} \rightarrow \frac{1}{3}.
+\end{align*}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  For \(n\in \{101, 1001, 10001\}\), generate 500 samples of size \(n\),
+  taking \(\theta = 1.\) Keep track of \(M,\bar X_n\), and
+  \(\tilde X_n\) for each sample. Construct a \(3 \times 3\) table in
+  which you report the sample variance of each estimator for each value
+  of \(n\). Do your simulation results agree with your theoretical
+  results in part (b)?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n) \{}
+\NormalTok{    x <-}\StringTok{ }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{runif}\NormalTok{(n)}
+    \KeywordTok{c}\NormalTok{(}\DataTypeTok{M =}\NormalTok{ (}\KeywordTok{min}\NormalTok{(x) }\OperatorTok{+}\StringTok{ }\KeywordTok{max}\NormalTok{(x))}\OperatorTok{/}\DecValTok{2}\NormalTok{, }\DataTypeTok{Xbar =} \KeywordTok{mean}\NormalTok{(x), }\DataTypeTok{Xtilde =} \KeywordTok{median}\NormalTok{(x))}
+\NormalTok{\}}
+\KeywordTok{rbind}\NormalTok{(}\DataTypeTok{n101 =} \KeywordTok{apply}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(}\DecValTok{500}\NormalTok{, }\KeywordTok{f}\NormalTok{(}\DecValTok{101}\NormalTok{)), }\DecValTok{1}\NormalTok{, var), }
+    \DataTypeTok{n1001 =} \KeywordTok{apply}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(}\DecValTok{500}\NormalTok{, }\KeywordTok{f}\NormalTok{(}\DecValTok{1001}\NormalTok{)), }\DecValTok{1}\NormalTok{, var), }
+    \DataTypeTok{n10001 =} \KeywordTok{apply}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(}\DecValTok{500}\NormalTok{, }\KeywordTok{f}\NormalTok{(}\DecValTok{10001}\NormalTok{)), }\DecValTok{1}\NormalTok{, var))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   M         Xbar       Xtilde
+## n101   1.911225e-04 3.327884e-03 1.033074e-02
+## n1001  2.049648e-06 3.306967e-04 9.963343e-04
+## n10001 2.334722e-08 3.340229e-05 9.769245e-05
+\end{verbatim}
+
+\hypertarget{exercise-6.12}{%
+\subsubsection{Exercise 6.12}\label{exercise-6.12}}
+
+Let \(X_1,...,X_n\) be a random sample from Uniform\((0,2\theta)\). Find
+the asymptotic distributions of the median, the midquartile range, and
+\(\frac{2}{3}Q_3\), where \(Q_3\) denotes the third quartile and the
+midquartile range is the mean of the 1st and 3rd quartiles. Compare
+these three estimates of \(\theta\) based on their asymptotic variances.
+
+Consider the median, \(\tilde X_n.\) Then \(p=\frac{1}{2}.\) Therefore,
+by Theorem 6.7,
+\(\frac{p(1-p)}{F'(\xi_p)^2}=\frac{1/2(1-1/2)}{(1/2\theta)^2}=\theta^2\)
+implies \begin{align*}
+&&\sqrt{n}(\tilde X_n - \Xi_p)\overset{d}\rightarrow N(0,\theta^2)\\
+&\implies& \sqrt{n}(\tilde X_n-\theta)\overset{d}\rightarrow N(0,\theta^2)\\
+&\implies& \tilde X_n \overset{d}\rightarrow N(\theta, \frac{\theta^2}{n}).
+\end{align*}
+
+Consider the mid-quartile range, let \(p_1=1/4\) and \(p_2 = 3/4.\) Then
+by Theorem 6.7,
+\[\sqrt{n}\left[\begin{pmatrix}Q_{[1/4]} \\ Q_{[3/4]}\end{pmatrix} - \begin{pmatrix} \xi_{[1/4]} \\ \xi_{[3/4]}\end{pmatrix}\right]\overset{d}\rightarrow N_2\left(\boldsymbol 0, \Sigma \right)\]
+
+where
+\[\Sigma = 2\theta^2 \begin{pmatrix} p_1(1-p_1) & p_1(1-p_2) \\ p_1(1-p_2) &p_2(1-p_2) \end{pmatrix}= \begin{pmatrix} \frac{3\theta^2}{4} & \frac{\theta^2}{4} \\ \frac{\theta^2}{4} & \frac{3\theta^2}{4}\end{pmatrix}.\]
+Then consider the mid-quartile range,
+\(g(Q_{[1/4]}, Q_{[3/4]})=\frac{Q_{[1/4]}+ Q_{[3/4]}}{2}\). Then
+\(A = [\triangledown g(Q_{[1/4]}, Q_{[3/4]})]^T=(1/2 , 1/2)^T.\)
+Therefore, \(A\Sigma A^T = \frac{\theta^2}{2}\). Thus,
+\[\sqrt{n}\left(\frac{Q_{[1/4]}+Q_{[3/4]}}{2}-\theta\right)\overset{d}\rightarrow N\left(0, \frac{\theta^2}{2}\right).\]
+
+Consider \(\frac{2}{3}Q_3\). Then \(p = 3/4.\) Therefore, by Theorem
+6.7,
+\(\frac{p(1-p)}{F'(\xi_p)^2}=\frac{3/4(1-3/4)}{(1/2\theta)^2}=\frac{3\theta^2}{4}\)
+implies \begin{align*}
+&&\sqrt{n}(Q_{[3/4]} - \Xi_p)\overset{d}\rightarrow N(0,\frac{3\theta^2}{4})\\
+&\implies& \sqrt{n}(Q_{[3/4]}-\theta)\overset{d}\rightarrow N(0,\frac{3\theta^2}{4})\\
+&\implies& Q_{[3/4]} \overset{d}\rightarrow N(\theta, \frac{3\theta^2}{4})\\
+&\implies& \frac{2}{3}Q_{[3/4]} \overset{d}\rightarrow N\left(\theta, \left(\frac{2}{3}\right)^2\frac{3\theta^2}{4}\right)\\
+&\implies& \frac{2}{3}Q_{[3/4]} \overset{d}\rightarrow N\left(\theta, \frac{\theta^2}{3n}\right).
+\end{align*}
+
+
+\end{document}
