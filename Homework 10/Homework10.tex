@@ -101,6 +101,37 @@ known constant \(c>0\) and parameter \(\theta>0.\) Derive the Wald, Rao,
 and likelihood ratio tests of \(\theta=\theta_0\) against a two-sided
 alternative.
 
+Consider \begin{align*}
+&& L(\theta)&=\theta^nc^{n\theta}\prod_{i=1}^nx_i^{-(\theta+1)}\\
+&\implies& \ell (\theta) & = n\log(\theta)+n\theta\log(c)-(\theta+1)\sum_{i=1}^n\log(x_i)\\
+&\implies& \ell ' (\theta) & = \frac{n}{\theta}+n\log(c)-\sum_{i=1}^n\log(x_i)\\
+&&&=\frac{n}{\theta}-\sum_{i=1}^n\log\left(\frac{x_i}{c}\right)\\
+&\implies&\ell '' (\theta) & = -\frac{n}{\theta^2}.
+\end{align*} Therefore, setting \(\ell ' (\theta) = 0,\) implies
+\begin{align*}
+&&\frac{n}{\theta}-\sum_{i=1}^n\log\left(\frac{x_i}{c}\right) & = 0\\
+&\implies& n-\theta\sum_{i=1}^n\log\left(\frac{x_i}{c}\right) & = 0\\
+&\implies& \hat\theta_n & = \frac{n}{\sum_{i=1}^n\log\left(\frac{x_i}{c}\right)}.
+\end{align*} and from \(\ell '' (\theta),\) we obtain
+\(I(\theta)=\frac{1}{\theta^2}.\)
+
+Thus, for a two -sided alternative,
+\[W_n^2 = \frac{n}{\theta_0}(\hat\theta_n-\theta_0) =n\left(\frac{\hat\theta_n}{\theta_0}-1\right)^2=n\left(\frac{n}{\theta_0\sum_{i=1}^n\log(\frac{x_i}{c})}-1\right)^2.\]
+Reject when \(W_n^2 > \chi^2_{1,(1-\alpha)}.\)
+
+\[R_n^2=\frac{\theta_0^2}{n}\left[\frac{n}{\theta_0}-\sum_{i=1}^n\log\left(\frac{x_i}{\theta}\right)\right]^2=n\left[1-\frac{\theta_0\sum_{i=1}^n\log\left(\frac{x_i}{c}\right)}{n}\right]^2.\]
+Reject when \(R_n^2 > \chi^2_{1,(1-\alpha)}.\)
+
+\begin{align*}
+2\Delta_n&=2\left(\ell(\hat\theta_n)-\ell(\theta_0)\right)\\
+&=2\left[n\log\left(\frac{\hat\theta_n}{\theta_0}\right)+n\log(c)(\hat\theta_n-\theta_0)-(\hat\theta_n-\theta_0)\sum_{i=1}^n\log(x_i)\right]\\
+&=2\left[n\log\left(\frac{\hat\theta_n}{\theta_0}\right)-(\hat\theta_n-\theta_0)\sum_{i=1}^n\log\left(\frac{x_i}{c}\right)\right]\\
+&=2n\left[\log\left(\frac{\hat\theta_n}{\theta_0}\right)-(\hat\theta_n-\theta_0)\frac{1}{\hat\theta_n}\right]\\
+&=2n\left[\log\left(\frac{\hat\theta_n}{\theta_0}\right)-1=\frac{\theta_0}{\hat\theta_n}\right].
+\end{align*}
+
+Reject when \(2\Delta_n > \chi^2_{1,(1-\alpha)}.\)
+
 \hypertarget{exercise-8.2}{%
 \subsubsection{Exercise 8.2}\label{exercise-8.2}}
 
@@ -113,12 +144,51 @@ regularity condition that the parameter space be an open set, define
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
+\tightlist
 \item
   Prove that the Wald and score tests are the same as the usual Pearson
   chi-square test.
+\end{enumerate}
+
+\begin{proof}
+
+In class, we showed 
+$$I(\theta)=\text{Diag}\left(\frac{1}{\boldsymbol p^*}\right)+\frac{\boldsymbol1\boldsymbol 1^T}{p_k}$$
+Let $Y_j=\frac{X_j}{n}$ for $1\le j \le k - 1$. Then, under the null, the Pearson Chi-square statistic is
+$$\chi^2=n\sum_{i=1}^k\frac{\left(Y_j-\theta_j^0\right)^2}{\theta_j^0}$$
+where $\theta_k = 1-\sum_{j=1}^k-1\theta_j.$ Then we can show
+$$n\sum_{i=1}^{k-1}\frac{\left(Y_j-\theta_j^0\right)^2}{\theta_j^0}=n\left(\boldsymbol Y-\boldsymbol \theta^0\right)^T\text{Diag}\left(\frac{1}{\boldsymbol \theta^0} \right)\left(\boldsymbol Y - \boldsymbol \theta^0\right)$$
+and $$n\frac{\left(Y_k-\theta_k^0\right)^2}{\theta_k^0}=n\left(\boldsymbol Y-\boldsymbol \theta^0\right)^T\text{Diag}\left(\frac{1}{\boldsymbol \theta_k^0} \right)\left(\boldsymbol Y - \boldsymbol \theta^0\right).$$
+
+Therefore,
+$$\chi^2=n\left(\boldsymbol Y-\boldsymbol \theta^0\right)^T\text{Diag}\left(\frac{1}{\boldsymbol \theta^0} +\frac{1}{\boldsymbol \theta_k^0}\right)\left(\boldsymbol Y - \boldsymbol \theta^0\right)=n\left(\boldsymbol Y-\boldsymbol \theta^0\right)^TI(\boldsymbol \theta^0)\left(\boldsymbol Y - \boldsymbol \theta^0\right)$$
+Thus, the Wald test is the same as the usual Pearson chi-square test.
+
+Then
+$$\Delta \ell(\boldsymbol \theta^0)=\text{Diag}\left(\frac{1}{\boldsymbol\theta^0}\right)(n\boldsymbol Y)=\frac{X_k}{\theta_k}\boldsymbol 1.$$
+From Exercise 7.13, $I^{-1}(\boldsymbol \theta^0)-\boldsymbol \theta^0(\boldsymbol\theta^0)^T.$ Therefore,
+\begin{align*}
+R_n&=\frac{1}{n}\Delta\ell(\boldsymbol\theta^0)I^{-1}(\boldsymbol\theta^0)\Delta\ell(\boldsymbol\theta^0)=\left[\boldsymbol Y^T\text{Diag}(\boldsymbol\theta^0)-\boldsymbol 1^T\right]\left[(n\boldsymbol Y)-\frac{X_k}{\theta_k^0}\text{Diag}\left(\boldsymbol\theta^0\right)\boldsymbol 1\right]\\
+&=n\boldsymbol Y^T\boldsymbol Y +\frac{X_kY_k}{\theta_k^0}-n\\
+&=n\sum_{j=1}^k\frac{Y_j^2}{\theta_j^0}-n\\
+&=n\sum{j=1}^k\frac{(Y_j-\theta_j^0)^2}{\theta_j^0}
+\end{align*}
+Thus, the Score test is the same as the usual Pearson chi-square test.
+\end{proof}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
 \item
   Derive the likelihood ratio statistic \(2\Delta_n\).
 \end{enumerate}
+
+Consider
+\[\ell(\boldsymbol \theta)=\theta_1^{nY_1}\theta_2^{nY_2}\cdot\cdot\cdot\theta_{k-1}^{nY_{k-1}}(1-\theta_1-\cdot \cdot \cdot -\theta_{k-1}^{n-nY_1-\cdot\cdot\cdot -nY_{k-1}}.\]
+Therefore, since \(\hat{\boldsymbol \theta}_n=\boldsymbol Y\),
+\[2\Delta_n=2n\sum_{j=1}^{k-1}Y_j\log\left(\frac{\theta_j^0}{Y_j}\right)+2n(1-Y_1-\cdot\cdot\cdot-Y_{k-1}\log\left(\frac{1-\theta_1-\cdot\cdot\cdot-\theta_{k-1}}{1-Y_1-\cdot\cdot\cdot-Y_{k-1}}\right)\].
+Reject when \(2\Delta_n>\chi^2_{k-1,(1-\alpha)}.\)
 
 \hypertarget{exercise-8.8}{%
 \subsubsection{Exercise 8.8}\label{exercise-8.8}}
@@ -134,15 +204,39 @@ variable \(I_i=I(X_i>Y_i).\)
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
+\tightlist
 \item
   Derive the asymptotic distribution of \(T_n\) under the null
   hypothesis.
+\end{enumerate}
+
+Under the null, \(\lambda = \mu\) implies \(X_i \overset{d}= Y_i\).
+Therefore, \(I_i\sim\)Bern\((1/2)\) and
+\(\sum_{i=1}^nI_i\sim\)Bin\((n,1/2)\). Therefore, \begin{align*}
+T_n&=\frac{2(I_1-1/2+I_2-1/2+...+I_n-1/2)}{\sqrt{n}}\\
+&=\frac{2[\sum_{i=1}^n(I_i)-n/2]}{\sqrt{n}}\\
+&=2\cdot\frac{1}{\sqrt{n}}\left[I_n-\frac{1}{2n}\right]\cdot \frac{n}{n}\\
+&=2\sqrt{n}\left[\frac{I_n}{n}-\frac{1}{2}\right]\\
+& \overset{d}\rightarrow 2\cdot N(0,1/4)\\
+& \overset{d}=N(0,1).
+\end{align*}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
 \item
   Use the Lindeberg Theorem to show that, under the local alternative
   hypothesis \((\lambda_n,\mu_n)=)\lambda+n^{-1/2}\delta,\lambda),\)
   where \(\delta>0\),
   \[\frac{\sum_{i=1}^n(I_i-\rho_n)}{\sqrt{n\rho_n(1-\rho_n)}}\overset{\mathbb{L}}\rightarrow N(0,1), \text{ where }\rho_n=\frac{\lambda_n}{\lambda_n+\mu_n}=\frac{\lambda+n^{-1/2}\delta}{2\lambda+n^{-1/2}\lambda}.\]
 \end{enumerate}
+
+Under the local alternative, \(I_i\sim\)Bern\((\rho_n).\) Then by (4.15)
+in Example 4.17, we know
+\[\frac{\sum_{i=1}^n(I_i-\rho_n)}{\sqrt{n\rho_n(1-\rho_n)}}=\frac{I_n-n\rho_n}{\sqrt{n\rho_n(1-\rho_n)}}\overset{d}\rightarrow N(0,1)\]
+whenever \(n\rho_n(1-\rho_n)\rightarrow \infty\) as
+\(n\rightarrow \infty.\)
 
 \hypertarget{exercise-8.9}{%
 \subsubsection{Exercise 8.9}\label{exercise-8.9}}
@@ -155,6 +249,18 @@ for \(t\in [\theta, \theta+1]\). Assume \(m/(m+n)\rightarrow \rho\) as
 
 Find the asymptotic distribution of
 \(\sqrt{m+n}[g(\bar Y-\bar X)-g(\theta)].\)
+
+Consider \(E[X]=2/3\), \(E[Y]=\theta+2/3\), and \(Var(X)=Var(Y)=1/18.\)
+Then from the CLT, we know
+\((\bar X - 2/3)\overset{d}\rightarrow N\left(0,\frac{1}{18m}\right)\)
+and
+\(\left(\bar Y - (\theta+2/3)\right)\overset{d}\rightarrow N\left(0,\frac{1}{18m}\right)\).
+Therefore, since \(X_i\) and \(Y_i\) are independent,
+\[(\bar Y - \bar X) - (\theta+2/3-2/3)\overset{d}\rightarrow N\left(0, \frac{1}{18m}+\frac{1}{18n}\right).\]
+Therefore,
+\[\sqrt{m+n}\left[(\bar Y - \bar X) - \theta \right]\overset{d}\rightarrow N\left(0, \frac{\left(\frac{n+m}{m}\right)\left(\frac{n+m}{n}\right)}{18}\right)\overset{d}=N\left(0,\frac{1}{18\rho(1-\rho)}\right).\]
+Thus, using the delta rule,
+\[\sqrt{m+n}\left[g(\bar Y - \bar X) - g(\theta) \right]\overset{d}\rightarrow N\left(0,\frac{g'(\theta)^2}{18\rho(1-\rho)}\right).\]
 
 
 \end{document}
